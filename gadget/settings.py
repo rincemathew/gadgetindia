@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\RinceMathew\PycharmProjects\gadgetindia\gadget-india-57c2f8146721.json"
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     # external
     'rest_framework',
     'corsheaders',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +105,10 @@ DATABASES = {
     }
 }
 
+
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'gadget_india_bucket'
+# STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

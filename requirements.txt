@@ -3,3 +3,4 @@ djangorestframework==3.9.2
 django-cors-headers
 pillow
 psycopg2
+django-storages[google]

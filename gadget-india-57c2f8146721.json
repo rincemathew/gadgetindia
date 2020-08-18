@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "gadget-india",
+  "private_key_id": "57c2f81467218d6e49490a5333d02bf49b1a74ba",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCNEmrIfH9LTkab\nixGhrQf43M3ouAzK6ABqomY73yV4/TSY3k3BNQQpilgLEcHOAbdqjqsLIfLroLhC\nvUaQMOrA0gD+yM1vsaq3gk6wmdm5u1Zor4RzNCtt2bBQ1JBY8ILuAdjKXdplF2fX\ng5Pn/DwbWsSfCoTgZP1yCfJyI1ebrCcJOk/r+YdfyeiI4lUl/yXJGj1wzC3e0odo\nL56ntUMIckbQEZYPfB5uDCGa9DkSEv3JzFaYG1tIXqM7238HoL81rsWsZrjKmoqt\nvJ0ToxskWuIMZzmc9CxxmDdqyouF7WWtlut/vti5CXVNxkIjqWfGtnTLEM41gfbj\ntOlOlJkJAgMBAAECggEACKtek5aPDhYv4aQwv7JOAJ21K72Pz7JlQChdxwUmHOLW\npiRXO+3hpRni4j9DnUDewDYnTcZW0uMsH7HZEchnzNS7Ce1WLqyI9MEVy+WQi0j3\nfPR4W8oTdys/GiCOBGE3cp/7bihJYRgIoiZsYv/Nw9KWrb1sQAwExUrWMux4GFFr\nMuLmjzwWmgAWIgFKINC8nHWU+xVxhGxEVh1kjTQ+dHGNcvfQpjRHYTCTgH+62JG5\nwq2Dmecmcb5uAj4bmyIH4gsmOSlzql618Ozj6obA5wnc6p3r/Gi0ZovISHJV3fwj\n3rDTV0bzBecn01hE9L+ihq1hJwMlMnVWG2hBmnQYAQKBgQC//aTc+6fdzb1CKN9Y\nsjeXwBLo2zH+fLazZTczbnlrHliuf6kqJVUL7qsUuGrKughvYet8UVDzE+nPC43Q\nm9UrsiVvLhVGYs3jkRVelkUrN4nuWoePT7gPNTBdxpacN19sv1aU7X92P9aCuwvM\nXTGpKubyM65rgK2kXxi8rrmfCQKBgQC8Gt1HU2+kixvtp7c16BOc1T6J5zjU+S4N\n5KsFMuP1HBeBFJwvp9xphG9nREgxhuHzSVGgoVH3AYTEYeALdkZAdspAIZmyfQFs\nDaGg/GMG2k1xZFZMjpjlgc4J3wXdCz2rdUdL2rkGcY9iqp88aJRUmPTM94lF15ih\n7KvfqweqAQKBgHdJUfiXR2pRXUjQ+kwylsXrahRRtJNIy39U4OJMvpXmifUJjoKI\nJXo/dP5vwrJoubrynQxlvaT592hT5m35lI4MpqOYf1F3LDM7PorBVQKQBFwa1WUe\ng963DnEFZSh0Yw6/Jz1q/qnq6g3Zx2/Xa3aPGGTd5X4XukuJZmY9LUl5AoGBAIsC\nj2SWlHrVEt6egxajW1sbfAwNhEJfo1lBE+HTqgMJr5UE1iehtZGE/Y8jNvbi5zgT\nhu9eSGRyCtvWOOw/i8s3/l9GdX8iQlrH+Bowaj42NeUGcYBCIVv6gXlqB7tDA2Ai\nW34DNZk9culHjkXmQzgBkWenxxqGKZYAgUPZ8OABAoGBAI7UsSgdHh8tsYvMsc9n\nRY+rJmYwCUZ2RBkohRTyWTwrxk+iXx7DtxHvvUXV9kSIeAu6bDvSlGrq3kgJZOIQ\nRsfA5Ft9iz6kQoJkash+phSi2oczKOgVQXwJN4UCZ40lcqhYAVLOq7Vdqrak3OP5\nIOuvEBIJsEDOoQR5HKnz6HJt\n-----END PRIVATE KEY-----\n",
+  "client_email": "django-static-files@gadget-india.iam.gserviceaccount.com",
+  "client_id": "109744169734672242618",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/django-static-files%40gadget-india.iam.gserviceaccount.com"
+}

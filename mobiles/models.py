@@ -3,7 +3,7 @@ from django.db import models
 
 class BrandName(models.Model):
     brand_name = models.CharField(max_length=30, unique=True)
-    brand_logo = models.ImageField(upload_to='folder_brand_logo/', blank=True, null=True)
+    brand_logo = models.ImageField(upload_to='brand-logo/', blank=True, null=True)
     image_credits = models.URLField(blank=True, null=True)
 
     def __str__(self):
