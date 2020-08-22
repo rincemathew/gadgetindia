@@ -12,10 +12,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\RinceMathew\PycharmProjects\gadgetindia\gadget-india-57c2f8146721.json"
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\RinceMathew\PycharmProjects\gadgetindia\gadget-india-57c2f8146721.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.join(BASE_DIR, 'gadget-india-57c2f8146721.json')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -26,7 +27,7 @@ SECRET_KEY = 'o1o&su=8r8f+)aqd3_ft9^9dt7%7&*7mkh28^b=_)wo-ll_nyd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gadget-india.el.r.appspot.com','127.0.0.1']
 
 
 # Application definition
@@ -89,26 +90,47 @@ WSGI_APPLICATION = 'gadget.wsgi.application'
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'gadget',
+#         'USER': 'postgres',
+#         'PASSWORD': 'James@123',
+#         'HOST': '35.200.229.214',
+#         'PORT': '5432',
 #     }
 # }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gadget',
-        'USER': 'postgres',
-        'PASSWORD': 'James@123',
-        'HOST': '35.200.229.214',
-        'PORT': '5432',
+if os.getenv('GAE_APPLICATION', None):
+    # Running on production App Engine, so connect to Google Cloud SQL using
+    # the unix socket at /cloudsql/<your-cloudsql-connection string>
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'HOST': '/cloudsql/gadget-india:asia-south1:gadget-india-postgre',
+            'USER': 'postgres',
+            'PASSWORD': 'James@123',
+            'NAME': 'gadget',
+        }
     }
-}
-
+else:
+    # Running locally so connect to either a local MySQL instance or connect to
+    # Cloud SQL via the proxy. To start the proxy via command line:
+    #
+    #     $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
+    #
+    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'NAME': 'gadget',
+            'USER': 'postgres',
+            'PASSWORD': 'James@123',
+        }
+    }
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'gadget_india_bucket'
-# STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
