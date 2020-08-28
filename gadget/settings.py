@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -27,7 +28,7 @@ SECRET_KEY = 'o1o&su=8r8f+)aqd3_ft9^9dt7%7&*7mkh28^b=_)wo-ll_nyd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gadget-india.el.r.appspot.com','127.0.0.1']
+ALLOWED_HOSTS = ['gadget-india.el.r.appspot.com', '127.0.0.1',]
 
 
 # Application definition
@@ -59,7 +60,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:4200",
+    'http://localhost:4200', 'https://gadget-frontend-angular.el.r.appspot.com',
+    'https://gadgetin.in', 'https://gadgetin.in',
 ]
 # CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = False
@@ -103,10 +105,10 @@ if os.getenv('GAE_APPLICATION', None):
     # the unix socket at /cloudsql/<your-cloudsql-connection string>
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'HOST': '/cloudsql/gadget-india:asia-south1:gadget-india-postgre',
-            'USER': 'postgres',
-            'PASSWORD': 'James@123',
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '/cloudsql/gadget-india:asia-south1:gadget-india-mysql',
+            'USER': 'root',
+            'PASSWORD': 'sQ7ZjBnfdQd6yCM',
             'NAME': 'gadget',
         }
     }
@@ -119,18 +121,20 @@ else:
     # See https://cloud.google.com/sql/docs/mysql-connect-proxy
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.mysql',
             'HOST': '127.0.0.1',
             'PORT': '3306',
             'NAME': 'gadget',
-            'USER': 'postgres',
-            'PASSWORD': 'James@123',
+            'USER': 'root-user',
+            'PASSWORD': 'sQ7ZjBnfdQd6yCM',
         }
     }
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'gadget_india_bucket'
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
+SECURE_SSL_REDIRECT = True
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
