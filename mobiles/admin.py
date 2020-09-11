@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import BrandName, MobileName, MobileDetails
+from .models import BrandName, MobileName, MobileVariants, MobileStorage
 
 admin.site.register(BrandName)
 admin.site.register(MobileName)
-admin.site.register(MobileDetails)
+admin.site.register(MobileVariants)
+admin.site.register(MobileStorage)

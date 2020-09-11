@@ -28,7 +28,7 @@ SECRET_KEY = 'o1o&su=8r8f+)aqd3_ft9^9dt7%7&*7mkh28^b=_)wo-ll_nyd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gadget-india.el.r.appspot.com', '127.0.0.1',]
+ALLOWED_HOSTS = ['gadget-india.el.r.appspot.com', '127.0.0.1', ]
 
 
 # Application definition
@@ -61,7 +61,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:4200', 'https://gadget-frontend-angular.el.r.appspot.com',
-    'https://gadgetin.in', 'https://gadgetin.in',
+    'https://gadgetin.in', 'https://www.gadgetin.in',
 ]
 # CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = False
@@ -134,7 +134,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'gadget_india_bucket'
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-SECURE_SSL_REDIRECT = True
+# SECURE_SSL_REDIRECT = True
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -160,7 +160,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Calcutta'
 
 USE_I18N = True
 
