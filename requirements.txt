@@ -5,3 +5,4 @@ pillow
 psycopg2
 django-storages[google]
 mysqlclient
+django-filter

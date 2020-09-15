@@ -13,7 +13,7 @@ class NameSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MobileName
-        fields = ['id', 'mobile_name', 'brandName']
+        fields = ['id', 'mobile_name', 'test_bool', 'test_int', 'brandName']
 
 
 class SearchResults(serializers.ModelSerializer):
