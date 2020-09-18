@@ -1,3 +1,4 @@
+
 from django.db import models
 
 
@@ -10,7 +11,7 @@ class BrandName(models.Model):
 
 
 class MobileName(models.Model):
-    brandName = models.ForeignKey(BrandName, on_delete=models.CASCADE, related_name='mobiles_name')
+    brandName = models.ForeignKey(BrandName, on_delete=models.CASCADE,)
     mobile_name = models.CharField(max_length=50)
     mobile_image = models.ImageField(upload_to='mobile_image/')
 
@@ -24,7 +25,7 @@ class MobileGeneral(models.Model):
         ('IOS', 'ios'),
     )
     release_date = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True, null=True)
-    os = models.CharField(max_length=1, choices=OS_CHOICES)
+    os = models.CharField(max_length=10, choices=OS_CHOICES)
     os_version = models.CharField(max_length=10, null=True, blank=True)
     UI_version = models.CharField(max_length=50, null=True, blank=True)
     price = models.PositiveIntegerField(blank=True, null=True)
@@ -32,6 +33,9 @@ class MobileGeneral(models.Model):
     dimensions = models.CharField(max_length=50)
     weight = models.FloatField()
     slots = models.CharField(max_length=200, default='Dual SIM(2) + Dedicated Memory Card Slot')
+
+    def __str__(self):
+        return str(self.price)
 
 
 class MobilePerformance(models.Model):
@@ -63,7 +67,7 @@ class MobileBattery(models.Model):
         ('LI-POLY', 'Li-poly'),
     )
     battery_capacity = models.IntegerField()
-    battery_type = models.CharField(max_length=1, choices=BATTERY_TYPE_CHOICES, blank=True, null=True)
+    battery_type = models.CharField(max_length=10, choices=BATTERY_TYPE_CHOICES, blank=True, null=True)
     fast_charger = models.BooleanField(default=True, blank=True, null=True)
     fast_charging = models.CharField(max_length=200, blank=True, null=True)
     replaceable = models.BooleanField(default=False, blank=True, null=True)
@@ -79,21 +83,38 @@ class MobileDisplay(models.Model):
     display_features = models.CharField(max_length=300, blank=True, null=True)
 
 
+class MobileConnectivity(models.Model):
+    SAR_value = models.CharField(max_length=100, blank=True, null=True)
+    wi_fi = models.CharField(max_length=100, blank=True, null=True)
+    bluetooth = models.CharField(max_length=100, blank=True, null=True, default='v5.0')
+    GPS = models.BooleanField(default=True)
+    audio_jack = models.CharField(max_length=30, default='3.5 mm')
+    USB_type_c = models.BooleanField(blank=True, null=True, default=True)
+
+
 class MobileConnectivityDetails(models.Model):
     SIM_TYPE = (
         ('NANO', 'Nano'),
         ('MICRO', 'Micro'),
         ('STANDARD', 'Standard'),
     )
-    sim_type = models.CharField(max_length=1, choices=SIM_TYPE, default='NANO')
+    SIM_CHOICES = (
+        ('SIM 1', 'SIM 1'),
+        ('SIM 2', 'SIM 2'),
+        ('SIM 3', 'SIM 3'),
+    )
+    sim_name = models.CharField(max_length=10, choices=SIM_CHOICES)
+    sim_type = models.CharField(max_length=20, choices=SIM_TYPE, default='NANO')
     five_g = models.BooleanField(default=False)
     four_g = models.BooleanField(default=True)
+    VoLTE = models.BooleanField(default=True)
     three_g = models.BooleanField(default=True)
     two_g = models.BooleanField(default=True)
-    SAR_value = models.CharField(max_length=100, blank=True, null=True)
-    wi_fi = models.CharField(max_length=100, blank=True, null=True)
-    bluetooth = models.CharField(max_length=100, blank=True, null=True, default='v5.0')
-    GPS = models.BooleanField(default=True)
+    mobileConnectivityDetails = models.ForeignKey(MobileConnectivity, on_delete=models.CASCADE, blank=True, null=True,
+                                                  related_name='mobile_connectivity_details')
+
+    def __str__(self):
+        return self.sim_name
 
 
 class MobileSensor(models.Model):
@@ -104,7 +125,7 @@ class MobileSensor(models.Model):
         ('ONSCREEN', 'Onscreen'),
     )
     fingerprint_sensor = models.BooleanField(default=True)
-    fingerprint_position = models.CharField(max_length=1, choices=FINGER_CHOICES, blank=True, null=True)
+    fingerprint_position = models.CharField(max_length=20, choices=FINGER_CHOICES, blank=True, null=True)
     other_sensor = models.CharField(max_length=300)
 
 
@@ -114,58 +135,50 @@ class OtherFeature(models.Model):
     warranty = models.CharField(max_length=300, blank=True, null=True)
 
 
-class VariantImage(models.Model):
-    variant_image = models.ImageField(upload_to='variant_image/')
+class MobileVariant(models.Model):
+    mobileNames = models.ForeignKey(MobileName, on_delete=models.CASCADE, related_name='mobile_Variant')
+    mobile_variants = models.CharField(max_length=50)
+    image_credit = models.URLField(max_length=200)
 
+    mobileGeneral = models.OneToOneField(MobileGeneral, on_delete=models.CASCADE, blank=True, null=True)
+    mobilePerformance = models.OneToOneField(MobilePerformance, on_delete=models.CASCADE, blank=True, null=True)
+    mobileStorage = models.OneToOneField(MobileStorage, on_delete=models.CASCADE, blank=True, null=True)
+    mobileCamera = models.OneToOneField(MobileCamera, on_delete=models.CASCADE, blank=True, null=True)
+    mobileBattery = models.OneToOneField(MobileBattery, on_delete=models.CASCADE, blank=True, null=True)
+    mobileDisplay = models.OneToOneField(MobileDisplay, on_delete=models.CASCADE, blank=True, null=True)
+    mobileSensor = models.OneToOneField(MobileSensor, on_delete=models.CASCADE, blank=True, null=True)
+    otherFeature = models.OneToOneField(OtherFeature, on_delete=models.CASCADE, blank=True, null=True)
+    mobileConnectivity = models.OneToOneField(MobileConnectivity, on_delete=models.CASCADE, blank=True, null=True)
 
-class PriceURL(models.Model):
-    flipkart_URL = models.URLField(max_length=200, blank=True, null=True)
-    amazon_URL = models.URLField(max_length=200, blank=True, null=True)
-    tata_cliq_URL = models.URLField(max_length=200, blank=True, null=True)
-    reliance_digital_URL = models.URLField(max_length=200, blank=True, null=True)
+    def __str__(self):
+        return self.mobile_variants
 
 
 class OnlinePrice(models.Model):
     flipkart = models.PositiveIntegerField(blank=True, null=True)
+    flipkart_URL = models.URLField(max_length=200, blank=True, null=True)
     amazon = models.PositiveIntegerField(blank=True, null=True)
+    amazon_URL = models.URLField(max_length=200, blank=True, null=True)
     tata_cliq = models.PositiveIntegerField(blank=True, null=True)
+    tata_cliq_URL = models.URLField(max_length=200, blank=True, null=True)
     reliance_digital = models.PositiveIntegerField(blank=True, null=True)
-    priceURL = models.OneToOneField(PriceURL, on_delete=models.CASCADE)
+    reliance_digital_URL = models.URLField(max_length=200, blank=True, null=True)
 
 
 class VariantColor(models.Model):
+    variantColor = models.ForeignKey(MobileVariant, on_delete=models.CASCADE, blank=True, null=True)
     mobile_color = models.CharField(max_length=50)
     price_variant = models.OneToOneField(OnlinePrice, on_delete=models.CASCADE)
 
 
-class MobileVariant(models.Model):
-    mobileNames = models.ForeignKey(MobileName, on_delete=models.CASCADE, related_name='mobileName')
-    mobile_variants = models.CharField(max_length=20)
-    image_credit = models.URLField(max_length=200)
+class VariantImage(models.Model):
+    variantImage = models.ForeignKey(MobileVariant, on_delete=models.CASCADE, blank=True, null=True)
+    variant_image = models.ImageField(upload_to='variant_image/')
 
-    variantImage = models.ForeignKey(VariantImage, on_delete=models.CASCADE)
-    variantColor = models.ForeignKey(VariantColor, on_delete=models.CASCADE)
-    mobileGeneral = models.OneToOneField(MobileGeneral, on_delete=models.CASCADE)
-    mobilePerformance = models.OneToOneField(MobilePerformance, on_delete=models.CASCADE)
-    mobileStorage = models.OneToOneField(MobileStorage, on_delete=models.CASCADE)
-    mobileCamera = models.OneToOneField(MobileCamera, on_delete=models.CASCADE)
-    mobileBattery = models.OneToOneField(MobileBattery, on_delete=models.CASCADE)
-    mobileDisplay = models.OneToOneField(MobileDisplay, on_delete=models.CASCADE)
-    mobileSensor = models.OneToOneField(MobileSensor, on_delete=models.CASCADE)
-    otherFeature = models.OneToOneField(OtherFeature, on_delete=models.CASCADE)
+    def __str__(self):
+        return str(self.variant_image)
 
 
-class MobileConnectivity(models.Model):
-    mobileVariant = models.ForeignKey(MobileVariant, on_delete=models.CASCADE)
-    SIM_CHOICES = (
-        ('SIM 1', 'SIM 1'),
-        ('SIM 2', 'SIM 2'),
-        ('SIM 3', 'SIM 3'),
-    )
-    sim_name = models.CharField(max_length=1, choices=SIM_CHOICES)
-    audio_jack = models.CharField(max_length=30, default='3.5 mm')
-    USB_type_c = models.BooleanField(blank=True, null=True, default=True)
-    mobileConnectivity = models.OneToOneField(MobileConnectivityDetails, on_delete=models.CASCADE)
 
 
 

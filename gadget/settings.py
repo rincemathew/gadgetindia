@@ -134,7 +134,7 @@ else:
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'gadget_india_bucket'
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-
+GS_FILE_OVERWRITE = False
 # SECURE_SSL_REDIRECT = True
 
 # Password validation
