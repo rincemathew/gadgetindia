@@ -11,9 +11,14 @@ class BrandName(models.Model):
 
 
 class MobileName(models.Model):
+    PHONE_TYPE = (
+        ('SMARTPHONE', 'Smartphone'),
+        ('TABLET', 'Tablet'),
+    )
     brandName = models.ForeignKey(BrandName, on_delete=models.CASCADE,)
     mobile_name = models.CharField(max_length=50)
     mobile_image = models.ImageField(upload_to='mobile_image/')
+    phone_type = models.CharField(max_length=20, choices=PHONE_TYPE, default='Smartphone')
 
     def __str__(self):
         return self.mobile_name
@@ -166,13 +171,15 @@ class OnlinePrice(models.Model):
 
 
 class VariantColor(models.Model):
-    variantColor = models.ForeignKey(MobileVariant, on_delete=models.CASCADE, blank=True, null=True)
+    variantColor = models.ForeignKey(MobileVariant, on_delete=models.CASCADE, blank=True, null=True,
+                                     related_name='variant_Color')
     mobile_color = models.CharField(max_length=50)
     price_variant = models.OneToOneField(OnlinePrice, on_delete=models.CASCADE)
 
 
 class VariantImage(models.Model):
-    variantImage = models.ForeignKey(MobileVariant, on_delete=models.CASCADE, blank=True, null=True)
+    variantImage = models.ForeignKey(MobileVariant, on_delete=models.CASCADE, blank=True, null=True,
+                                     related_name='variant_Image')
     variant_image = models.ImageField(upload_to='variant_image/')
 
     def __str__(self):

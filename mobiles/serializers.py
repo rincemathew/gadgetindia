@@ -13,7 +13,7 @@ class MobileNameSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.MobileName
-        fields = ['mobile_name', 'mobile_image', 'brandName', ]
+        fields = ['mobile_name', 'mobile_image', 'phone_type', 'brandName', ]
 
 
 class MobileGeneralSerializer(serializers.ModelSerializer):
@@ -78,7 +78,7 @@ class MobileDisplaySerializer(serializers.ModelSerializer):
 class MobileConnectivityDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.MobileConnectivityDetails
-        fields = '__all__'
+        fields = ['sim_name', 'sim_type', 'five_g', 'four_g', 'VoLTE', 'three_g', 'two_g', ]
 
 
 class MobileConnectivitySerializer(serializers.ModelSerializer):
@@ -90,6 +90,38 @@ class MobileConnectivitySerializer(serializers.ModelSerializer):
                   'audio_jack', 'USB_type_c', 'mobile_connectivity_details']
 
 
+class MobileSensorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.MobileSensor
+        fields = '__all__'
+
+
+class OtherFeatureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.OtherFeature
+        fields = '__all__'
+
+
+class OnlinePriceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.OnlinePrice
+        fields = '__all__'
+
+
+class VariantColorSerializer(serializers.ModelSerializer):
+    price_variant = OnlinePriceSerializer(many=False)
+
+    class Meta:
+        model = models.VariantColor
+        fields = ['mobile_color', 'price_variant', ]
+
+
+class VariantImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.VariantImage
+        fields = ['variant_image']
+
+
 class MobileDetailedResults(serializers.ModelSerializer):
     mobileNames = MobileNameSerializer(many=False)
     mobileGeneral = MobileGeneralSerializerAll(many=False)
@@ -99,9 +131,13 @@ class MobileDetailedResults(serializers.ModelSerializer):
     mobileBattery = MobileBatterySerializer(many=False)
     mobileDisplay = MobileDisplaySerializer(many=False)
     mobileConnectivity = MobileConnectivitySerializer(many=False)
+    mobileSensor = MobileSensorSerializer(many=False)
+    otherFeature = OtherFeatureSerializer(many=False)
+    variant_Color = VariantColorSerializer(many=True)
+    variant_Image = VariantImageSerializer(many=True)
 
     class Meta:
         model = models.MobileVariant
         fields = ['mobile_variants', 'mobileNames', 'mobileGeneral', 'mobilePerformance',
                   'mobileStorage', 'mobileCamera', 'mobileBattery', 'mobileDisplay',
-                  'mobileConnectivity',]
+                  'mobileConnectivity', 'mobileSensor', 'otherFeature', 'variant_Color', 'variant_Image' ]
