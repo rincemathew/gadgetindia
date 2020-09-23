@@ -60,11 +60,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:4200', 'https://gadget-frontend-angular.el.r.appspot.com',
-    'https://gadgetin.in', 'https://www.gadgetin.in',
-]
-# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:4200', 'https://gadget-frontend-angular.el.r.appspot.com',
+#     'https://gadgetin.in', 'https://www.gadgetin.in',
+# ]
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = False
 
 ROOT_URLCONF = 'gadget.urls'

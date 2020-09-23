@@ -51,8 +51,13 @@ class MobilePerformance(models.Model):
 
 
 class MobileStorage(models.Model):
+    SIM_SLOT = (
+        ('Dedicated Slot', 'DEDICATED SLOT'),
+        ('Hybrid Slot', 'HYBRID SLOT'),
+    )
     device_storage = models.PositiveIntegerField()
     expandable_memory = models.BooleanField(default=True)
+    sim_slot_type = models.CharField(max_length=50, choices=SIM_SLOT, default='Dedicated Slot')
     expandable_memory_capacity = models.IntegerField(blank=True, null=True)
     OTG_support = models.BooleanField(blank=True, null=True, default=True)
 
@@ -110,6 +115,7 @@ class MobileConnectivityDetails(models.Model):
     )
     sim_name = models.CharField(max_length=10, choices=SIM_CHOICES)
     sim_type = models.CharField(max_length=20, choices=SIM_TYPE, default='NANO')
+    hybrid_slot = models.BooleanField(default=False)
     five_g = models.BooleanField(default=False)
     four_g = models.BooleanField(default=True)
     VoLTE = models.BooleanField(default=True)
