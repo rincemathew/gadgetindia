@@ -25,8 +25,6 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.join(BASE_DIR, 'gadget-in
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'o1o&su=8r8f+)aqd3_ft9^9dt7%7&*7mkh28^b=_)wo-ll_nyd'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['gadget-india.el.r.appspot.com', '127.0.0.1', ]
 
@@ -102,6 +100,7 @@ WSGI_APPLICATION = 'gadget.wsgi.application'
 #     }
 # }
 if os.getenv('GAE_APPLICATION', None):
+    DEBUG = False
     # Running on production App Engine, so connect to Google Cloud SQL using
     # the unix socket at /cloudsql/<your-cloudsql-connection string>
     DATABASES = {
@@ -114,6 +113,7 @@ if os.getenv('GAE_APPLICATION', None):
         }
     }
 else:
+    DEBUG = True
     # Running locally so connect to either a local MySQL instance or connect to
     # Cloud SQL via the proxy. To start the proxy via command line:
     #

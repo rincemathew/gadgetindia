@@ -44,9 +44,13 @@ class MobileGeneral(models.Model):
 
 
 class MobilePerformance(models.Model):
+    PROCESSOR = (
+        ('Qualcomm', 'Qualcomm'),
+        ('MediaTek', 'MediaTek'),
+    )
     ram = models.PositiveIntegerField()
     processor = models.CharField(max_length=50)
-    processor_company = models.CharField(max_length=50)
+    processor_company = models.CharField(max_length=50, choices=PROCESSOR)
     clock_speed = models.FloatField()
 
 
@@ -65,7 +69,7 @@ class MobileStorage(models.Model):
 class MobileCamera(models.Model):
     primary_camera = models.IntegerField()
     primary_camera_str = models.CharField(max_length=501)
-    primary_camera_features = models.CharField(max_length=500)
+    primary_camera_features = models.CharField(max_length=1000)
     secondary_camera = models.IntegerField()
     secondary_camera_str = models.CharField(max_length=50)
     secondary_camera_features = models.CharField(max_length=500)
@@ -90,7 +94,7 @@ class MobileDisplay(models.Model):
     resolution_type = models.CharField(max_length=50, blank=True, null=True)
     GPU = models.CharField(max_length=50, blank=True, null=True)
     display_type = models.CharField(max_length=100)
-    display_features = models.CharField(max_length=300, blank=True, null=True)
+    display_features = models.CharField(max_length=700, blank=True, null=True)
 
 
 class MobileConnectivity(models.Model):
@@ -133,7 +137,7 @@ class MobileSensor(models.Model):
         ('SIDE', 'Side'),
         ('REAR', 'REAR'),
         ('FRONTSIDE', 'Front Side'),
-        ('ONSCREEN', 'Onscreen'),
+        ('IN-DISPLAY', 'in-display'),
     )
     fingerprint_sensor = models.BooleanField(default=True)
     fingerprint_position = models.CharField(max_length=20, choices=FINGER_CHOICES, blank=True, null=True)
@@ -141,7 +145,7 @@ class MobileSensor(models.Model):
 
 
 class OtherFeature(models.Model):
-    other_Feature = models.CharField(max_length=500, blank=True, null=True)
+    other_Feature = models.CharField(max_length=1000, blank=True, null=True)
     in_the_box = models.CharField(max_length=300, blank=True, null=True)
     warranty = models.CharField(max_length=300, blank=True, null=True)
 

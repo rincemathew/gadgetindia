@@ -4,6 +4,12 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 from . import models
 from . import serializers, serializerone
+from rest_framework.pagination import LimitOffsetPagination
+
+
+class ProductPagination(LimitOffsetPagination):
+    default_limit = 10
+    max_limit = 100
 
 
 class SearchResultView(ListAPIView):
@@ -17,6 +23,7 @@ class MobileResultsView(ListAPIView):
     queryset = models.MobileVariant.objects.all()
     serializer_class = serializerone.MobileResults
     filter_backends = (DjangoFilterBackend, )
+    pagination_class = ProductPagination
     filter_fields = \
         {
             'mobileNames__brandName__brand_name': ['exact'],
@@ -24,6 +31,8 @@ class MobileResultsView(ListAPIView):
             'mobileGeneral__price': ['gte', 'lte', 'exact'],
             'mobileStorage__device_storage': ['gte', 'lte', 'exact'],
             'mobilePerformance__ram': ['gte', 'lte', 'exact'],
+            'mobileGeneral__release_date': ['gte', 'lte', 'exact', 'range'],
+            # "2020-09-30T12:00:00+05:30"
         }
 
 
