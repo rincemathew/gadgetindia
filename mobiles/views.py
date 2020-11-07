@@ -12,15 +12,21 @@ class ProductPagination(LimitOffsetPagination):
     max_limit = 100
 
 
+class SearchPagination(LimitOffsetPagination):
+    default_limit = 20
+    max_limit = 100
+
+
 class SearchResultView(ListAPIView):
-    queryset = models.MobileVariant.objects.all()
+    queryset = models.MobileVariant.objects.order_by('-mobileGeneral__release_date')
     serializer_class = serializers.SearchResults
     filter_backends = (SearchFilter,)
+    pagination_class = SearchPagination
     search_fields = ('mobileNames__mobile_name', 'mobileNames__brandName__brand_name')
 
 
 class MobileResultsView(ListAPIView):
-    queryset = models.MobileVariant.objects.all()
+    queryset = models.MobileVariant.objects.order_by('-mobileGeneral__release_date')
     serializer_class = serializerone.MobileResults
     filter_backends = (DjangoFilterBackend, )
     pagination_class = ProductPagination
