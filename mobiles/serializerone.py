@@ -25,7 +25,7 @@ class MobileGeneralSerializerAll(serializers.ModelSerializer):
 class MobilePerformanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.MobilePerformance
-        fields = ['ram', ]
+        fields = ['ram', 'processor', ]
 
 
 class MobileStorageSerializer(serializers.ModelSerializer):
@@ -49,7 +49,7 @@ class MobileBatterySerializer(serializers.ModelSerializer):
 class MobileDisplaySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.MobileDisplay
-        fields = ['screen_size', ]
+        fields = ['screen_size', 'resolution', ]
 
 
 class MobileConnectivityDetailsSerializer(serializers.ModelSerializer):

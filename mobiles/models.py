@@ -35,7 +35,7 @@ class MobileGeneral(models.Model):
     UI_version = models.CharField(max_length=50, null=True, blank=True)
     price = models.PositiveIntegerField(blank=True, null=True)
     is_available = models.BooleanField(max_length=None, default=True)
-    dimensions = models.CharField(max_length=50)
+    dimensions = models.CharField(max_length=50, default='77 mm x 77 mm x  77 mm')
     weight = models.FloatField()
     slots = models.CharField(max_length=200, default='Dual SIM(2) + Dedicated Memory Card Slot')
 
@@ -152,7 +152,7 @@ class OtherFeature(models.Model):
 
 class MobileVariant(models.Model):
     mobileNames = models.ForeignKey(MobileName, on_delete=models.CASCADE, related_name='mobile_Variant')
-    mobile_variants = models.CharField(max_length=50)
+    mobile_variants = models.CharField(max_length=50, default='1 GB RAM, 16 GB Storage')
     image_credit = models.URLField(max_length=200)
 
     mobileGeneral = models.OneToOneField(MobileGeneral, on_delete=models.CASCADE, blank=True, null=True)
