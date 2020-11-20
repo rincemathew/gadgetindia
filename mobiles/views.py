@@ -18,7 +18,7 @@ class SearchPagination(LimitOffsetPagination):
 
 
 class SearchResultView(ListAPIView):
-    queryset = models.MobileVariant.objects.order_by('-mobileGeneral__release_date')
+    queryset = models.MobileVariant.objects.order_by('-mobileGeneral__release_date').filter(mobileGeneral__is_available=True)
     serializer_class = serializers.SearchResults
     filter_backends = (SearchFilter,)
     pagination_class = SearchPagination
@@ -26,7 +26,7 @@ class SearchResultView(ListAPIView):
 
 
 class MobileResultsView(ListAPIView):
-    queryset = models.MobileVariant.objects.order_by('-mobileGeneral__release_date')
+    queryset = models.MobileVariant.objects.order_by('-mobileGeneral__release_date').filter(mobileGeneral__is_available=True)
     serializer_class = serializerone.MobileResults
     filter_backends = (DjangoFilterBackend, )
     pagination_class = ProductPagination
