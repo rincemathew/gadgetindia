@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'gadget.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
+# cloud_sql_proxy.exe -instances="gadget-india:asia-south1:gadget-india-mysql"=tcp:3306
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',

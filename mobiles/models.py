@@ -4,6 +4,7 @@ from django.db import models
 
 class BrandName(models.Model):
     brand_name = models.CharField(max_length=30, unique=True)
+    brand_name_url = models.CharField(max_length=30, default='comepn')
     brand_logo = models.ImageField(upload_to='brand-logo/', blank=True, null=True)
 
     def __str__(self):
@@ -17,6 +18,7 @@ class MobileName(models.Model):
     )
     brandName = models.ForeignKey(BrandName, on_delete=models.CASCADE,)
     mobile_name = models.CharField(max_length=50)
+    mobile_name_url = models.CharField(max_length=50)
     mobile_image = models.ImageField(upload_to='mobile_image/')
     phone_type = models.CharField(max_length=20, choices=PHONE_TYPE, default='Smartphone')
 
@@ -47,11 +49,14 @@ class MobilePerformance(models.Model):
     PROCESSOR = (
         ('Qualcomm', 'Qualcomm'),
         ('MediaTek', 'MediaTek'),
+        ('Apple', 'Apple'),
+        ('HiSilicon', 'HiSilicon'),
+        ('Samsung', 'Samsung'),
     )
     ram = models.PositiveIntegerField()
     processor = models.CharField(max_length=50)
     processor_company = models.CharField(max_length=50, choices=PROCESSOR)
-    clock_speed = models.FloatField()
+    clock_speed = models.FloatField(blank=True, null=True)
 
 
 class MobileStorage(models.Model):
@@ -61,7 +66,7 @@ class MobileStorage(models.Model):
     )
     device_storage = models.PositiveIntegerField()
     expandable_memory = models.BooleanField(default=True)
-    sim_slot_type = models.CharField(max_length=50, choices=SIM_SLOT, default='Dedicated Slot')
+    sim_slot_type = models.CharField(blank=True, null=True, max_length=50, choices=SIM_SLOT, default='Dedicated Slot')
     expandable_memory_capacity = models.IntegerField(blank=True, null=True)
     OTG_support = models.BooleanField(blank=True, null=True, default=True)
 
@@ -69,10 +74,10 @@ class MobileStorage(models.Model):
 class MobileCamera(models.Model):
     primary_camera = models.IntegerField()
     primary_camera_str = models.CharField(max_length=501)
-    primary_camera_features = models.CharField(max_length=1000)
+    primary_camera_features = models.CharField(max_length=1200)
     secondary_camera = models.IntegerField()
     secondary_camera_str = models.CharField(max_length=50)
-    secondary_camera_features = models.CharField(max_length=500)
+    secondary_camera_features = models.CharField(max_length=1000)
 
 
 class MobileBattery(models.Model):
@@ -102,7 +107,7 @@ class MobileConnectivity(models.Model):
     wi_fi = models.CharField(max_length=100, blank=True, null=True)
     bluetooth = models.CharField(max_length=100, blank=True, null=True, default='v5.0')
     GPS = models.BooleanField(default=True)
-    audio_jack = models.CharField(max_length=30, default='3.5 mm')
+    audio_jack = models.CharField(max_length=30, blank=True, null=True, default='3.5 mm')
     USB_type_c = models.BooleanField(blank=True, null=True, default=True)
 
 
@@ -111,6 +116,7 @@ class MobileConnectivityDetails(models.Model):
         ('NANO', 'Nano'),
         ('MICRO', 'Micro'),
         ('STANDARD', 'Standard'),
+        ('eSIM', 'eSIM'),
     )
     SIM_CHOICES = (
         ('SIM 1', 'SIM 1'),
@@ -153,6 +159,7 @@ class OtherFeature(models.Model):
 class MobileVariant(models.Model):
     mobileNames = models.ForeignKey(MobileName, on_delete=models.CASCADE, related_name='mobile_Variant')
     mobile_variants = models.CharField(max_length=50, default='1 GB RAM, 16 GB Storage')
+    mobile_variants_url = models.CharField(max_length=50, default='1-gb-ram-16-gb-storage')
     image_credit = models.URLField(max_length=200)
 
     mobileGeneral = models.OneToOneField(MobileGeneral, on_delete=models.CASCADE, blank=True, null=True)

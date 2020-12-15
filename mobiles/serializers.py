@@ -13,7 +13,7 @@ class MobileNameSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.MobileName
-        fields = ['mobile_name', 'mobile_image', 'phone_type', 'brandName', ]
+        fields = ['mobile_name', 'mobile_name_url', 'mobile_image', 'phone_type', 'brandName', ]
 
 
 class MobileGeneralSerializer(serializers.ModelSerializer):
@@ -28,7 +28,7 @@ class SearchResults(serializers.ModelSerializer):
 
     class Meta:
         model = models.MobileVariant
-        fields = ['mobile_variants', 'mobileNames', 'mobileGeneral']
+        fields = ['mobile_variants', 'mobile_variants_url', 'mobileNames', 'mobileGeneral']
 
 
 # class MobileResults(serializers.ModelSerializer):
@@ -138,6 +138,6 @@ class MobileDetailedResults(serializers.ModelSerializer):
 
     class Meta:
         model = models.MobileVariant
-        fields = ['mobile_variants', 'mobileNames', 'mobileGeneral', 'mobilePerformance',
+        fields = ['mobile_variants', 'mobile_variants_url', 'mobileNames', 'mobileGeneral', 'mobilePerformance',
                   'mobileStorage', 'mobileCamera', 'mobileBattery', 'mobileDisplay',
                   'mobileConnectivity', 'mobileSensor', 'otherFeature', 'variant_Color', 'variant_Image' ]

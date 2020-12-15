@@ -18,18 +18,19 @@ class ArticleView(ListAPIView):
     search_fields = ('id', 'article_name')
     filter_fields = \
         {
+            'article_name': ['exact'],
             'id': ['exact'],
         }
 
 
 class ArticleListView(ListAPIView):
-    queryset = models.Articles.objects.order_by('-release_date').filter(released_or_not=True)
+    queryset = models.Articles.objects.order_by('-release_date').filter(released_or_not=True,type='dynamic')
     serializer_class = serializer.ArticleListSerializer
     filter_backends = (DjangoFilterBackend, )
     pagination_class = ProductPagination
     filter_fields = \
         {
-            'type': ['exact'],
+            # 'type': ['exact'],
             'article_type': ['exact'],
         }
 

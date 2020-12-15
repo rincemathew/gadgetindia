@@ -15,6 +15,7 @@ class Articles(models.Model):
         ('article', 'ARTICLE'),
     )
     article_name = models.CharField(max_length=254, unique=True)
+    article_name_url = models.CharField(max_length=254, )
     released_or_not = models.BooleanField(default=False, )
     release_date = models.DateField(auto_now=False, auto_now_add=False, )
     type = models.CharField(max_length=50, choices=TYPE, default='dynamic')
