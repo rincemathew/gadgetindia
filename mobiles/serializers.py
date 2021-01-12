@@ -5,7 +5,7 @@ from . import models
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.BrandName
-        fields = ['brand_name', 'brand_logo', ]
+        fields = ['brand_name', 'brand_logo', 'brand_name_url',]
 
 
 class MobileNameSerializer(serializers.ModelSerializer):

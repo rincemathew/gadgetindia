@@ -19,6 +19,7 @@ class ArticleView(ListAPIView):
     filter_fields = \
         {
             'article_name': ['exact'],
+            'article_name_url': ['exact'],
             'id': ['exact'],
         }
 
@@ -32,5 +33,6 @@ class ArticleListView(ListAPIView):
         {
             # 'type': ['exact'],
             'article_type': ['exact'],
+            'article_name_url': ['exact'],
         }
 

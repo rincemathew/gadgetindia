@@ -32,9 +32,10 @@ class MobileResultsView(ListAPIView):
     pagination_class = ProductPagination
     filter_fields = \
         {
-            'mobileNames__brandName__brand_name': ['exact'],
+            'mobileNames__brandName__brand_name': ['exact', ],
             'mobileNames__phone_type': ['exact'],
-            'mobileGeneral__price': ['gte', 'lte', 'exact'],
+            'mobile_url_themes_name': ['exact', 'in'],
+            'mobileGeneral__price': ['gte', 'lte', 'exact', 'in'],
             'mobileStorage__device_storage': ['gte', 'lte', 'exact'],
             'mobilePerformance__ram': ['gte', 'lte', 'exact'],
             'mobileGeneral__release_date': ['gte', 'lte', 'exact', 'range'],
@@ -50,7 +51,9 @@ class MobileDetailedResultsView(ListAPIView):
     filter_fields = \
         {
             'mobileNames__mobile_name': ['exact'],
+            'mobileNames__mobile_name_url': ['exact'],
             'mobileNames__brandName__brand_name': ['exact'],
+            'mobileNames__brandName__brand_name_url': ['exact'],
             'mobile_variants': ['exact'], 'mobileNames__phone_type': ['exact'],
         }
 

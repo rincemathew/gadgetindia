@@ -4,7 +4,7 @@ from django.db import models
 
 class BrandName(models.Model):
     brand_name = models.CharField(max_length=30, unique=True)
-    brand_name_url = models.CharField(max_length=30, default='comepn')
+    brand_name_url = models.CharField(max_length=30, default='company')
     brand_logo = models.ImageField(upload_to='brand-logo/', blank=True, null=True)
 
     def __str__(self):
@@ -160,6 +160,7 @@ class MobileVariant(models.Model):
     mobileNames = models.ForeignKey(MobileName, on_delete=models.CASCADE, related_name='mobile_Variant')
     mobile_variants = models.CharField(max_length=50, default='1 GB RAM, 16 GB Storage')
     mobile_variants_url = models.CharField(max_length=50, default='1-gb-ram-16-gb-storage')
+    mobile_url_themes_name = models.CharField(max_length=50, default='brand+name+variant')
     image_credit = models.URLField(max_length=200)
 
     mobileGeneral = models.OneToOneField(MobileGeneral, on_delete=models.CASCADE, blank=True, null=True)
@@ -202,6 +203,15 @@ class VariantImage(models.Model):
     def __str__(self):
         return str(self.variant_image)
 
+
+# class UrlThemes(models.Model):
+#     SIM_SLOT = (
+#         ('Dedicated Slot', 'DEDICATED SLOT'),
+#         ('Hybrid Slot', 'HYBRID SLOT'),
+#     )
+#     external_url_names = models.CharField(max_length=50, blank=True, null=True)
+#     query_parmas = models.CharField(max_length=300, blank=True, null=True)
+#     sim_slot_type = models.CharField(blank=True, null=True, max_length=50, choices=SIM_SLOT, default='Dedicated Slot')
 
 
 
