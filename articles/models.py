@@ -20,6 +20,7 @@ class Articles(models.Model):
     release_date = models.DateField(auto_now=False, auto_now_add=False, )
     type = models.CharField(max_length=50, choices=TYPE, default='dynamic')
     article_type = models.CharField(max_length=50, choices=ARTICLE_TYPE, default='news', blank=True, null=True)
+    article_description = models.CharField(max_length=500, blank=True, null=True)
     article_thumbnail = models.ImageField(upload_to='article-thumbnail/', blank=True, null=True)
     content = models.TextField(blank=True, null=True)
 
