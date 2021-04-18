@@ -27,6 +27,12 @@ class MobileName(models.Model):
 
 
 class MobileGeneral(models.Model):
+    STATUS = (
+        ('Upcoming', 'Upcoming'),
+        ('Available', 'Available'),
+        ('not available', 'not available'),
+        ('Rumored', 'Rumored'),
+    )
     OS_CHOICES = (
         ('ANDROID', 'Android'),
         ('IOS', 'ios'),
@@ -37,6 +43,7 @@ class MobileGeneral(models.Model):
     UI_version = models.CharField(max_length=50, null=True, blank=True)
     price = models.PositiveIntegerField(blank=True, null=True)
     is_available = models.BooleanField(max_length=None, default=True)
+    status = models.CharField(max_length=10, choices=STATUS, default='Available')
     dimensions = models.CharField(max_length=50, default='77 mm x 77 mm x  77 mm')
     weight = models.FloatField()
     slots = models.CharField(max_length=200, default='Dual SIM(2) + Dedicated Memory Card Slot')
@@ -74,10 +81,10 @@ class MobileStorage(models.Model):
 class MobileCamera(models.Model):
     primary_camera = models.IntegerField()
     primary_camera_str = models.CharField(max_length=501)
-    primary_camera_features = models.CharField(max_length=1200)
+    primary_camera_features = models.CharField(max_length=1200, blank=True, null=True)
     secondary_camera = models.IntegerField()
     secondary_camera_str = models.CharField(max_length=50)
-    secondary_camera_features = models.CharField(max_length=1000)
+    secondary_camera_features = models.CharField(max_length=1000, blank=True, null=True)
 
 
 class MobileBattery(models.Model):
@@ -90,7 +97,6 @@ class MobileBattery(models.Model):
     fast_charger = models.BooleanField(default=True, blank=True, null=True)
     fast_charging = models.CharField(max_length=200, blank=True, null=True)
     replaceable = models.BooleanField(default=False, blank=True, null=True)
-    talk_time = models.FloatField(blank=True, null=True)
 
 
 class MobileDisplay(models.Model):
@@ -186,6 +192,18 @@ class OnlinePrice(models.Model):
     tata_cliq_URL = models.URLField(max_length=200, blank=True, null=True)
     reliance_digital = models.PositiveIntegerField(blank=True, null=True)
     reliance_digital_URL = models.URLField(max_length=200, blank=True, null=True)
+    mi_store = models.PositiveIntegerField(blank=True, null=True)
+    mi_store_URL = models.URLField(max_length=200, blank=True, null=True)
+    samsung = models.PositiveIntegerField(blank=True, null=True)
+    samsung_URL = models.URLField(max_length=200, blank=True, null=True)
+    vivo = models.PositiveIntegerField(blank=True, null=True)
+    vivo_URL = models.URLField(max_length=200, blank=True, null=True)
+    realme = models.PositiveIntegerField(blank=True, null=True)
+    realme_URL = models.URLField(max_length=200, blank=True, null=True)
+    oppo = models.PositiveIntegerField(blank=True, null=True)
+    oppo_URL = models.URLField(max_length=200, blank=True, null=True)
+
+
 
 
 class VariantColor(models.Model):
