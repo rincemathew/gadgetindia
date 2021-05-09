@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_tag %}Indian Gadget discoverable site | Search Mobiles | Compare Mobiles | Mobile price | Mobile Review |
+gadgetin.in{% endblock %}
+{% block meta_des %}Worried about which gadgets to buy?? Let's explore all the details and news about gadgets in
+India.{% endblock %}
+{% block content_css %}
+<link rel="stylesheet" href="{% static 'css/indexstyle.css' %}">{% endblock %}
+{% block content_main %}
+<div class="main-color">
+    <div class="container">
+        <div class="padding-global">
+            <div class="white-color">
+                <div class="row">
+                    <div class="col-12">
+                        <div style="float: left;">
+                            <h1>Latest Phones</h1>
+                        </div>
+                        <div style="float: right;">
+                            <a href="">View more..</a>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="content d-flex" id="content-new">
+                            <div class="leftButton align-self-center d-none d-sm-block">
+                                <a href="#" id="left-button-new"><img
+                                        src="{% static 'images/icons/arrow-left.svg' %}" /></a>
+                            </div>
+                            <div class="content-inside align-self-center" id="content-inside-new">
+                                {% for latestMobile in latest_mobiles %}
+                                <div class="card row padding-for-scroll">
+                                    <a href="">
+                                        <!-- <div class="row"> -->
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <img class="max-length"
+                                                src="{{ MEDIA_URL }}{{ latestMobile.mobile_image }}" />
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <h6>{{ latestMobile.brandName.brand_name }}</h6>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center">
+                                            {{ latestMobile.mobile_name }}
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center">
+                                            {{ latestMobile.mobile_Variant.all.0.mobileGeneral.price }}
+                                        </div>
+                                    </a>
+                                    <div class="col-12 d-flex justify-content-center">
+                                            <select id="target" class="custom-select">
+                                                {% for variantsPrice in latestMobile.mobile_Variant.all %}
+                                                <option value="1">{{ variantsPrice.mobile_variants }}</option>
+                                                <optgroup label="Price: {{ variantsPrice.mobileGeneral.price }}"></optgroup>
+                                                    
+                                                    {% endfor %}
+                                            </select>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="rightButton align-self-center d-none d-sm-block">
+                                <a href="#" id="right-button-new"><img
+                                        src="{% static 'images/icons/arrow-right.svg' %}" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="padding-global">
+            <div class="white-color">
+                <div class="row">
+                    <div class="col-12">
+                        <div style="float: left;">
+                            <h1>Budget Phones</h1>
+                        </div>
+                        <div style="float: right;">
+                            <a href="">View more..</a>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="content d-flex" id="content-budget">
+                            <div class="leftButton align-self-center d-none d-sm-block">
+                                <a href="#" id="left-button-budget"><img
+                                        src="{% static 'images/icons/arrow-left.svg' %}" /></a>
+                            </div>
+                            <div class="content-inside align-self-center" id="content-inside-budget">
+                                {% for budgetMobile in budget_mobiles %}
+                                <div class="card row padding-for-scroll">
+                                    <a href="">
+                                        <!-- <div class="row"> -->
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <img class="max-length"
+                                                src="{{ MEDIA_URL }}{{ budgetMobile.mobileNames.mobile_image }}" />
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <h6>{{ budgetMobile.mobileNames.brandName.brand_name }}</h6>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center">
+                                            {{ budgetMobile.mobileNames.mobile_name }}
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center">
+                                            {{ budgetMobile.mobileGeneral.price }}
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center">
+                                            {{ budgetMobile.mobile_variants}}
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="rightButton align-self-center d-none d-sm-block">
+                                <a href="#" id="right-button-budget"><img
+                                        src="{% static 'images/icons/arrow-right.svg' %}" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="padding-global">
+            <div class="white-color">
+                <div class="content d-flex" id="content">
+                    <div class="leftButton align-self-center d-none d-sm-block">
+                        <a href="#" id="left-button"><img src="{% static 'images/icons/arrow-left.svg' %}" /></a>
+                    </div>
+                    <div class="content-inside align-self-center" id="content-inside">
+                        <div class="card"><a href=""><img src="{% static 'images/image/realme.png' %}" /></a></div>
+                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
+                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
+                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
+                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
+                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
+                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
+                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
+                    </div>
+                    <div class="rightButton align-self-center d-none d-sm-block">
+                        <a href="#" id="right-button"><img src="{% static 'images/icons/arrow-right.svg' %}" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content_js %}
+<script src="{% static 'js/indexjs.js'%}"></script>{% endblock %}

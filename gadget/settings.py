@@ -71,12 +71,13 @@ ROOT_URLCONF = 'gadget.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -85,7 +86,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'gadget.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -132,11 +132,6 @@ else:
         }
     }
 
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'gadget_india_bucket'
-STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_FILE_OVERWRITE = False
-# SECURE_SSL_REDIRECT = True
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -170,8 +165,20 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+# DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'gadget_india_bucket'
+# STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_FILE_OVERWRITE = False
+# SECURE_SSL_REDIRECT = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
+MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
 STATIC_URL = '/static/'
+# STATIC_ROOT = 'assets'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# while developing comment STATICFILES_STORAGE and DEFAULT_FILE_STORAGE and uncomment STATICFILES_DIRS
+# while running collectstatic both needs to uncomment
+# white uploading uncomment STATICFILES_STORAGE and comment STATICFILES_DIRS(not necessary)
+
+

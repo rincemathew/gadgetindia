@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_tag %}mobile details{% endblock %}
+{% block meta_des %}{% endblock %}
+{% block content_css %}{% endblock %}
+{% block content_main %}
+<div>
+    cath
+     {% for c in queryset_list %}
+    <h6>{{ c.mobile_name }}</h6>
+     {% endfor %}
+</div>
+{% endblock %}

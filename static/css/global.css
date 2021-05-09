@@ -1,0 +1,17 @@
+/*  global things #F5FAFE*/
+.main-color {
+background-color: #F5FAFE;
+}
+.padding-global{
+    padding: 20px 0px 0px 0px;
+}
+.white-color{
+    background-color: white;
+    padding: 20px;
+}
+
+/*  top things */
+.top {
+    background: #E5E5E5;
+}
+/*  bottom things */
