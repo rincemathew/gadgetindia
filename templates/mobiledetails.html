@@ -6,8 +6,21 @@
 {% block content_main %}
 <div>
     cath
-     {% for c in queryset_list %}
-    <h6>{{ c.mobile_name }}</h6>
+    {{ variant }}
+     {% for mobileDetails in mobile_details %}
+     {{ mobileDetails.1.mobileNames.mobile_name }}
+    <h6>{{ mobileDetails.mobileNames.mobile_name }}</h6>
+    <h6>{{ mobileDetails.mobileGeneral.price }}</h6>
      {% endfor %}
 </div>
+<div>
+    <select id="dropDownVariant" class="custom-select">
+        {% for mobileDetails in mobile_details %}
+        <option value="1">{{ mobileDetails.mobile_variants }}</option>
+        <optgroup label="Price: {{ mobileDetails.id }}"></optgroup>
+            
+            {% endfor %}
+    </select>
+</div>
 {% endblock %}
+{% block content_js %}<script src="{% static 'js/mobiledetailsjs.js'%}"></script>{% endblock %}

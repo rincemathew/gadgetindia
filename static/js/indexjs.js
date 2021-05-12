@@ -44,3 +44,18 @@ $('#left-button-budget').click(function() {
    scrollLeft: "+=100px"
   }, "slow");
 });
+
+/* articles list in horizontal list */
+$('#left-button-review').click(function() {
+  event.preventDefault();
+  $('#content-inside-review').animate({
+    scrollLeft: "-=100px"
+  }, "slow");
+});
+
+ $('#right-button-review').click(function() {
+  event.preventDefault();
+  $('#content-inside-review').animate({
+   scrollLeft: "+=100px"
+  }, "slow");
+});

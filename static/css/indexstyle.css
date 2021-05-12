@@ -41,5 +41,12 @@ margin-left: 10px;
 .max-length{
     max-height: 250px;
 }
+.article-max-indexpage{
+    max-height: 200px;
+}
+.max-name-width{
+    max-width: 400px;
+    white-space: initial;
+}
 
 /*  */

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+<!--{% load static %}-->
+{% block title_tag %}{% endblock %}
+{% block meta_des %}{% endblock %}
+{% block content_css %}{% endblock %}
+{% block content_main %}
+<div>
+     {% for mobileList in mobile_list %}
+    <h6>{{ mobileList.mobileNames.mobile_name }}</h6>
+    <h6>{{ mobileList.mobileGeneral.price }}</h6>
+     {% endfor %}
+</div>
+{% endblock %}
+{% block content_js %}{% endblock %}

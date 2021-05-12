@@ -86,8 +86,7 @@ India.{% endblock %}
                             <div class="content-inside align-self-center" id="content-inside-budget">
                                 {% for budgetMobile in budget_mobiles %}
                                 <div class="card row padding-for-scroll">
-                                    <a href="">
-                                        <!-- <div class="row"> -->
+                                    <a href="/{{ budgetMobile.mobileNames.brandName.brand_name_url }}/{{ budgetMobile.mobileNames.mobile_name_url }}/?variant={{budgetMobile.mobile_variants_url}}">
                                         <div class="col-12 d-flex justify-content-center">
                                             <img class="max-length"
                                                 src="{{ MEDIA_URL }}{{ budgetMobile.mobileNames.mobile_image }}" />
@@ -119,19 +118,67 @@ India.{% endblock %}
         </div>
         <div class="padding-global">
             <div class="white-color">
+                <div class="row">
+                    <div class="col-12">
+                        <div style="float: left;">
+                            <h1>Reviews & News</h1>
+                        </div>
+                        <div style="float: right;">
+                            <a href="">View more..</a>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="content d-flex" id="content-review">
+                            <div class="leftButton align-self-center d-none d-sm-block">
+                                <a href="#" id="left-button-review"><img
+                                        src="{% static 'images/icons/arrow-left.svg' %}" /></a>
+                            </div>
+                            <div class="content-inside align-self-center" id="content-inside-review">
+                                {% for articleList in articles_list %}
+                                <div class="card row padding-for-scroll">
+                                    <a href="">
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <img class="article-max-indexpage"
+                                                src="{{ MEDIA_URL }}{{ articleList.article_thumbnail }}" />
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center max-name-width">
+                                           <h6>{{ articleList.article_name }}</h6>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center">
+                                            {{ articleList.article_type }}
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="rightButton align-self-center d-none d-sm-block">
+                                <a href="#" id="right-button-review"><img
+                                        src="{% static 'images/icons/arrow-right.svg' %}" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="padding-global">
+            <div class="white-color">
                 <div class="content d-flex" id="content">
                     <div class="leftButton align-self-center d-none d-sm-block">
                         <a href="#" id="left-button"><img src="{% static 'images/icons/arrow-left.svg' %}" /></a>
                     </div>
                     <div class="content-inside align-self-center" id="content-inside">
-                        <div class="card"><a href=""><img src="{% static 'images/image/realme.png' %}" /></a></div>
-                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
-                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
-                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
-                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
-                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
-                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
-                        <div class="card"><img src="{% static 'images/image/realme.png' %}" /></div>
+                        <div class="card"><a href="/realme/"><img src="{% static 'images/image/realme.png' %}" /></a></div>
+                        <div class="card"><a href="/oneplus/"><img src="{% static 'images/image/oneplus.png' %}" /></a></div>
+                        <div class="card"><a href="/oppo/"><img src="{% static 'images/image/oppo.png' %}" /></a></div>
+                        <div class="card"><a href="/vivo/"><img src="{% static 'images/image/vivo.png' %}" /></a></div>
+                        <div class="card"><a href="/samsung/"><img src="{% static 'images/image/samsung.png' %}" /></a></div>
+                        <div class="card"><a href="/poco/"><img src="{% static 'images/image/poco.png' %}" /></a></div>
+                        <div class="card"><a href="/xiaomi/"><img src="{% static 'images/image/xiaomi.png' %}" /></a></div>
+                        <div class="card"><a href="/motorola/"><img src="{% static 'images/image/motorola.png' %}" /></a></div>
+                        <div class="card"><a href="/apple/"><img src="{% static 'images/image/apple.png' %}" /></a></div>
+                        <div class="card"><a href="/nokia/"><img src="{% static 'images/image/nokia.png' %}" /></a></div>
+                        <div class="card"><a href="/micromax/"><img src="{% static 'images/image/micromax.png' %}" /></a></div>
+                        <div class="card"><a href="/huawei/"><img src="{% static 'images/image/huawei.png' %}" /></a></div>
                     </div>
                     <div class="rightButton align-self-center d-none d-sm-block">
                         <a href="#" id="right-button"><img src="{% static 'images/icons/arrow-right.svg' %}" /></a>
