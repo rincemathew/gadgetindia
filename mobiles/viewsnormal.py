@@ -5,7 +5,10 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.db.models import Max
 
-from mobiles.models import MobileName, MobileVariant
+from mobiles import serializerone
+from django.core import serializers
+from itertools import chain
+from mobiles.models import MobileName, MobileVariant, BrandName
 from articles.models import Articles
 
 
@@ -20,15 +23,16 @@ def home_view(request):
 def search_query(request):
     if request.method == 'POST':
         query = json.loads(request.body).get('searchText')
-        # query = request.GET.get("q", "real")
-        queryset_list = MobileName.objects.filter(Q(mobile_name__icontains=query) | Q(brandName__brand_name__icontains=query)).distinct()
-        data = queryset_list.values()
+        queryset_list = MobileVariant.objects.filter(Q(mobileNames__mobile_name__icontains=query) | Q(mobileNames__brandName__brand_name__icontains=query)).distinct()
+        data = queryset_list.values('mobile_variants', 'mobile_variants_url', 'mobileNames__brandName__brand_name', 'mobileNames__brandName__brand_name_url', 'mobileNames__mobile_name', 'mobileNames__mobile_name_url', 'mobileNames__mobile_image', 'mobileGeneral__price')
         return JsonResponse(list(data), safe=False)
 
 
 # mobiledetailes.html
 def mobiles_details(request, brand_url, mobile_url):
     variant = request.GET.get('variant', '')
+    variant_unslugified = variant.replace('-', ' ')
+    print(variant_unslugified)
     # queryset_list = MobileName.objects.filter(Q(mobile_name__icontains=query) | Q(brandName__brand_name__icontains=query)).distinct()
     mobile_details = MobileVariant.objects.filter(Q(mobileNames__brandName__brand_name_url=brand_url) & Q(mobileNames__mobile_name_url=mobile_url))
     return render(request, "mobiledetails.html", {'mobile_details': mobile_details, 'variant': variant })

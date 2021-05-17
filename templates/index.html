@@ -29,7 +29,7 @@ India.{% endblock %}
                             <div class="content-inside align-self-center" id="content-inside-new">
                                 {% for latestMobile in latest_mobiles %}
                                 <div class="card row padding-for-scroll">
-                                    <a href="">
+                                    <a href="/{{ latestMobile.brandName.brand_name_url }}/{{ latestMobile.mobile_name_url }}/">
                                         <!-- <div class="row"> -->
                                         <div class="col-12 d-flex justify-content-center">
                                             <img class="max-length"

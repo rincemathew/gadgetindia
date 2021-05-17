@@ -4,23 +4,44 @@
 {% block meta_des %}{% endblock %}
 {% block content_css %}{% endblock %}
 {% block content_main %}
+{% load simpletag %}
+<div>
+    {% if variant == "" %}
+    {% update_variable mobile_details.0.mobile_variants as variant %}
+    inside{{ variant }}if
+    {% endif %}
+    outside{{ variant }}if
+    {% for mobileDetails in mobile_details %}
+    {% if mobileDetails.mobile_variants_url == variant %}
+    <h6>{{ mobileDetails.mobileNames.mobile_name_url }}</h6>
+    <h6>{{ mobileDetails.mobileGeneral.price }}</h6>
+     {% endif %}
+     {% endfor %}
+     
+</div>
 <div>
     cath
     {{ variant }}
      {% for mobileDetails in mobile_details %}
-     {{ mobileDetails.1.mobileNames.mobile_name }}
     <h6>{{ mobileDetails.mobileNames.mobile_name }}</h6>
     <h6>{{ mobileDetails.mobileGeneral.price }}</h6>
      {% endfor %}
 </div>
+<!-- <div id="MyEdit">
+    This text will change
+</div> -->
 <div>
     <select id="dropDownVariant" class="custom-select">
         {% for mobileDetails in mobile_details %}
-        <option value="1">{{ mobileDetails.mobile_variants }}</option>
-        <optgroup label="Price: {{ mobileDetails.id }}"></optgroup>
-            
+        <option>{{ mobileDetails.mobile_variants }}</option>            
             {% endfor %}
     </select>
+</div>
+<div>
+    {% with mobile_details|first as mobileDetails %}
+    {{ mobileDetails.mobile_variants }}qaz
+    {% endwith %}
+    {{ mobile_details.1.mobile_variants }}
 </div>
 {% endblock %}
 {% block content_js %}<script src="{% static 'js/mobiledetailsjs.js'%}"></script>{% endblock %}

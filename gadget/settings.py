@@ -165,9 +165,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'gadget_india_bucket'
-# STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_FILE_OVERWRITE = False
 # SECURE_SSL_REDIRECT = True
 # Static files (CSS, JavaScript, Images)
