@@ -1,11 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title_tag %}Indian Gadget discoverable site | Search Mobiles | Compare Mobiles | Mobile price | Mobile Review |
-gadgetin.in{% endblock %}
-{% block meta_des %}Worried about which gadgets to buy?? Let's explore all the details and news about gadgets in
-India.{% endblock %}
-{% block content_css %}
-<link rel="stylesheet" href="{% static 'css/indexstyle.css' %}">{% endblock %}
+{% block title_tag %}Indian Gadget discoverable site | Search Mobiles | Compare Mobiles | Mobile price | Mobile Review | gadgetin.in{% endblock %}
+{% block meta_des %}Worried about which gadgets to buy?? Let's explore all the details and news about gadgets in India.{% endblock %}
+{% block content_css %}<link rel="stylesheet" href="{% static 'css/indexstyle.css' %}">{% endblock %}
 {% block content_main %}
 <div class="main-color">
     <div class="container">
@@ -29,6 +26,7 @@ India.{% endblock %}
                             <div class="content-inside align-self-center" id="content-inside-new">
                                 {% for latestMobile in latest_mobiles %}
                                 <div class="card row padding-for-scroll">
+                                    <div>
                                     <a href="/{{ latestMobile.brandName.brand_name_url }}/{{ latestMobile.mobile_name_url }}/">
                                         <!-- <div class="row"> -->
                                         <div class="col-12 d-flex justify-content-center">
@@ -46,14 +44,14 @@ India.{% endblock %}
                                         </div>
                                     </a>
                                     <div class="col-12 d-flex justify-content-center">
-                                            <select id="target" class="custom-select">
-                                                {% for variantsPrice in latestMobile.mobile_Variant.all %}
-                                                <option value="1">{{ variantsPrice.mobile_variants }}</option>
-                                                <optgroup label="Price: {{ variantsPrice.mobileGeneral.price }}"></optgroup>
-                                                    
-                                                    {% endfor %}
-                                            </select>
+                                        <select id="target" class="custom-select">
+                                            {% for variantsPrice in latestMobile.mobile_Variant.all %}
+                                            <option value="1">{{ variantsPrice.mobile_variants }}</option>
+                                            <optgroup label="Price: {{ variantsPrice.mobileGeneral.price }}"></optgroup>
+                                            {% endfor %}
+                                        </select>
                                     </div>
+                                </div>
                                 </div>
                                 {% endfor %}
                             </div>
@@ -189,5 +187,4 @@ India.{% endblock %}
     </div>
 </div>
 {% endblock %}
-{% block content_js %}
-<script src="{% static 'js/indexjs.js'%}"></script>{% endblock %}
+{% block content_js %}<script src="{% static 'js/indexjs.js'%}"></script>{% endblock %}

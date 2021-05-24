@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+<!--{% load static %}-->
+{% block title_tag %}{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_name }} | gadgetin.in{% endfor %}{% endblock %}
+{% block meta_des %}{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_description }}{% endfor %}{% endblock %}
+{% block content_css %}<link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">{% endblock %}
+{% block content_main %}
+<div class="main-color">
+    <div class="container">
+        <div class="padding-global">
+            <div class="white-color">
+                <div style="font-family: 'Merienda', cursive;">
+                    {% for dynamicArticles in dynamic_articles %}
+                    <h3>{{ dynamicArticles.article_name }}</h3>
+                    <p>Date:{{dynamicArticles.release_date}}</p>
+                    <div class="d-flex justify-content-center">
+                        <img style="max-height: 325px;" class="img-fluid img-thumbnail" src="{{ MEDIA_URL }}{{ dynamicArticles.article_thumbnail }}" alt="article image"/>
+                    </div>
+                    <div>
+                        {{ dynamicArticles.content | safe }}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content_js %}{% endblock %}

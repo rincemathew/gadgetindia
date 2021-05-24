@@ -1,0 +1,49 @@
+.price_float{
+    float: right;
+}
+.select-place{
+    float: right;
+}
+.paddingon-top{
+    padding-top: 10px;
+}
+.rem{
+    padding-right: 0px;
+}
+
+/* picture scroll */
+.leftButton{
+    max-width: 30px;
+    min-width: 30px;
+    margin-right: 10px;
+}
+.rightButton{
+    float: right;
+max-width: 30px;
+min-width: 30px;
+margin-left: 10px;
+}
+.content{
+    position: relative;
+    overflow: hidden;
+}
+.content-inside{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    /* scroll hide in mozilla and edge */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+.padding-for-scroll{
+    padding: 16px;
+}
+.max-length{
+    max-height: 400px;
+}

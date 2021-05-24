@@ -1,9 +1,12 @@
+from django.db.models import Q
+from django.shortcuts import render
 from rest_framework.generics import ListAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 from . import models
 from . import serializer
 from rest_framework.pagination import LimitOffsetPagination
+from articles.models import Articles
 
 
 class ProductPagination(LimitOffsetPagination):
@@ -36,3 +39,19 @@ class ArticleListView(ListAPIView):
             'article_name_url': ['exact'],
         }
 
+
+# pure django
+
+def dynamic_article(request, articlename):
+    dynamic_articles = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic') & Q(article_name_url=articlename))
+    return render(request, "articles/dynamicarticle.html", {'dynamic_articles': dynamic_articles, })
+
+
+def article_home_view(request):
+    articles_list = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic')).order_by("-release_date")[:10]
+    return render(request, "index.html", {'articles_list': articles_list, })
+
+
+def article_list_view(request):
+    articles_list = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic')).order_by("-release_date")[:10]
+    return render(request, "index.html", {'articles_list': articles_list, })

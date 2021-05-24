@@ -5,9 +5,6 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.db.models import Max
 
-from mobiles import serializerone
-from django.core import serializers
-from itertools import chain
 from mobiles.models import MobileName, MobileVariant, BrandName
 from articles.models import Articles
 
@@ -40,7 +37,11 @@ def mobiles_details(request, brand_url, mobile_url):
 
 # mobilelist.html
 def mobiles_list(request, listmobile):
-    mobile_list = MobileVariant.objects.filter(mobileNames__brandName__brand_name_url=listmobile)
-    # mobile_list = MobileVariant.objects.filter(Q(mobileNames__brandName__brand_name='realme') & Q(mobileNames__mobile_name='7')).values('mobile_variants_url')
-    # str1 = mobile_list[0]['mobile_variants_url']
-    return render(request, "mobilelist.html", {'mobile_list': mobile_list, })
+    static_a = ["aboutus", "contactus", "sitemap", "privacypolicy", "termsandconditions"]
+    if listmobile in static_a:
+        static_articles = Articles.objects.filter(
+            Q(released_or_not=True) & Q(article_name_url=listmobile))
+        return render(request, "articles/staticarticles.html", {'static_articles': static_articles, })
+    else:
+        mobile_list = MobileVariant.objects.filter(mobileNames__brandName__brand_name_url=listmobile)
+        return render(request, "mobilelist.html", {'mobile_list': mobile_list, })

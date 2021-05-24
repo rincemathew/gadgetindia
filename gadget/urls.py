@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('mobiles/', include('mobiles.urls')),
     path('articles/', include('articles.urls')),
     path('', include('mobiles.urls')),
+    path('sitemap.xml', TemplateView.as_view(template_name='sitemaps/sitemap.xml', content_type='text/xml')),
+    path('sitemap-articles.xml', TemplateView.as_view(template_name='sitemaps/sitemap-articles.xml', content_type='text/xml')),
+    path('sitemap-common-urls.xml', TemplateView.as_view(template_name='sitemaps/sitemap-common-urls.xml', content_type='text/xml')),
+    path('sitemap-mobile-list21.xml', TemplateView.as_view(template_name='sitemaps/sitemap-mobile-list21.xml', content_type='text/xml')),
 ]
