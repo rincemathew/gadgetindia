@@ -7,6 +7,26 @@
         <priority>1.00</priority>
     </url>
     <url>
+        <loc>https://gadgetin.in/latest-phones/</loc>
+        <changefreq>always</changefreq>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://gadgetin.in/budget-phones/</loc>
+        <changefreq>always</changefreq>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://gadgetin.in/smartphones/</loc>
+        <changefreq>always</changefreq>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://gadgetin.in/tablets/</loc>
+        <changefreq>always</changefreq>
+        <priority>1.00</priority>
+    </url>
+    <url>
         <loc>https://gadgetin.in/apple/</loc>
         <changefreq>always</changefreq>
         <priority>.80</priority>
@@ -23,6 +43,11 @@
     </url>
     <url>
         <loc>https://gadgetin.in/huawei/</loc>
+        <changefreq>always</changefreq>
+        <priority>.80</priority>
+    </url>
+    <url>
+        <loc>https://gadgetin.in/iqoo/</loc>
         <changefreq>always</changefreq>
         <priority>.80</priority>
     </url>

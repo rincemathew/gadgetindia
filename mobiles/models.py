@@ -204,8 +204,6 @@ class OnlinePrice(models.Model):
     oppo_URL = models.URLField(max_length=200, blank=True, null=True)
 
 
-
-
 class VariantColor(models.Model):
     variantColor = models.ForeignKey(MobileVariant, on_delete=models.CASCADE, blank=True, null=True,
                                      related_name='variant_Color')

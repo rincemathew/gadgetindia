@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+<!--{% load static %}-->
+{% block title_tag %}Not Found (Error 404){% endblock %}
+{% block meta_des %}We can't seem to find the page you're looking for.{% endblock %}
+{% block content_css %}<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">{% endblock %}
+{% block content_main %}
+<div class="main-color">
+  <div class="container">
+      <div class="padding-global">
+        <div class="white-color">
+          <div>
+            <div class="d-flex justify-content-center">
+              <img class="img-fluid" src="{% static 'images/image/404.png' %}" alt="404">
+            </div>
+            <h2 class="d-flex justify-content-center" style="font-family: 'Dancing Script', cursive;">This is not the web page
+              you are looking for</h2>
+            <p class="d-flex justify-content-center">Error 404.</p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
+{% block content_js %}{% endblock %}

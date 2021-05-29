@@ -4,6 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PCVBWGD0WM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-PCVBWGD0WM');
+    </script>
     <title>{% block title_tag %} {% endblock %}</title>
     <meta name="description" content="{% block meta_des %} {% endblock %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>

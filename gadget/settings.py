@@ -26,7 +26,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.join(BASE_DIR, 'gadget-in
 SECRET_KEY = 'o1o&su=8r8f+)aqd3_ft9^9dt7%7&*7mkh28^b=_)wo-ll_nyd'
 
 
-ALLOWED_HOSTS = ['gadget-india.el.r.appspot.com', '127.0.0.1', ]
+ALLOWED_HOSTS = ['gadget-india.el.r.appspot.com', '127.0.0.1', 'gadgetin.in', ]
 
 
 # Application definition

@@ -1,14 +1,121 @@
 {% extends "base.html" %}
 <!--{% load static %}-->
-{% block title_tag %}{% endblock %}
-{% block meta_des %}{% endblock %}
-{% block content_css %}{% endblock %}
+{% block title_tag %}{{ title }} | gadgetin.in{% endblock %}
+{% block meta_des %}{{ description }}{% endblock %}
+{% block content_css %}<style>
+     .rem{
+          padding-right: 0px;
+     }
+     </style>{% endblock %}
 {% block content_main %}
-<div>
-     {% for mobileList in mobile_list %}
-    <h6>{{ mobileList.mobileNames.mobile_name }}</h6>
-    <h6>{{ mobileList.mobileGeneral.price }}</h6>
-     {% endfor %}
-</div>
+<div class="main-color">
+     <div class="container">
+          <div class="padding-global">
+               <div class="white-color">
+                    <h1>{{ heading }}</h1>
+                    {% for mobileList in mobile_list %}
+                    <div style="padding: 16px;margin-bottom: 16px;" class="card">
+                         <a href="/{{ mobileList.mobileNames.brandName.brand_name_url }}/{{ mobileList.mobileNames.mobile_name_url }}/?variant={{ mobileList.mobile_variants_url }}">
+                         <div class="row">
+                              <div class="col-12 col-sm-12 col-md-4 row d-flex justify-content-center align-self-center">
+                                   <img style="max-height: 400px; max-width: 95%;" src="{{ MEDIA_URL }}{{ mobileList.mobileNames.mobile_image }}" />
+                              </div>
+                              <div class="col-12 col-sm-12 col-md-8 align-self-center">
+                                   <div style="padding-top: 10px;">
+                                        <h2>{{ mobileList.mobileNames.brandName.brand_name }} {{ mobileList.mobileNames.mobile_name }}</h2>
+                                        <p>{{ mobileList.mobile_variants }}<br>Release Date: {{ mobileList.mobileGeneral.release_date | date }}</p>
+                                   </div>
+                                   <div style="padding-top: 10px;" class="row">
+                                        <div class="col-6">
+                                             <div class="row">
+                                                  <div class="col-2 align-self-center rem"><img src="{% static 'images/icons/ram.svg' %}" />
+                                                  </div>
+                                                  <div class="col-10">
+                                                       <h6>Ram</h6>
+                                                       <p>{{mobileList.mobilePerformance.ram}} GB</p>
+                                                  </div>
+                                                  <div class="col-2 rem align-self-center"><img
+                                                            src="{% static 'images/icons/processor.svg' %}" /></div>
+                                                  <div class="col-10">
+                                                       <h6>Processor</h6>
+                                                       <p>{{mobileList.mobilePerformance.processor_company}}
+                                                            {{mobileList.mobilePerformance.processor}}</p>
+                                                  </div>
+                                                  <div class="col-2 rem align-self-center"><img
+                                                            src="{% static 'images/icons/frontcam.svg' %}" /></div>
+                                                  <div class="col-10">
+                                                       <h6>Front Camera</h6>
+                                                       <p>{{mobileList.mobileCamera.primary_camera}} MP</p>
+                                                  </div>
+                                                  <div class="col-2 rem align-self-center"><img src="{% static 'images/icons/os.svg' %}" />
+                                                  </div>
+                                                  <div class="col-10">
+                                                       <h6>OS</h6>
+                                                       <p>{{mobileList.mobileGeneral.os}}</p>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <hr>
+                                        <div class="col-6">
+                                             <div class="row">
+                                                  <div class="col-2 align-self-center rem"><img
+                                                            src="{% static 'images/icons/storage.svg' %}" /></div>
+                                                  <div class="col-10">
+                                                       <h6>Storage</h6>
+                                                       <p>{{mobileList.mobileStorage.device_storage}} GB</p>
+                                                  </div>
+                                                  <div class="col-2 rem align-self-center"><img
+                                                            src="{% static 'images/icons/battery.svg' %}" /></div>
+                                                  <div class="col-10">
+                                                       <h6>Battery</h6>
+                                                       <p>{{mobileList.mobileBattery.battery_capacity}} mAh</p>
+                                                  </div>
+                                                  <div class="col-2 rem align-self-center"><img
+                                                            src="{% static 'images/icons/rearcam.svg' %}" /></div>
+                                                  <div class="col-10">
+                                                       <h6>Rear Camera</h6>
+                                                       <p>{{mobileList.mobileCamera.secondary_camera}} MP</p>
+                                                  </div>
+                                                  <div class="col-2 rem align-self-center"><img
+                                                            src="{% static 'images/icons/resolution.svg' %}" /></div>
+                                                  <div class="col-10">
+                                                       <h6>Resolution</h6>
+                                                       <p>{{mobileList.mobileDisplay.resolution}}</p>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </a>
+                    </div>
+                    {% endfor %}
+                    <div class="d-flex justify-content-center">
+                         {% if mobile_list.has_other_pages %}
+                         <ul class="pagination">
+                              {% if mobile_list.has_previous %}
+                              <li class="page-item"><a class="page-link" href="?page={{ mobile_list.previous_page_number }}">&laquo;</a></li>
+                              {% else %}
+                              <li class="page-item disabled"><a class="page-link"><span>&laquo;</span></a></li>
+                              {% endif %}
+                              {% for i in mobile_list.paginator.page_range %}
+                              {% if mobile_list.number == i %}
+                              <li class="page-item active"><a class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></a></li>
+                              {% else %}
+                              <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                              {% endif %}
+                              {% endfor %}
+                              {% if mobile_list.has_next %}
+                              <li class="page-item"><a class="page-link" href="?page={{ mobile_list.next_page_number }}">&raquo;</a></li>
+                              {% else %}
+                              <li class="page-item disabled"><a class="page-link"><span>&raquo;</span></a></li>
+                              {% endif %}
+                         </ul>
+                         {% endif %}
+                    </div>
+               </div>
+          </div>
+     </div>
+   </div>
 {% endblock %}
 {% block content_js %}{% endblock %}

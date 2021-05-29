@@ -14,7 +14,7 @@
                             <h1>Latest Phones</h1>
                         </div>
                         <div style="float: right;">
-                            <a href="">View more..</a>
+                            <a href="/latest-phones/">View more..</a>
                         </div>
                     </div>
                     <div class="col-12">
@@ -72,7 +72,7 @@
                             <h1>Budget Phones</h1>
                         </div>
                         <div style="float: right;">
-                            <a href="">View more..</a>
+                            <a href="/budget-phones/">View more..</a>
                         </div>
                     </div>
                     <div class="col-12">
@@ -122,7 +122,7 @@
                             <h1>Reviews & News</h1>
                         </div>
                         <div style="float: right;">
-                            <a href="">View more..</a>
+                            <a href="/articles/">View more..</a>
                         </div>
                     </div>
                     <div class="col-12">
@@ -134,7 +134,7 @@
                             <div class="content-inside align-self-center" id="content-inside-review">
                                 {% for articleList in articles_list %}
                                 <div class="card row padding-for-scroll">
-                                    <a href="">
+                                    <a href="/articles/{{ articleList.article_name_url }}/">
                                         <div class="col-12 d-flex justify-content-center">
                                             <img class="article-max-indexpage"
                                                 src="{{ MEDIA_URL }}{{ articleList.article_thumbnail }}" />
