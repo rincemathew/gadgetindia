@@ -3,8 +3,7 @@
 {% load simpletag %}
 {% block title_tag %}{% if variant == "" %}{% update_variable mobile_details.0.mobile_variants_url as variant %}{% endif %}{% for mobileDetails in mobile_details %}{% if mobileDetails.mobile_variants_url == variant %}Get full details of {{mobileDetails.mobileNames.brandName.brand_name}} {{mobileDetails.mobileNames.mobile_name}} | gadgetin.in{% endif %}{% endfor %}{% endblock %}
 {% block meta_des %}{% if variant == "" %}{% update_variable mobile_details.0.mobile_variants_url as variant %}{% endif %}{% for mobileDetails in mobile_details %}{% if mobileDetails.mobile_variants_url == variant %}Get full details of {{mobileDetails.mobileNames.brandName.brand_name}} {{mobileDetails.mobileNames.mobile_name}}. Check out full specifications, news, reviews and compare with other phones | gadgetin.in{% endif %}{% endfor %}{% endblock %}
-{% block content_css %}
-<link rel="stylesheet" href="{% static 'css/mobiledetails.css' %}">{% endblock %}
+{% block content_css %}<link rel="stylesheet" href="{% static 'css/mobiledetails.css' %}">{% endblock %}
 {% block content_main %}
 <div class="main-color">
     {% if variant == "" %}

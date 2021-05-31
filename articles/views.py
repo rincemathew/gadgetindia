@@ -48,10 +48,13 @@ def dynamic_article(request, articlename):
 
 
 def article_home_view(request):
-    articles_list = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic')).order_by("-release_date")[:10]
-    return render(request, "index.html", {'articles_list': articles_list, })
+    articles_list = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic')).order_by("-release_date")[:5]
+    reviews = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic') & Q(article_type='reviews')).order_by("-release_date")[:10]
+    news = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic') & Q(article_type='news')).order_by("-release_date")[:10]
+    howto = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic') & Q(article_type='howto')).order_by("-release_date")[:10]
+    return render(request, "articles/articlehomeview.html", {'articles_list': articles_list, 'howto': howto, 'news': news, 'reviews': reviews, })
 
 
-def article_list_view(request):
-    articles_list = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic')).order_by("-release_date")[:10]
-    return render(request, "index.html", {'articles_list': articles_list, })
+# def article_list_view(request):
+#     articles_list = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic')).order_by("-release_date")[:10]
+#     return render(request, "articlelistview.html", {'articles_list': articles_list, })

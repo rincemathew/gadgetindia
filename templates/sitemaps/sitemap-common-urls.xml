@@ -131,4 +131,9 @@
         <changefreq>always</changefreq>
         <priority>.80</priority>
     </url>
+    <url>
+        <loc>https://gadgetin.in/articles/</loc>
+        <changefreq>always</changefreq>
+        <priority>.80</priority>
+    </url>
 </urlset>
