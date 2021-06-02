@@ -19,6 +19,11 @@ def home_view(request):
                                           'articles_list': articles_list, })
 
 
+def compare_view(request):
+    budget_mobiles = MobileVariant.objects.filter(Q(mobileGeneral__price__gte=9000) & Q(mobileGeneral__price__lte=11500) & Q(mobileGeneral__status='Available') & Q(mobileGeneral__is_available=True) & Q(mobileNames__phone_type='SMARTPHONE')).order_by("-mobileGeneral__release_date")[:10]
+    return render(request, "compare-phone.html", )
+
+
 def search_query(request):
     if request.method == 'POST':
         query = json.loads(request.body).get('searchText')

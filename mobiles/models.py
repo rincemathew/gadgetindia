@@ -180,7 +180,7 @@ class MobileVariant(models.Model):
     mobileConnectivity = models.OneToOneField(MobileConnectivity, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.mobile_variants
+        return self.mobileNames.mobile_name
 
 
 class OnlinePrice(models.Model):

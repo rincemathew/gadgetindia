@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_tag %}Compare phones | gadgetin.in{% endblock %}
+{% block meta_des %}Compare  and Get full details of Price, Camera, Performance, battery, expert reviews and decide which phone compatible for you{% endblock %}
+{% block content_css %}<link rel="stylesheet" href="{% static 'css/compare-phonecss.css' %}">{% endblock %}
+{% block content_main %}
+<div class="main-color">
+    <div class="container">
+        <div class="padding-global">
+            <div class="white-color">
+                <h1>Comapare Phone</h1>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="row">Search</th>
+                            <td><form autocomplete="off" method="GET" action="">
+                                <div id="myDropdownOne" class="dropdown-contentOne">
+                                  <input type="text" class="form-control" name="q" id="searchFieldOne" value="" placeholder="Search Mobiles"
+                                    aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <span id="id01One"></span>
+                                </div>
+                              </form></td>
+                            <td><form autocomplete="off" method="GET" action="">
+                                <div id="myDropdownTwo" class="dropdown-contentTwo">
+                                  <input type="text" class="form-control" name="q" id="searchFieldTwo" value="" placeholder="Search Mobiles"
+                                    aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <span id="id01Two"></span>
+                                </div>
+                              </form></td>
+                            <td><form autocomplete="off" method="GET" action="">
+                                <div id="myDropdownThree" class="dropdown-contentThree">
+                                  <input type="text" class="form-control" name="q" id="searchFieldThree" value="" placeholder="Search Mobiles"
+                                    aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <span id="id01Three"></span>
+                                </div>
+                              </form></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td><div class="row">
+                                <div class="col-12 d-flex justify-content-center">
+                                    name
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    <img style="max-width: 250px;max-height: 250px;" class="img-fluid" src="{% static 'images/icons/phonealt2.png' %}" alt="mobile image"></div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
+                                variant
+                            </div></td>
+                            <td>sdsd</td>
+                            <td>sdsd</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th colspan="4" scope="row">Key Specs</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Price</th>
+                            <td>45645</td>
+                            <td>45645</td>
+                            <td>6565</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">RAM</th>
+                            <td>cfgfcg</td>
+                            <td>ghg</td>
+                            <td>hhgh</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <div>
+                    <form autocomplete="off" method="GET" action="">
+                        <div id="myDropdown" class="dropdown-content">
+                          <input type="text" class="form-control" name="q" id="searchFieldOne" value="" placeholder="Search Mobiles"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <span id="id01"></span>
+                        </div>
+                      </form>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content_js %}<script src="{% static 'js/compare-phonejs.js'%}"></script>{% endblock %}

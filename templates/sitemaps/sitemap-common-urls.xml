@@ -47,6 +47,11 @@
         <priority>.80</priority>
     </url>
     <url>
+        <loc>https://gadgetin.in/infinix/</loc>
+        <changefreq>always</changefreq>
+        <priority>.80</priority>
+    </url>
+    <url>
         <loc>https://gadgetin.in/iqoo/</loc>
         <changefreq>always</changefreq>
         <priority>.80</priority>

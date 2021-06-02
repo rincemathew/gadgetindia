@@ -35,8 +35,10 @@
                             <div class="content-inside align-self-center" id="content-inside-scroll">
                                 {% for mobilePics in mobileDetails.variant_Image.all %}
                                 <div class="row padding-for-scroll">
-                                    <div class="col-12 d-flex justify-content-center">
-                                        <img class="max-length" src="{{ MEDIA_URL }}{{ mobilePics.variant_image }}" />
+                                    <div class="col-12 d-flex justify-content-center align-self-center">
+                                        <div>
+                                            <img class="max-length" src="{{ MEDIA_URL }}{{ mobilePics.variant_image }}" />
+                                        </div>
                                     </div>
                                 </div>
                                 {% endfor %}

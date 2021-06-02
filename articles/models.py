@@ -1,4 +1,5 @@
 from django.db import models
+from mobiles.models import MobileVariant
 
 # Create your models here.
 
@@ -13,6 +14,7 @@ class Articles(models.Model):
         ('howto', 'HOW TO'),
         ('reviews', 'REVIEWS'),
         ('article', 'ARTICLE'),
+        ('weekly news', 'WEEKLY NEWS'),
     )
     article_name = models.CharField(max_length=254, unique=True)
     article_name_url = models.CharField(max_length=254, )
@@ -23,6 +25,7 @@ class Articles(models.Model):
     article_description = models.CharField(max_length=500, blank=True, null=True)
     article_thumbnail = models.ImageField(upload_to='article-thumbnail/', blank=True, null=True)
     content = models.TextField(blank=True, null=True)
+    which_mobile = models.ManyToManyField(MobileVariant, blank=True, null=True)
 
     def __str__(self):
         return self.article_name
