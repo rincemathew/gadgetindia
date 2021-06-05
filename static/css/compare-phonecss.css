@@ -20,3 +20,49 @@
   }
 
   .dropdown-contentOne a:hover {background-color: #f1f1f1}
+
+  #searchFieldTwo {
+    background-image: url('https://storage.googleapis.com/gadget_india_bucket/images/icons/searchicon.png');
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+  }
+  .dropdown-contentTwo {
+    display: block;
+    /* position: absolute; */
+    background-color: #f6f6f6;
+    border: 1px solid #ddd;
+    z-index: 1;
+  }
+
+  .dropdown-contentTwo a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-contentTwo a:hover {background-color: #f1f1f1}
+
+  #searchFieldThree {
+    background-image: url('https://storage.googleapis.com/gadget_india_bucket/images/icons/searchicon.png');
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+  }
+  .dropdown-contentThree {
+    display: block;
+    /* position: absolute; */
+    background-color: #f6f6f6;
+    border: 1px solid #ddd;
+    z-index: 1;
+  }
+
+  .dropdown-contentThree a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-contentThree a:hover {background-color: #f1f1f1}

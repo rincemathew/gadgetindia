@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://www.gadgetin.in/</loc>
+        <loc>https://gadgetin.in/</loc>
         <changefreq>always</changefreq>
         <priority>1.00</priority>
     </url>
@@ -23,6 +23,11 @@
     </url>
     <url>
         <loc>https://gadgetin.in/tablets/</loc>
+        <changefreq>always</changefreq>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://gadgetin.in/compare-phone/</loc>
         <changefreq>always</changefreq>
         <priority>1.00</priority>
     </url>
@@ -113,27 +118,22 @@
     </url>
     <url>
         <loc>https://gadgetin.in/aboutus/</loc>
-        <changefreq>always</changefreq>
         <priority>.80</priority>
     </url>
     <url>
         <loc>https://gadgetin.in/contactus/</loc>
-        <changefreq>always</changefreq>
         <priority>.80</priority>
     </url>
     <url>
         <loc>https://gadgetin.in/sitemap/</loc>
-        <changefreq>always</changefreq>
         <priority>.80</priority>
     </url>
     <url>
         <loc>https://gadgetin.in/privacypolicy/</loc>
-        <changefreq>always</changefreq>
         <priority>.80</priority>
     </url>
     <url>
         <loc>https://gadgetin.in/termsandconditions/</loc>
-        <changefreq>always</changefreq>
         <priority>.80</priority>
     </url>
     <url>

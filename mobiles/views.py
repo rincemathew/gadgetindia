@@ -55,6 +55,7 @@ class MobileDetailedResultsView(ListAPIView):
             'mobileNames__brandName__brand_name': ['exact'],
             'mobileNames__brandName__brand_name_url': ['exact'],
             'mobile_variants': ['exact'], 'mobileNames__phone_type': ['exact'],
+            'mobile_variants_url': ['exact'],
         }
 
 
