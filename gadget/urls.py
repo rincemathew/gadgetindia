@@ -21,9 +21,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('mobiles/', include('mobiles.urls')),
     path('articles/', include('articles.urls')),
+    path('earwear/', include('earwear.urls')),
     path('', include('mobiles.urls')),
     path('sitemap.xml', TemplateView.as_view(template_name='sitemaps/sitemap.xml', content_type='text/xml')),
     path('sitemap-articles.xml', TemplateView.as_view(template_name='sitemaps/sitemap-articles.xml', content_type='text/xml')),
     path('sitemap-common-urls.xml', TemplateView.as_view(template_name='sitemaps/sitemap-common-urls.xml', content_type='text/xml')),
     path('sitemap-mobile-list21.xml', TemplateView.as_view(template_name='sitemaps/sitemap-mobile-list21.xml', content_type='text/xml')),
+    path('article-how.xml', TemplateView.as_view(template_name='sitemaps/article-how.xml', content_type='text/xml')),
+    path('sitemap-common-urls2.xml', TemplateView.as_view(template_name='sitemaps/sitemap-common-urls2.xml', content_type='text/xml')),
+    path('earwear-list.xml', TemplateView.as_view(template_name='sitemaps/earwear-list.xml', content_type='text/xml')),
 ]

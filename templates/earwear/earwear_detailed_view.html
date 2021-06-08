@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_tag %}{% endblock %}
+{% block meta_des %}{% endblock %}
+{% block content_css %}<link rel="stylesheet" href="{% static 'css/mobiledetails.css' %}">{% endblock %}
+{% block content_main %}
+<div class="main-color">
+    <div class="container">
+        <div class="row">
+            {% for earWearList in ear_wear_list %}
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                <div class="padding-global">
+                    <div class="white-color">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-6 row d-flex justify-content-center">
+                                <a tabindex="0" class="popover-dismiss" role="button" data-toggle="popover"
+                                    data-trigger="focus" title="Image Credits"
+                                    data-content="{{ earWearList.ear_picture_credit }}">
+                                    <img src="{% static 'images/icons/i-information.png' %}" /></a>
+                                <div class="content d-flex" id="content-new">
+                                    <div class="leftButton align-self-center d-none d-sm-block">
+                                        <a href="#" id="left-button-scroll"><img
+                                                src="{% static 'images/icons/arrow-left.svg' %}" /></a>
+                                    </div>
+                                    <div class="content-inside align-self-center" id="content-inside-scroll">
+                                        {% for earPics in earWearList.ear_Image.all %}
+                                        <div class="row padding-for-scroll">
+                                            <div class="col-12 d-flex justify-content-center align-self-center">
+                                                <div>
+                                                    <img style="max-height: 300px;"
+                                                        src="{{ MEDIA_URL }}{{ earPics.ear_image }}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="rightButton align-self-center d-none d-sm-block">
+                                        <a href="#" id="right-button-scroll"><img
+                                                src="{% static 'images/icons/arrow-right.svg' %}" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6 align-self-center">
+                                <h1>{{ earWearList.earBrandName.ear_brand_name }}</h1>
+                                <h2>{{ earWearList.ear_name }}</h2>
+                                {% if earWearList.ear_price != null %}
+                                <h3>Rs.{{ earWearList.ear_price }}</h3>
+                                {% endif %}
+                                <p>Ear Type: {{ earWearList.ear_type }}</p>
+                                {% if earWearList.ear_release_date != null %}
+                                <p>Release Date: {{ earWearList.ear_release_date }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="padding-global">
+                    <div class="white-color">
+                        <h5>{{ earWearList.earBrandName.ear_brand_name }} {{ earWearList.ear_name }} Specifications</h5>
+                        <hr>
+                        <table class="table table-striped">
+                            <tbody>
+                              <tr>
+                                <th scope="row">Mic Availability</th>
+                                {% if earWearList.ear_mic == True %}
+                                <td>Yes</td>
+                                {% else %}
+                                <td>No</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Features</th>
+                                <td>{{ earWearList.ear_mic_features }}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Battery</th>
+                                {% if earWearList.ear_battery == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ earWearList.ear_battery }} mAh</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Battery Features</th>
+                                <td>{{ earWearList.ear_battery_feature }}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Connectivity</th>
+                                <td>{{ earWearList.ear_battery_connectivity }}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Waterproof Technology</th>
+                                <td>{{ earWearList.ear_waterproof }}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Colors</th>
+                                <td>{{ earWearList.ear_colors }}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Other Features</th>
+                                <td>{{ earWearList.ear_other_features }}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Inside Package</th>
+                                <td>{{ earWearList.inside_package }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+                <div class="padding-global">
+                    <div class="white-color">      
+                        {% if earWearList.ear_price_variant.ear_flipkart != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/flipkart.png' %}" alt="flipkart">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                   Rs.{{earWearList.ear_price_variant.ear_flipkart}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{earWearList.ear_price_variant.ear_flipkart_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if earWearList.ear_price_variant.ear_amazon != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/amazon.png' %}" alt="amazon">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{earWearList.ear_price_variant.ear_amazon}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{earWearList.ear_price_variant.ear_amazon_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if earWearList.ear_price_variant.ear_tata_cliq != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/tatacliq.png' %}" alt="TATA Cliq">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{earWearList.ear_price_variant.ear_tata_cliq}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{earWearList.ear_price_variant.ear_tata_cliq_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if earWearList.ear_price_variant.ear_reliance_digital != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/reliancedigital.png' %}" alt="Reliance Digital">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{earWearList.ear_price_variant.ear_reliance_digital}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{earWearList.ear_price_variant.ear_reliance_digital_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if earWearList.ear_price_variant.ear_mi_store != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/mi.png' %}" alt="mi store">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{earWearList.ear_price_variant.ear_mi_store}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{earWearList.ear_price_variant.ear_mi_store_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if earWearList.ear_price_variant.ear_samsung != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/samsungbuy.png' %}" alt="samsung">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{earWearList.ear_price_variant.ear_samsung}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{earWearList.ear_price_variant.ear_samsung_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if earWearList.ear_price_variant.ear_vivo != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/vivostore.png' %}" alt="Vivo">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{earWearList.ear_price_variant.ear_vivo}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{earWearList.ear_price_variant.ear_vivo_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if earWearList.ear_price_variant.ear_realme != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/realmestore.png' %}" alt="realme">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{earWearList.ear_price_variant.ear_realme}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{earWearList.ear_price_variant.ear_realme_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if earWearList.ear_price_variant.ear_oppo != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/oppostore.png' %}" alt="oppo">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{earWearList.ear_price_variant.ear_oppo}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{earWearList.ear_price_variant.ear_oppo_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}                 
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="padding-global">
+                    <div class="white-color">
+                        <h5>Other Ear Wears</h5>
+                        <hr>  
+                        <div class="row">
+                            {% for optionRandom in option_random %}
+                            <!-- <a href="dfdf"> -->
+                                <div style="margin-bottom: 10px;" class="col-4">
+                                    <a href="/earwear/{{optionRandom.earBrandName.ear_brand_name_url}}/{{optionRandom.ear_name_url}}"><img class="img-fluid" src="{{ MEDIA_URL }}{{ optionRandom.ear_picture }}" /></a>
+                                </div>
+                                <div class="col-8">
+                                    <a href="/earwear/{{optionRandom.earBrandName.ear_brand_name_url}}/{{optionRandom.ear_name_url}}">{{ optionRandom.earBrandName.ear_brand_name }} {{ optionRandom.ear_name }}</a>
+                                </div>
+                                
+                            <!-- </a> -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content_js %}<script src="{% static 'js/earwear-detailsjs.js'%}"></script>{% endblock %}

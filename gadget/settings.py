@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # internal apps
     'mobiles',
     'articles',
+    'earwear',
     # external
     'rest_framework',
     'corsheaders',
@@ -165,9 +166,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'gadget_india_bucket'
-STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+# STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_FILE_OVERWRITE = False
 # SECURE_SSL_REDIRECT = True
 # Static files (CSS, JavaScript, Images)
@@ -176,7 +177,7 @@ MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
 STATIC_URL = '/static/'
 # STATIC_ROOT = 'assets'
 
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # while developing comment STATICFILES_STORAGE and DEFAULT_FILE_STORAGE and uncomment STATICFILES_DIRS
 # while running collectstatic both needs to uncomment
 # white uploading uncomment STATICFILES_STORAGE and comment STATICFILES_DIRS(not necessary)

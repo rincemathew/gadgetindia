@@ -43,7 +43,7 @@ class MobileGeneral(models.Model):
     UI_version = models.CharField(max_length=50, null=True, blank=True)
     price = models.PositiveIntegerField(blank=True, null=True)
     is_available = models.BooleanField(max_length=None, default=True)
-    status = models.CharField(max_length=10, choices=STATUS, default='Available')
+    status = models.CharField(max_length=15, choices=STATUS, default='Available')
     dimensions = models.CharField(max_length=50, default='77 mm x 77 mm x  77 mm')
     weight = models.FloatField()
     slots = models.CharField(max_length=200, default='Dual SIM(2) + Dedicated Memory Card Slot')

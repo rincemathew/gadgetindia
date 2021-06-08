@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_tag %}{% endblock %}
+{% block meta_des %}{% endblock %}
+{% block content_css %}{% endblock %}
+{% block content_main %}
+<div class="main-color">
+    <div class="container">
+        <div class="padding-global">
+            <div class="white-color">
+                <h1>List of Ear Wear Products</h1>
+                <div class="row">
+                    {% for earWearList in ear_wear_list %}
+                    <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                        <div class="card row">
+                            <a href="{{ earWearList.earBrandName.ear_brand_name_url }}/{{ earWearList.ear_name_url }}">
+                                <div class="col-12  d-flex justify-content-center">
+                                    <img style="max-height: 400px;" class="img-fluid" src="{{ MEDIA_URL }}{{ earWearList.ear_picture }}" />
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    {{ earWearList.earBrandName.ear_brand_name }}
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    {{ earWearList.ear_name }}
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    Rs {{ earWearList.ear_price }}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content_js %}{% endblock %}

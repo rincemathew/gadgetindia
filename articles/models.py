@@ -1,5 +1,6 @@
 from django.db import models
 from mobiles.models import MobileVariant
+from earwear.models import EarModelName
 
 # Create your models here.
 
@@ -20,12 +21,14 @@ class Articles(models.Model):
     article_name_url = models.CharField(max_length=254, )
     released_or_not = models.BooleanField(default=False, )
     release_date = models.DateField(auto_now=False, auto_now_add=False, )
+    release_time = models.TimeField(auto_now=False, auto_now_add=False, blank=True, null=True)
     type = models.CharField(max_length=50, choices=TYPE, default='dynamic')
     article_type = models.CharField(max_length=50, choices=ARTICLE_TYPE, default='news', blank=True, null=True)
     article_description = models.CharField(max_length=500, blank=True, null=True)
     article_thumbnail = models.ImageField(upload_to='article-thumbnail/', blank=True, null=True)
     content = models.TextField(blank=True, null=True)
-    which_mobile = models.ManyToManyField(MobileVariant, blank=True, null=True)
+    which_mobile = models.ManyToManyField(MobileVariant, blank=True,)
+    which_earbud = models.ManyToManyField(EarModelName, blank=True, )
 
     def __str__(self):
         return self.article_name

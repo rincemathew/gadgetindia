@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <sitemap>
-        <loc>https://gadgetin.in/sitemap-articles.xml</loc>
+        <loc>https://www.gadgetin.in/sitemap-articles.xml</loc>
     </sitemap>
     <sitemap>
-        <loc>https://gadgetin.in/sitemap-common-urls.xml</loc>
+        <loc>https://www.gadgetin.in/article-how.xml</loc>
     </sitemap>
     <sitemap>
-        <loc>https://gadgetin.in/sitemap-mobile-list21.xml</loc>
+        <loc>https://www.gadgetin.in/sitemap-common-urls.xml</loc>
+    </sitemap>
+    <sitemap>
+        <loc>https://www.gadgetin.in/sitemap-common-urls2.xml</loc>
+    </sitemap>
+    <sitemap>
+        <loc>https://www.gadgetin.in/sitemap-mobile-list21.xml</loc>
+    </sitemap>
+    <sitemap>
+        <loc>https://www.gadgetin.in/earwear-list.xml</loc>
     </sitemap>
 </sitemapindex>
