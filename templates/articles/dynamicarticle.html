@@ -6,20 +6,104 @@
 {% block content_main %}
 <div class="main-color">
     <div class="container">
-        <div class="padding-global">
-            <div class="white-color">
-                <div style="font-family: 'Merienda', cursive;">
-                    {% for dynamicArticles in dynamic_articles %}
-                    <h3>{{ dynamicArticles.article_name }}</h3>
-                    <p>Date:{{dynamicArticles.release_date}}</p>
-                    <div class="d-flex justify-content-center">
-                        <img style="max-height: 325px;" class="img-fluid img-thumbnail" src="{{ MEDIA_URL }}{{ dynamicArticles.article_thumbnail }}" alt="article image"/>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                <div class="padding-global">
+                    <div class="white-color">
+                        <div style="font-family: 'Merienda', cursive;">
+                            {% for dynamicArticles in dynamic_articles %}
+                            <h3>{{ dynamicArticles.article_name }}</h3>
+                            <p>Date:{{dynamicArticles.release_date}}</p>
+                            <div class="d-flex justify-content-center">
+                                <img style="max-height: 325px;" class="img-fluid img-thumbnail"
+                                    src="{{ MEDIA_URL }}{{ dynamicArticles.article_thumbnail }}" alt="article image" />
+                            </div>
+                            <div>
+                                {{ dynamicArticles.content | safe }}
+                            </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                    <div>
-                        {{ dynamicArticles.content | safe }}
-                    </div>
-                    {% endfor %}
                 </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="padding-global">
+                    <div class="white-color">
+                        <h4>Latest News</h4>
+                        <hr>
+                        {% for relatedArticles in related_articles %}
+                        <a href="/articles/{{relatedArticles.article_name_url}}">
+                            <img class="img-fluid img-thumbnail" src="{{ MEDIA_URL }}{{ relatedArticles.article_thumbnail }}"
+                                alt="article image" />
+                            <p>{{ relatedArticles.article_name }}</p>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                {% for earWearList in dynamic_articles %}
+                {% if earWearList.which_earbud.all %}
+                <div class="padding-global">
+                    <div class="white-color">
+                        <h4>Related Earwears</h4>
+                        <hr>  
+                        <div class="row">
+                            {% for earWear in earWearList.which_earbud.all %}
+                            <div style="margin: 0px;" class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-3 card row">
+                                <a href="/earwear/{{earWear.earBrandName.ear_brand_name_url}}/{{earWear.ear_name_url}}">
+                                    <div>
+                                        <img class="img-fluid" src="{{ MEDIA_URL }}{{ earWear.ear_picture }}" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        {{ earWear.earBrandName.ear_brand_name }} {{ earWear.ear_name }}
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                       Rs. {{ earWear.ear_price }}
+                                    </div>
+                                </a>
+                            </div>   
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-12">
+                {% for mobileList in dynamic_articles %}
+                {% if mobileList.which_mobile.all %}
+                <div class="padding-global">
+                    <div class="white-color">
+                        <h4>Related Mobiles</h4>
+                        <hr>  
+                        <div class="row">
+                            {% for mobilemany in mobileList.which_mobile.all %}
+                            <div style="margin: 0px;" class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3 card row">
+                                <a href="/{{mobilemany.mobileNames.brandName.brand_name_url}}/{{mobilemany.mobileNames.mobile_name_url}}/?{{mobilemany.mobile_variants_url}}">
+                                    <div class="d-flex justify-content-center">
+                                        <img style="max-height: 250px;" class="img-fluid" src="{{ MEDIA_URL }}{{ mobilemany.mobileNames.mobile_image }}" />
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        {{ mobilemany.mobileNames.brandName.brand_name }}
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        {{ mobilemany.mobileNames.mobile_name }}
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        Rs. {{ mobilemany.mobileGeneral.price}}
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        {{ mobilemany.mobile_variants }}
+                                    </div>
+                                </a>
+                            </div>   
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>

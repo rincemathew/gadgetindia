@@ -20,19 +20,25 @@
                         <div class="carousel-inner">
                             {% for articleList in articles_list %}
                             {% if forloop.counter == 1 %}
-                            <div class="carousel-item active">
-                                <img src="{{ MEDIA_URL }}{{ articleList.article_thumbnail }}" class="d-block w-100"
-                                    alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>{{ articleList.article_name }}</h5>
+                                <div class="carousel-item active">
+                                    <a href="/articles/{{articleList.article_name_url}}">
+                                        <img src="{{ MEDIA_URL }}{{ articleList.article_thumbnail }}" class="d-block w-100" alt="...">
+                                    </a>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <a href="/articles/{{articleList.article_name_url}}">
+                                            <h5>{{ articleList.article_name }}</h5>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
                             {% else %}
                             <div class="carousel-item">
-                                <img src="{{ MEDIA_URL }}{{ articleList.article_thumbnail }}" class="d-block w-100"
-                                    alt="...">
+                                <a href="/articles/{{articleList.article_name_url}}">
+                                    <img src="{{ MEDIA_URL }}{{ articleList.article_thumbnail }}" class="d-block w-100" alt="...">
+                                </a>
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>{{ articleList.article_name }}</h5>
+                                    <a href="/articles/{{articleList.article_name_url}}">
+                                        <h5>{{ articleList.article_name }}</h5>
+                                    </a>
                                 </div>
                             </div>
                             {% endif %}

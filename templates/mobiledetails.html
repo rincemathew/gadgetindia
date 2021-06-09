@@ -121,7 +121,7 @@
             <div class="white-color">
                 <h2>{{mobileDetails.mobileNames.brandName.brand_name}} {{mobileDetails.mobileNames.mobile_name}} Full
                     Specifications</h2>
-                <table class="table">
+                <table class="table table-responsive-sm">
                     <tbody>
                         <tr>
                             <th rowspan="7">
@@ -669,6 +669,32 @@
                 </div>
             </div>
         </div>
+        {% for mobileDetails in mobile_details %}
+        {% if mobileDetails.mobile_variants_url == variant %}
+        {% if mobileDetails.articles_set.all %}
+        <div class="padding-global">
+            <div class="white-color">
+                <h4>Related Articles</h4>
+                <hr>  
+                <div class="row">
+                    {% for articlemany in mobileDetails.articles_set.all %}
+                    <div style="margin: 0px;" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 card row">
+                        <a href="/articles/{{articlemany.article_name_url}}">
+                            <div class="col-12">
+                                <img class="img-fluid" src="{{ MEDIA_URL }}{{ articlemany.article_thumbnail }}" />
+                            </div>
+                            <div class="col-12">
+                                {{ articlemany.article_name }}
+                            </div>
+                        </a>
+                    </div>     
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
     </div>
     {% endif %}
     {% endfor %}

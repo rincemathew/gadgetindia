@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title_tag %}{% endblock %}
-{% block meta_des %}{% endblock %}
+{% block title_tag %}{% for earWearList in ear_wear_list %}Get full details of {{ earWearList.earBrandName.ear_brand_name }} {{ earWearList.ear_name }} earwear | gadgetin.in{% endfor %}{% endblock %}
+{% block meta_des %}{% for earWearList in ear_wear_list %}Get full details of {{ earWearList.earBrandName.ear_brand_name }} {{ earWearList.ear_name }} earwear. Check out full specifications, Related articles, other earwars and many more...{% endfor %}{% endblock %}
 {% block content_css %}<link rel="stylesheet" href="{% static 'css/mobiledetails.css' %}">{% endblock %}
 {% block content_main %}
 <div class="main-color">
@@ -238,19 +238,42 @@
                         <hr>  
                         <div class="row">
                             {% for optionRandom in option_random %}
-                            <!-- <a href="dfdf"> -->
                                 <div style="margin-bottom: 10px;" class="col-4">
                                     <a href="/earwear/{{optionRandom.earBrandName.ear_brand_name_url}}/{{optionRandom.ear_name_url}}"><img class="img-fluid" src="{{ MEDIA_URL }}{{ optionRandom.ear_picture }}" /></a>
                                 </div>
                                 <div class="col-8">
                                     <a href="/earwear/{{optionRandom.earBrandName.ear_brand_name_url}}/{{optionRandom.ear_name_url}}">{{ optionRandom.earBrandName.ear_brand_name }} {{ optionRandom.ear_name }}</a>
                                 </div>
-                                
-                            <!-- </a> -->
                             {% endfor %}
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-12">
+                {% for earWearList in ear_wear_list %}
+                {% if earWearList.articles_set.all %}
+                <div class="padding-global">
+                    <div class="white-color">
+                        <h4>Related Articles</h4>
+                        <hr>  
+                        <div class="row">
+                            {% for articlemany in earWearList.articles_set.all %}
+                            <div style="margin: 0px;" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 card row">
+                                <a href="/articles/{{articlemany.article_name_url}}">
+                                    <div class="col-12">
+                                        <img class="img-fluid" src="{{ MEDIA_URL }}{{ articlemany.article_thumbnail }}" />
+                                    </div>
+                                    <div class="col-12">
+                                        {{ articlemany.article_name }}
+                                    </div>
+                                </a>
+                            </div>   
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>

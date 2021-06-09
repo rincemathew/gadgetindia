@@ -36,7 +36,7 @@ def mobiles_details(request, brand_url, mobile_url):
     variant = request.GET.get('variant', '')
     mobile_details = MobileVariant.objects.filter(Q(mobileNames__brandName__brand_name_url=brand_url) & Q(mobileNames__mobile_name_url=mobile_url))
     if mobile_details:
-        return render(request, "mobiledetails.html", {'mobile_details': mobile_details, 'variant': variant })
+        return render(request, "mobiledetails.html", {'mobile_details': mobile_details, 'variant': variant})
     else:
         return render(request, "404.html", )
 

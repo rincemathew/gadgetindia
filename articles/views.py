@@ -1,3 +1,5 @@
+import random
+
 from django.db.models import Q
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView
@@ -44,7 +46,9 @@ class ArticleListView(ListAPIView):
 
 def dynamic_article(request, articlename):
     dynamic_articles = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic') & Q(article_name_url=articlename))
-    return render(request, "articles/dynamicarticle.html", {'dynamic_articles': dynamic_articles, })
+    related_articles_view = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic')).order_by("-release_date")[:10]
+    related_articles = random.sample(list(related_articles_view), 3)
+    return render(request, "articles/dynamicarticle.html", {'dynamic_articles': dynamic_articles, 'related_articles':related_articles })
 
 
 def article_home_view(request):
