@@ -160,6 +160,50 @@
         </div>
         <div class="padding-global">
             <div class="white-color">
+                <div class="row">
+                    <div class="col-12">
+                        <div style="float: left;">
+                            <h1>Earwear</h1>
+                        </div>
+                        <div style="float: right;">
+                            <a href="/earwear/">View more..</a>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="content d-flex" id="content-earware">
+                            <div class="leftButton align-self-center d-none d-sm-block">
+                                <a href="#" id="left-button-earware"><img
+                                        src="{% static 'images/icons/arrow-left.svg' %}" /></a>
+                            </div>
+                            <div class="content-inside align-self-center" id="content-inside-earware">
+                                {% for earList in ear_wear_list %}
+                                <div class="card row padding-for-scroll">
+                                    <a href="/earwear/{{earList.earBrandName.ear_brand_name_url}}/{{earList.ear_name_url}}">
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <img style="max-width: 245px;" class="img-fluid"
+                                                src="{{ MEDIA_URL }}{{ earList.ear_picture }}" />
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center">
+                                           <h6>{{ earList.earBrandName.ear_brand_name }} {{ earList.ear_name }}</h6>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-center">
+                                            Rs. {{ earList.ear_price }}
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <div class="rightButton align-self-center d-none d-sm-block">
+                                <a href="#" id="right-button-earware"><img
+                                        src="{% static 'images/icons/arrow-right.svg' %}" /></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="padding-global">
+            <div class="white-color">
                 <div class="content d-flex" id="content">
                     <div class="leftButton align-self-center d-none d-sm-block">
                         <a href="#" id="left-button"><img src="{% static 'images/icons/arrow-left.svg' %}" /></a>

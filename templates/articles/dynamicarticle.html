@@ -1,8 +1,8 @@
 {% extends "base.html" %}
-<!--{% load static %}-->
+{% load static %}
 {% block title_tag %}{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_name }} | gadgetin.in{% endfor %}{% endblock %}
 {% block meta_des %}{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_description }}{% endfor %}{% endblock %}
-{% block content_css %}<link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">{% endblock %}
+{% block content_css %}<link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet"><!--<link rel="amphtml" href="" />-->{% endblock %}
 {% block content_main %}
 <div class="main-color">
     <div class="container">
@@ -13,7 +13,7 @@
                         <div style="font-family: 'Merienda', cursive;">
                             {% for dynamicArticles in dynamic_articles %}
                             <h3>{{ dynamicArticles.article_name }}</h3>
-                            <p>Date:{{dynamicArticles.release_date}}</p>
+                            <p>Date:{{dynamicArticles.release_date}} {% if dynamicArticles.release_time != null %}{{dynamicArticles.release_time}}{% endif %}</p>
                             <div class="d-flex justify-content-center">
                                 <img style="max-height: 325px;" class="img-fluid img-thumbnail"
                                     src="{{ MEDIA_URL }}{{ dynamicArticles.article_thumbnail }}" alt="article image" />

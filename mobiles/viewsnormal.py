@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.db.models import Max
 
+from earwear.models import EarModelName
 from mobiles.models import MobileName, MobileVariant, BrandName
 from articles.models import Articles
 from . import listcontent
@@ -14,9 +15,10 @@ from . import listcontent
 def home_view(request):
     budget_mobiles = MobileVariant.objects.filter(Q(mobileGeneral__price__gte=9000) & Q(mobileGeneral__price__lte=11500) & Q(mobileGeneral__status='Available') & Q(mobileGeneral__is_available=True) & Q(mobileNames__phone_type='SMARTPHONE')).order_by("-mobileGeneral__release_date")[:10]
     latest_mobiles = MobileName.objects.filter(Q(mobile_Variant__mobileGeneral__status='Available') & Q(mobile_Variant__mobileGeneral__is_available=True) & Q(phone_type='SMARTPHONE')).annotate(latest=Max('mobile_Variant__mobileGeneral__release_date')).order_by("-latest")[:10]
-    articles_list = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic')).order_by("-release_date")[:10]
+    articles_list = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic')).order_by("-release_date", "-release_time")[:10]
+    ear_wear_list = EarModelName.objects.filter(Q(ear_availability=True) & Q(ear_status='Available')).order_by("-ear_release_date")[:10]
     return render(request, "index.html", {'latest_mobiles': latest_mobiles, 'budget_mobiles': budget_mobiles,
-                                          'articles_list': articles_list, })
+                                          'articles_list': articles_list, 'ear_wear_list': ear_wear_list, })
 
 
 def compare_view(request):

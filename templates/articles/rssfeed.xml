@@ -1,0 +1,35 @@
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Indian Gadget discoverable site</title>
+    <link>https://www.gadgetin.in/</link>
+    <description>Read our awesome gadget news, tech update, how to do things every day.</description>
+    <language>en-us</language>
+    {% for item in articles_list %}
+    <item>
+      <title>{{ item.article_name }}</title>
+      <link>https://www.gadgetin.in/articles/{{ item.article_name_url }}</link>
+      <description>{{ item.article_description }}</description>
+      <content:encoded><![CDATA[
+      <!doctype html>
+      <html lang="en" prefix="op: http://media.facebook.com/op#">
+        <head>
+          <meta charset="utf-8">
+          <link rel="canonical" href="https://www.gadgetin.in/articles/{{ item.article_name_url }}">
+          <meta property="op:markup_version" content="v1.0">
+        </head>
+        <body>
+          <article>
+            <header>
+              {{ item.article_description }}
+            </header>
+
+            {{ item.content|safe }}
+
+          </article>
+        </body>
+      </html>
+      ]]></content:encoded>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

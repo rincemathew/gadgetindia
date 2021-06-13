@@ -59,3 +59,18 @@ $('#left-button-review').click(function() {
    scrollLeft: "+=100px"
   }, "slow");
 });
+
+/* earware list in horizontal list */
+$('#left-button-earware').click(function() {
+  event.preventDefault();
+  $('#content-inside-earware').animate({
+    scrollLeft: "-=100px"
+  }, "slow");
+});
+
+ $('#right-button-earware').click(function() {
+  event.preventDefault();
+  $('#content-inside-earware').animate({
+   scrollLeft: "+=100px"
+  }, "slow");
+});

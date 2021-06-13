@@ -105,6 +105,7 @@ if os.getenv('GAE_APPLICATION', None):
     DEBUG = False
     # Running on production App Engine, so connect to Google Cloud SQL using
     # the unix socket at /cloudsql/<your-cloudsql-connection string>
+    PREPEND_WWW = True
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -116,6 +117,7 @@ if os.getenv('GAE_APPLICATION', None):
     }
 else:
     DEBUG = True
+    PREPEND_WWW = False
     # Running locally so connect to either a local MySQL instance or connect to
     # Cloud SQL via the proxy. To start the proxy via command line:
     #
@@ -166,9 +168,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'gadget_india_bucket'
-# STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_FILE_OVERWRITE = False
 # SECURE_SSL_REDIRECT = True
 # Static files (CSS, JavaScript, Images)
@@ -177,7 +179,7 @@ MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
 STATIC_URL = '/static/'
 # STATIC_ROOT = 'assets'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # while developing comment STATICFILES_STORAGE and DEFAULT_FILE_STORAGE and uncomment STATICFILES_DIRS
 # while running collectstatic both needs to uncomment
 # white uploading uncomment STATICFILES_STORAGE and comment STATICFILES_DIRS(not necessary)
