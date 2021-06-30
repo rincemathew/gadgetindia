@@ -26,10 +26,10 @@
         <loc>https://www.gadgetin.in/apple/iphone-12/</loc>
     </url>
     <url>
-        <loc>https://www.gadgetin.in/mircromax/in-1b/</loc>
+        <loc>https://www.gadgetin.in/micromax/in-1b/</loc>
     </url>
     <url>
-        <loc>https://www.gadgetin.in/mircromax/in-note-1/</loc>
+        <loc>https://www.gadgetin.in/micromax/in-note-1/</loc>
     </url>
     <url>
         <loc>https://www.gadgetin.in/samsung/galaxy-s21-plus-5g/</loc>
@@ -140,7 +140,7 @@
         <loc>https://www.gadgetin.in/realme/8-pro/</loc>
     </url>
 	<url>
-        <loc>https://gadgetin.in/mircromax/in-1/</loc>
+        <loc>https://gadgetin.in/micromax/in-1/</loc>
     </url>
     <url>
         <loc>https://www.gadgetin.in/motorola/moto-g60/</loc>
@@ -174,5 +174,14 @@
     </url>
     <url>
         <loc>https://www.gadgetin.in/iqoo/z3-5g/</loc>
+    </url>
+	<url>
+        <loc>https://www.gadgetin.in/vivo/v21e-5g/</loc>
+    </url>
+	<url>
+        <loc>https://www.gadgetin.in/realme/narzo-30/</loc>
+    </url>
+	<url>
+        <loc>https://www.gadgetin.in/realme/narzo-30-5g/</loc>
     </url>
 </urlset>

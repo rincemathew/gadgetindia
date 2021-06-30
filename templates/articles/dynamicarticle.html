@@ -2,8 +2,18 @@
 {% load static %}
 {% block title_tag %}{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_name }} | gadgetin.in{% endfor %}{% endblock %}
 {% block meta_des %}{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_description }}{% endfor %}{% endblock %}
-{% block content_css %}<link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet"><!--<link rel="amphtml" href="" />-->{% endblock %}
+{% block content_css %}<link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
+    <meta property="og:url" content="https://www.gadgetin.in/articles/{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_name_url }}{% endfor %}/"/>
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_name }}{% endfor %}"/>  
+    <meta property="og:description" content="{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_description }}{% endfor %}"/>
+    <meta property="og:image" itemprop="image" content="https://storage.googleapis.com/gadget_india_bucket/{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_thumbnail }}{% endfor %}">{% endblock %}
+{% block content_amp %}https://www.gadgetin.in/articles/{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_name_url }}{% endfor %}/amp{% endblock %}
 {% block content_main %}
+<link itemprop="thumbnailUrl" href="https://storage.googleapis.com/gadget_india_bucket/{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_thumbnail }}{% endfor %}">
+<span itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject">
+<link itemprop="url" href="https://storage.googleapis.com/gadget_india_bucket/{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_thumbnail }}{% endfor %}">
+</span>
 <div class="main-color">
     <div class="container">
         <div class="row">

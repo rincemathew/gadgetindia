@@ -1,0 +1,21 @@
+<!doctype html>
+<html ⚡ lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <title>{% block title_tag %} {% endblock %}</title>
+    <meta name="description" content="{% block meta_des %} {% endblock %}">
+    <link rel="shortcut icon" type="image/png" href="https://storage.googleapis.com/gadget_india_bucket/images/icons/favicon.ico"/>
+    {% block content_css %} {% endblock %}
+    <link rel="canonical" href="{% block content_amp %} {% endblock %}">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  </head>
+<body>
+    <div style="padding-left: 12px;">
+        
+    </div>
+    {% block content_main %}{% endblock %}
+    <div></div>
+</body>
+</html>
