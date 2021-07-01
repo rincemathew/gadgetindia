@@ -3,7 +3,9 @@
 
     <url>
         <loc>https://www.gadgetin.in/earwear/</loc>
-        <changefreq>always</changefreq>
+        <lastmod>{{ time_value|date:'Y-m-d' }}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>.80</priority>
     </url>
     
 </urlset>

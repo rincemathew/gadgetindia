@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'mobiles',
     'articles',
     'earwear',
+    'sitemapp',
     # external
     'rest_framework',
     'corsheaders',
