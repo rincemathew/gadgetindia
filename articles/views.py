@@ -46,14 +46,14 @@ class ArticleListView(ListAPIView):
 
 def dynamic_article_amp(request, articlename):
     dynamic_articles = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic') & Q(article_name_url=articlename))
-    related_articles_view = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic')).order_by("-release_date", "-release_time")[:10]
+    related_articles_view = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic') & ~Q(article_name_url=articlename)).order_by("-release_date", "-release_time")[:10]
     related_articles = random.sample(list(related_articles_view), 3)
     return render(request, "articles/dynamicarticleamp.html", {'dynamic_articles': dynamic_articles, 'related_articles':related_articles })
 
 
 def dynamic_article(request, articlename):
     dynamic_articles = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic') & Q(article_name_url=articlename))
-    related_articles_view = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic')).order_by("-release_date", "-release_time")[:10]
+    related_articles_view = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic') & ~Q(article_name_url=articlename)).order_by("-release_date", "-release_time")[:10]
     related_articles = random.sample(list(related_articles_view), 3)
     return render(request, "articles/dynamicarticle.html", {'dynamic_articles': dynamic_articles, 'related_articles':related_articles })
 

@@ -63,7 +63,7 @@ class EarModelName(models.Model):
     ear_colors = models.CharField(max_length=100, blank=True, null=True)
     ear_other_features = models.CharField(max_length=1200, default='Bluetooth Range:10m', blank=True, null=True)
     inside_package = models.CharField(max_length=500, blank=True, null=True)
-    ear_price_variant = models.OneToOneField(EarOnlinePrice, on_delete=models.CASCADE)
+    ear_price_variant = models.OneToOneField(EarOnlinePrice, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.ear_name
