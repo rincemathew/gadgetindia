@@ -40,13 +40,14 @@ class WearConnectivity(models.Model):
     wear_bluetooth = models.CharField(blank=True, null=True, max_length=50, default='Yes, Version:5.1')
     wear_wifi = models.CharField(blank=True, null=True, max_length=50, default='No,')
     wear_GPS = models.CharField(blank=True, null=True, max_length=50, default='Yes,')
+    other_con_features = models.CharField(blank=True, null=True, max_length=800,)
 
 
 class WearDisplay(models.Model):
     wear_resolutions = models.CharField(blank=True, null=True, max_length=50, default='320 x 320 Pixels')
-    wear_size = models.FloatField(blank=True, null=True)
+    wear_size = models.FloatField(blank=True, null=True,)
     wear_type = models.CharField(blank=True, null=True, max_length=50, default='LCD')
-    wear_size = models.CharField(blank=True, null=True, max_length=800, default='HD Display')
+    wear_display_features = models.CharField(blank=True, null=True, max_length=800, default='HD Display')
 
 
 class WearModelName(models.Model):
@@ -72,16 +73,16 @@ class WearModelName(models.Model):
     wear_type = models.CharField(max_length=20, choices=WEAR_TYPE, )
     ideal_for = models.CharField(max_length=200, blank=True, null=True, default='Unisex')
     wear_touch = models.BooleanField(default=True)
-    wear_os = models.CharField(max_length=100, blank=True, null=True, default='RTOS')
-    wear_functions = models.CharField(max_length=800, blank=True, null=True, default='Activity Tracking,Sleep Tracking, Heart rate Tracking')
+    wear_os = models.CharField(max_length=100, blank=True, null=True, )
+    wear_functions = models.CharField(max_length=800, blank=True, null=True, )
     wear_compatible_device = models.CharField(max_length=200, blank=True, null=True, default='Phones with Android 5.0 and Above or IOS 10 and Above')
-    wear_sensors = models.CharField(max_length=200, blank=True, null=True, default='3-Axis Accelerometer, Barometer, Gyroscope, Ambient Light Sensor, PPG Heart Rate Sensor, Geomagnetic Sensor, Compass')
+    wear_sensors = models.CharField(max_length=200, blank=True, null=True, )
     wear_battery = models.PositiveIntegerField(blank=True, null=True)
     wear_battery_feature = models.CharField(max_length=1000, default='Charging time:120 minutes, Battery Life:10 days, Battery Type: Lithiun Polymer', blank=True, null=True)
-    wear_battery_connectivity = models.CharField(max_length=500, default='Bluetooth v5.1, USB Type-C, GPS', blank=True, null=True)
+    wear_material = models.CharField(max_length=100, blank=True, null=True)
     wear_water_resistant = models.CharField(max_length=100, default='Yes, upto 50 m', blank=True, null=True)
     wear_colors = models.CharField(max_length=100, blank=True, null=True, default='Dial Color:Black & Strap Color:Blue')
-    wear_other_features = models.CharField(max_length=1200, default='3 Color Variants and 4 Color Strap Options, Built-in GPS & Glonass', blank=True, null=True)
+    wear_other_features = models.CharField(max_length=1200, blank=True, null=True)
     inside_package = models.CharField(max_length=500, blank=True, null=True)
     wearDimensions = models.OneToOneField(WearDimensions, on_delete=models.CASCADE, blank=True, null=True)
     wearConnectivity = models.OneToOneField(WearConnectivity, on_delete=models.CASCADE, blank=True, null=True)

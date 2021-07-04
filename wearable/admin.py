@@ -6,6 +6,7 @@ admin.site.register(models.WearDimensions)
 admin.site.register(models.WearConnectivity)
 admin.site.register(models.WearDisplay)
 admin.site.register(models.WearOnlinePrice)
+admin.site.register(models.WearBrandName)
 
 
 class WearVariantInline(admin.StackedInline):
