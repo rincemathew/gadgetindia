@@ -45,7 +45,7 @@ def mobiles_details(request, brand_url, mobile_url):
 
 def mobiles_list(request, listmobile):
     static_a = ["aboutus", "contactus", "sitemap", "privacypolicy", "termsandconditions"]
-    other_urls = ["latest-phones", "budget-phones", "smartphones", "tablets"]
+    other_urls = ["latest-phones", "budget-phones", "smartphones", "tablets", "upcoming-phones"]
     if listmobile in static_a:
         static_articles = Articles.objects.filter(
             Q(released_or_not=True) & Q(article_name_url=listmobile))

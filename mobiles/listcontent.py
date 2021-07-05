@@ -87,5 +87,10 @@ other_list_items = [{"name": "latest-phones",
                      "filter_set": {'mobileGeneral__status': 'Available', 'mobileGeneral__is_available': True, 'mobileNames__phone_type': 'TABLET'},
                      "description": "Get the list of all tablets listed in India. Visit now to Get the full details, price, reviews, videos and manymore....",
                      "title": "Checkout whole list of tablets released in India",
-                     "heading": "List of Tablets"}
+                     "heading": "List of Tablets"},
+                    {"name": "upcoming-phones",
+                     "filter_set": {'mobileGeneral__status': 'Upcoming', 'mobileGeneral__status': 'Upcoming','mobileGeneral__is_available': True, 'mobileNames__phone_type': 'SMARTPHONE'},
+                     "description": "Get the list of Upcoming Phones in India. Visit now to Get the full details, price, reviews, videos and manymore....",
+                     "title": "Checkout whole list of Upcoming Smartphones in India",
+                     "heading": "List of Upcoming Phones"},
                     ]

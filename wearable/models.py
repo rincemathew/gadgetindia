@@ -90,7 +90,7 @@ class WearModelName(models.Model):
     wear_price_variant = models.OneToOneField(WearOnlinePrice, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.ear_name
+        return self.wear_name
 
 
 class WearVariantImage(models.Model):

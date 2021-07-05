@@ -22,6 +22,7 @@ urlpatterns = [
     path('mobiles/', include('mobiles.urls')),
     path('articles/', include('articles.urls')),
     path('earwear/', include('earwear.urls')),
+    path('wearables/', include('wearable.urls')),
     path('', include('sitemapp.urls')),
     path('', include('mobiles.urls')),
     path('sitemap.xml', TemplateView.as_view(template_name='sitemaps/sitemap.xml', content_type='text/xml')),

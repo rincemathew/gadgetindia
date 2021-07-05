@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% load simpletag %}
-{% block title_tag %}{% if variant == "" %}{% update_variable mobile_details.0.mobile_variants_url as variant %}{% endif %}{% for mobileDetails in mobile_details %}{% if mobileDetails.mobile_variants_url == variant %}Get full details of {{mobileDetails.mobileNames.brandName.brand_name}} {{mobileDetails.mobileNames.mobile_name}} | gadgetin.in{% endif %}{% endfor %}{% endblock %}
-{% block meta_des %}{% if variant == "" %}{% update_variable mobile_details.0.mobile_variants_url as variant %}{% endif %}{% for mobileDetails in mobile_details %}{% if mobileDetails.mobile_variants_url == variant %}Get full details of {{mobileDetails.mobileNames.brandName.brand_name}} {{mobileDetails.mobileNames.mobile_name}}. Check out full specifications, news, reviews and compare with other phones | gadgetin.in{% endif %}{% endfor %}{% endblock %}
+{% block title_tag %}{% if variant == "" %}{% update_variable mobile_details.0.mobile_variants_url as variant %}{% endif %}{% for mobileDetails in mobile_details %}{% if mobileDetails.mobile_variants_url == variant %}{{mobileDetails.mobileNames.brandName.brand_name}} {{mobileDetails.mobileNames.mobile_name}} Price, Specifications and Features in India | gadgetin.in{% endif %}{% endfor %}{% endblock %}
+{% block meta_des %}{% if variant == "" %}{% update_variable mobile_details.0.mobile_variants_url as variant %}{% endif %}{% for mobileDetails in mobile_details %}{% if mobileDetails.mobile_variants_url == variant %}Get full details of {{mobileDetails.mobileNames.brandName.brand_name}} {{mobileDetails.mobileNames.mobile_name}}. Check out full specifications, features, price, news, reviews and compare with other phones | gadgetin.in{% endif %}{% endfor %}{% endblock %}
 {% block content_css %}<link rel="stylesheet" href="{% static 'css/mobiledetails.css' %}">{% endblock %}
 {% block content_main %}
 <div class="main-color">
@@ -20,7 +20,11 @@
                         </h1>
                     </div>
                     <div class="col-4">
+                    {% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}
+                    <h1 class="price_float">{{ mobileDetails.mobileGeneral.price |add:"-1000" }} - {{ mobileDetails.mobileGeneral.price |add:"1000" }}*</h1>
+                    {% else %}
                         <h1 class="price_float">{{ mobileDetails.mobileGeneral.price }}</h1>
+                    {% endif %}
                     </div>
                 </div>
                 <hr>
@@ -67,22 +71,22 @@
                                         <div class="col-2 align-self-center rem"><img src="{% static 'images/icons/ram.svg' %}" /></div>
                                         <div class="col-10">
                                             <h6>Ram</h6>
-                                            <p>{{mobileDetails.mobilePerformance.ram}} GB</p>
+                                            <p>{{mobileDetails.mobilePerformance.ram}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
                                         </div>
                                         <div class="col-2 rem align-self-center"><img src="{% static 'images/icons/processor.svg' %}" /></div>
                                         <div class="col-10">
                                             <h6>Processor</h6>
-                                            <p>{{mobileDetails.mobilePerformance.processor_company}} {{mobileDetails.mobilePerformance.processor}}</p>
+                                            <p>{{mobileDetails.mobilePerformance.processor_company}} {{mobileDetails.mobilePerformance.processor}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
                                         </div>
                                         <div class="col-2 rem align-self-center"><img src="{% static 'images/icons/frontcam.svg' %}" /></div>
                                         <div class="col-10">
                                             <h6>Front Camera</h6>
-                                            <p>{{mobileDetails.mobileCamera.primary_camera}} MP</p>
+                                            <p>{{mobileDetails.mobileCamera.primary_camera}} MP{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
                                         </div>
                                         <div class="col-2 rem align-self-center"><img src="{% static 'images/icons/os.svg' %}" /></div>
                                         <div class="col-10">
                                             <h6>OS</h6>
-                                            <p>{{mobileDetails.mobileGeneral.os}}</p>
+                                            <p>{{mobileDetails.mobileGeneral.os}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -92,22 +96,22 @@
                                         <div class="col-2 align-self-center rem"><img src="{% static 'images/icons/storage.svg' %}" /></div>
                                         <div class="col-10">
                                             <h6>Storage</h6>
-                                            <p>{{mobileDetails.mobileStorage.device_storage}} GB</p>
+                                            <p>{{mobileDetails.mobileStorage.device_storage}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
                                         </div>
                                         <div class="col-2 rem align-self-center"><img src="{% static 'images/icons/battery.svg' %}" /></div>
                                         <div class="col-10">
                                             <h6>Battery</h6>
-                                            <p>{{mobileDetails.mobileBattery.battery_capacity}} mAh</p>
+                                            <p>{{mobileDetails.mobileBattery.battery_capacity}} mAh{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
                                         </div>
                                         <div class="col-2 rem align-self-center"><img src="{% static 'images/icons/rearcam.svg' %}" /></div>
                                         <div class="col-10">
                                             <h6>Rear Camera</h6>
-                                            <p>{{mobileDetails.mobileCamera.secondary_camera}} MP</p>
+                                            <p>{{mobileDetails.mobileCamera.secondary_camera}} MP{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
                                         </div>
                                         <div class="col-2 rem align-self-center"><img src="{% static 'images/icons/resolution.svg' %}" /></div>
                                         <div class="col-10">
                                             <h6>Resolution</h6>
-                                            <p>{{mobileDetails.mobileDisplay.resolution}}</p>
+                                            <p>{{mobileDetails.mobileDisplay.resolution}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
                                         </div>
                                     </div>
                                 </div>     
@@ -128,32 +132,32 @@
                                 <h5>Key Specs</h5>
                             </th>
                             <td><strong>RAM</strong></td>
-                            <td>{{mobileDetails.mobilePerformance.ram}} GB</td>
+                            <td>{{mobileDetails.mobilePerformance.ram}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Memory</strong></td>
-                            <td>{{mobileDetails.mobileStorage.device_storage}} GB</td>
+                            <td>{{mobileDetails.mobileStorage.device_storage}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Processor</strong></td>
                             <td>{{mobileDetails.mobilePerformance.processor_company}}
-                                {{mobileDetails.mobilePerformance.processor}}</td>
+                                {{mobileDetails.mobilePerformance.processor}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Selfie Camera</strong></td>
-                            <td>{{mobileDetails.mobileCamera.primary_camera}} MP</td>
+                            <td>{{mobileDetails.mobileCamera.primary_camera}} MP{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Rear Camera</strong></td>
-                            <td>{{mobileDetails.mobileCamera.secondary_camera}} MP</td>
+                            <td>{{mobileDetails.mobileCamera.secondary_camera}} MP{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Battery</strong></td>
-                            <td>{{mobileDetails.mobileBattery.battery_capacity}} mAh</td>
+                            <td>{{mobileDetails.mobileBattery.battery_capacity}} mAh{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Display Size</strong></td>
-                            <td>{{mobileDetails.mobileDisplay.screen_size}} inch</td>
+                            <td>{{mobileDetails.mobileDisplay.screen_size}} inch{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <th rowspan="14">
@@ -168,19 +172,19 @@
                         </tr>
                         <tr>
                             <td><strong>OS</strong></td>
-                            <td>{{mobileDetails.mobileGeneral.os}}</td>
+                            <td>{{mobileDetails.mobileGeneral.os}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>OS Version</strong></td>
-                            <td>{{mobileDetails.mobileGeneral.os_version}}</td>
+                            <td>{{mobileDetails.mobileGeneral.os_version}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>UI Version</strong></td>
-                            <td>{{mobileDetails.mobileGeneral.UI_version}}</td>
+                            <td>{{mobileDetails.mobileGeneral.UI_version}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Release Date</strong></td>
-                            <td>{{mobileDetails.mobileGeneral.release_date}}</td>
+                            <td>{{mobileDetails.mobileGeneral.release_date}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}-Expecting{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Avilability</strong></td>
@@ -188,21 +192,21 @@
                         </tr>
                         <tr>
                             <td><strong>Slots</strong></td>
-                            <td>{{mobileDetails.mobileGeneral.slots}}</td>
+                            <td>{{mobileDetails.mobileGeneral.slots}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Weight</strong></td>
-                            <td>{{mobileDetails.mobileGeneral.weight}} g</td>
+                            <td>{{mobileDetails.mobileGeneral.weight}} g{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Colors</strong></td>
                             <td>{% for mobileColor in mobileDetails.variant_Color.all %}
-                                {{mobileColor.mobile_color}},
+                                {{mobileColor.mobile_color}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %},
                                 {% endfor %}</td>
                         </tr>
                         <tr>
                             <td><strong>Dimensions</strong></td>
-                            <td>{{mobileDetails.mobileGeneral.dimensions}}</td>
+                            <td>{{mobileDetails.mobileGeneral.dimensions}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Networks</strong></td>
@@ -248,17 +252,17 @@
                         <tr>
                             <td><strong>Fingerprint Sensor</strong></td>
                             {% if mobileDetails.mobileSensor.fingerprint_sensor == True %}
-                            <td>Yes</td>
+                            <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% else %}
-                            <td>No</td>
+                            <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% endif %}
                         </tr>
                         <tr>
                             <td><strong>Fast Charger</strong></td>
                             {% if mobileDetails.mobileBattery.fast_charger == True %}
-                            <td>Yes</td>
+                            <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% else %}
-                            <td>No</td>
+                            <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% endif %}
                         </tr>
                         <tr>
@@ -266,107 +270,119 @@
                                 <h5>Performance</h5>
                             </th>
                             <td><strong>RAM</strong></td>
-                            <td>{{mobileDetails.mobilePerformance.ram}} GB</td>
+                            <td>{{mobileDetails.mobilePerformance.ram}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Processor</strong></td>
-                            <td>{{mobileDetails.mobilePerformance.processor}}</td>
+                            <td>{{mobileDetails.mobilePerformance.processor}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Processor Build</strong></td>
-                            <td>{{mobileDetails.mobilePerformance.processor_company}}</td>
+                            <td>{{mobileDetails.mobilePerformance.processor_company}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Clock Speed</strong></td>
-                            <td>{{mobileDetails.mobilePerformance.clock_speed}} Hz</td>
+                            {% if mobileDetails.mobilePerformance.clock_speed == null %}
+                            <td></td>
+                            {% else %}
+                            <td>{{mobileDetails.mobilePerformance.clock_speed}} Hz{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th rowspan="6">
                                 <h5>Storage</h5>
                             </th>
                             <td><strong>Device Storage</strong></td>
-                            <td>{{mobileDetails.mobileStorage.device_storage}} GB</td>
+                            <td>{{mobileDetails.mobileStorage.device_storage}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Expandable Memory</strong></td>
                             {% if mobileDetails.mobileStorage.expandable_memory == True %}
-                            <td>Yes</td>
+                            <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% else %}
-                            <td>No</td>
+                            <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% endif %}
                         </tr>
                         <tr>
                             <td><strong>Expandable Memory Capacity</strong></td>
                             {% if mobileDetails.mobileStorage.expandable_memory == True %}
-                            <td>{{mobileDetails.mobileStorage.expandable_memory_capacity}} GB</td>
+                            <td>{{mobileDetails.mobileStorage.expandable_memory_capacity}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% else %}
-                            <td>Not Available</td>
+                            <td>Not Available{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% endif %}
                         </tr>
                         <tr>
                             <td><strong>OTG Support</strong></td>
                             {% if mobileDetails.mobileStorage.OTG_support == True %}
-                            <td>Yes</td>
+                            <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% else %}
-                            <td>No</td>
+                            <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% endif %}
                         </tr>
                         <tr>
                             <td><strong>Sim Slot Type</strong></td>
-                            <td>{{mobileDetails.mobileStorage.sim_slot_type}}</td>
+                            <td>{{mobileDetails.mobileStorage.sim_slot_type}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Slots</strong></td>
-                            <td>{{mobileDetails.mobileGeneral.slots}}</td>
+                            <td>{{mobileDetails.mobileGeneral.slots}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <th rowspan="4">
                                 <h5>Camera</h5>
                             </th>
                             <td><strong>Primary Camera</strong></td>
-                            <td>{{mobileDetails.mobileCamera.primary_camera_str}}</td>
+                            <td>{{mobileDetails.mobileCamera.primary_camera_str}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Primary Cam Features</strong></td>
-                            <td>{{mobileDetails.mobileCamera.primary_camera_features}}</td>
+                            {% if mobileDetails.mobileCamera.primary_camera_features == null %}
+                            <td></td>
+                            {% else %}
+                            <td>{{mobileDetails.mobileCamera.primary_camera_features}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td><strong>Secondary Camera</strong></td>
-                            <td>{{mobileDetails.mobileCamera.secondary_camera_str}}</td>
+                            <td>{{mobileDetails.mobileCamera.secondary_camera_str}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Secondary Cam Features</strong></td>
-                            <td>{{mobileDetails.mobileCamera.secondary_camera_features}}</td>
+                            {% if mobileDetails.mobileCamera.secondary_camera_features == null %}
+                            <td></td>
+                            {% else %}
+                            <td>{{mobileDetails.mobileCamera.secondary_camera_features}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <th rowspan="5">
                                 <h5>Battery</h5>
                             </th>
                             <td><strong>Capacity</strong></td>
-                            <td>{{mobileDetails.mobileBattery.battery_capacity}} mAh</td>
+                            <td>{{mobileDetails.mobileBattery.battery_capacity}} mAh{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Type</strong></td>
-                            <td>{{mobileDetails.mobileBattery.battery_type}}</td>
+                            <td>{{mobileDetails.mobileBattery.battery_type}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Fast Charger</strong></td>
                             {% if mobileDetails.mobileBattery.fast_charge == True %}
-                            <td>Yes</td>
+                            <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% else %}
-                            <td>No</td>
+                            <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% endif %}
                         </tr>
                         <tr>
                             <td><strong>Charger Type</strong></td>
-                            <td>{{mobileDetails.mobileBattery.fast_charging}}</td>
+                            <td>{{mobileDetails.mobileBattery.fast_charging}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Replaceable</strong></td>
                             {% if mobileDetails.mobileBattery.replaceable == True %}
-                            <td>Yes</td>
+                            <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% else %}
-                            <td>No</td>
+                            <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% endif %}
                         </tr>
                         <tr>
@@ -374,27 +390,31 @@
                                 <h5>Display</h5>
                             </th>
                             <td><strong>Screen Size</strong></td>
-                            <td>{{mobileDetails.mobileDisplay.screen_size}} inch</td>
+                            <td>{{mobileDetails.mobileDisplay.screen_size}} inch{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Resolution</strong></td>
-                            <td>{{mobileDetails.mobileDisplay.resolution}}</td>
+                            <td>{{mobileDetails.mobileDisplay.resolution}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Resolution Type</strong></td>
-                            <td>{{mobileDetails.mobileDisplay.resolution_type}}</td>
+                            {% if mobileDetails.mobileDisplay.resolution_types == null %}
+                            <td></td>
+                            {% else %}
+                            <td>{{mobileDetails.mobileDisplay.resolution_type}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td><strong>Display Type</strong></td>
-                            <td>{{mobileDetails.mobileDisplay.display_type}}</td>
+                            <td>{{mobileDetails.mobileDisplay.display_type}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>GPU</strong></td>
-                            <td>{{mobileDetails.mobileDisplay.GPU}}</td>
+                            <td>{{mobileDetails.mobileDisplay.GPU}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Other Features</strong></td>
-                            <td>{{mobileDetails.mobileDisplay.display_features}}</td>
+                            <td>{{mobileDetails.mobileDisplay.display_features}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <th rowspan="7">
@@ -402,34 +422,42 @@
                             </th>
                             <td><strong>USB Type C</strong></td>
                             {% if mobileDetails.mobileConnectivity.USB_type_c == True %}
-                            <td>Yes</td>
+                            <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% else %}
-                            <td>No</td>
+                            <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% endif %}
                         </tr>
                         <tr>
                             <td><strong>GPS</strong></td>
                             {% if mobileDetails.mobileConnectivity.GPS == True %}
-                            <td>Yes</td>
+                            <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% else %}
-                            <td>No</td>
+                            <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% endif %}
                         </tr>
                         <tr>
                             <td><strong>SAR Value</strong></td>
-                            <td>{{mobileDetails.mobileConnectivity.SAR_value}}</td>
+                            {% if mobileDetails.mobileConnectivity.SAR_value == null %}
+                            <td></td>
+                            {% else %}
+                            <td>{{mobileDetails.mobileConnectivity.SAR_value}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td><strong>Audio Jack</strong></td>
-                            <td>{{mobileDetails.mobileConnectivity.audio_jack}}</td>
+                            {% if mobileDetails.mobileConnectivity.audio_jack == null %}
+                            <td></td>
+                            {% else %}
+                            <td>{{mobileDetails.mobileConnectivity.audio_jack}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td><strong>Bluetooth</strong></td>
-                            <td>{{mobileDetails.mobileConnectivity.bluetooth}}</td>
+                            <td>{{mobileDetails.mobileConnectivity.bluetooth}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Wi-Fi</strong></td>
-                            <td>{{mobileDetails.mobileConnectivity.wi_fi}}</td>
+                            <td>{{mobileDetails.mobileConnectivity.wi_fi}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>SIM</strong></td>
@@ -502,34 +530,44 @@
                             </th>
                             <td><strong>Fingerprint Sensor</strong></td>
                             {% if mobileDetails.mobileSensor.fingerprint_sensor == True %}
-                            <td>Yes</td>
+                            <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% else %}
-                            <td>No</td>
+                            <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                             {% endif %}
                         </tr>
                         <tr>
                             <td><strong>Fingerprint Position</strong></td>
-                            <td>{{mobileDetails.mobileSensor.fingerprint_position}}</td>
+                            <td>{{mobileDetails.mobileSensor.fingerprint_position}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <td><strong>Other Sensors</strong></td>
-                            <td>{{mobileDetails.mobileSensor.other_sensor}}</td>
+                            <td>{{mobileDetails.mobileSensor.other_sensor}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
                         </tr>
                         <tr>
                             <th rowspan="2">
                                 <h5>Other Features</h5>
                             </th>
                             <td><strong>Other Features</strong></td>
-                            <td>{{mobileDetails.otherFeature.other_Feature}}</td>
+                            {% if mobileDetails.otherFeature.other_Feature == null %}
+                            <td></td>
+                            {% else %}
+                            <td>{{mobileDetails.otherFeature.other_Feature}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td><strong>In the Box</strong></td>
-                            <td>{{mobileDetails.otherFeature.in_the_box}}</td>
+                            {% if mobileDetails.otherFeature.in_the_box == null %}
+                            <td></td>
+                            {% else %}
+                            <td>{{mobileDetails.otherFeature.in_the_box}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                            {% endif %}
                         </tr>
                     </tbody>
                 </table>
             </div>
+            {% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}* Phone is not yet released these are the expected values, it may change....{% endif %}
         </div>
+        {% if mobileDetails.mobileGeneral.status == 'Available' %}
         <div class="padding-global">
             <div class="white-color">
                 <div class="row">
@@ -669,6 +707,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
         {% for mobileDetails in mobile_details %}
         {% if mobileDetails.mobile_variants_url == variant %}
         {% if mobileDetails.articles_set.all %}

@@ -28,7 +28,7 @@ def earwear(request):
 
 
 def mobiles(request):
-    mobiles_list = MobileName.objects.filter(Q(mobile_Variant__mobileGeneral__status='Available') & Q(mobile_Variant__mobileGeneral__is_available=True) & Q(phone_type='SMARTPHONE')).annotate(latest=Max('mobile_Variant__mobileGeneral__release_date')).order_by("-latest")
+    mobiles_list = MobileName.objects.filter(Q(mobile_Variant__mobileGeneral__status='Available') | Q(mobile_Variant__mobileGeneral__status='Rumored') | Q(mobile_Variant__mobileGeneral__status='Upcoming') & Q(mobile_Variant__mobileGeneral__is_available=True) & Q(phone_type='SMARTPHONE')).annotate(latest=Max('mobile_Variant__mobileGeneral__release_date')).order_by("-latest")
     time_value = TimeFields.objects.all()
     return render(request, "sitemaps/sitemap-mobile-list21.xml", {'mobiles_list': mobiles_list, 'time_value': time_value }, content_type='application/xml; charset=utf-8')
 
