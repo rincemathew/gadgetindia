@@ -184,7 +184,11 @@
                         </tr>
                         <tr>
                             <td><strong>Release Date</strong></td>
-                            <td>{{mobileDetails.mobileGeneral.release_date}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}-Expecting{% endif %}</td>
+                            {% if mobileDetails.mobileGeneral.status == 'Rumored' %}
+                            <td>within 6 months</td>
+                            {% else %}
+                            <td>{{mobileDetails.mobileGeneral.release_date}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' %}-Announced{% endif %}</td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td><strong>Avilability</strong></td>
@@ -734,6 +738,78 @@
         {% endif %}
         {% endif %}
         {% endfor %}
+        <div class="padding-global">
+            <div class="white-color">
+                <h4>Similar Products</h4>
+                <table class="table table-responsive-md table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        {% for reaMobiles in rea_mobiles %}
+                            <td><img style="max-height: 250px; min-height: 190px; min-width: 85px;" class="img-fluid"
+                                src="{{ MEDIA_URL }}{{ reaMobiles.mobile_image }}" alt="mobile-Image" /></td>
+                            {% endfor %}
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Brand<br>Name</th>
+                            {% for reaMobiles in rea_mobiles %}
+                            <td>{{ reaMobiles.brandName.brand_name }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Model<br>Name</th>
+                            {% for reaMobiles in rea_mobiles %}
+                            <td>{{ reaMobiles.mobile_name }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Price</th>
+                            {% for reaMobiles in rea_mobiles %}
+                            <td>Rs. {{ reaMobiles.mobile_Variant.all.0.mobileGeneral.price }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">RAM</th>
+                            {% for reaMobiles in rea_mobiles %}
+                            <td>{{ reaMobiles.mobile_Variant.all.0.mobilePerformance.ram }} GB</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Storage</th>
+                            {% for reaMobiles in rea_mobiles %}
+                            <td>{{ reaMobiles.mobile_Variant.all.0.mobileStorage.device_storage }} GB</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Processor</th>
+                            {% for reaMobiles in rea_mobiles %}
+                            <td>{{ reaMobiles.mobile_Variant.all.0.mobilePerformance.processor }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Primary<br>Camera</th>
+                            {% for reaMobiles in rea_mobiles %}
+                            <td>{{ reaMobiles.mobile_Variant.all.0.mobileCamera.primary_camera_str }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Secondary<br>Camera</th>
+                            {% for reaMobiles in rea_mobiles %}
+                            <td>{{ reaMobiles.mobile_Variant.all.0.mobileCamera.secondary_camera_str }}</td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th scope="row">Battery</th>
+                            {% for reaMobiles in rea_mobiles %}
+                            <td>{{ reaMobiles.mobile_Variant.all.0.mobileBattery.battery_capacity }} mAh</td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
     </div>
     {% endif %}
     {% endfor %}
