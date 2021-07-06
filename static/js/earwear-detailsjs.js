@@ -17,3 +17,18 @@ $('#left-button-scroll').click(function() {
   $('.popover-dismiss').popover({
     trigger: 'focus'
   })
+
+/* picture scroll */ 
+$('#left-button-scroll-wear').click(function() {
+    event.preventDefault();
+    $('#content-inside-scroll-wear').animate({
+      scrollLeft: "-=100px"
+    }, "slow");
+  });
+  
+   $('#right-button-scroll-wear').click(function() {
+    event.preventDefault();
+    $('#content-inside-scroll-wear').animate({
+     scrollLeft: "+=100px"
+    }, "slow");
+  });

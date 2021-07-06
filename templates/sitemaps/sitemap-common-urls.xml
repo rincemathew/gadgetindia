@@ -27,6 +27,12 @@
         <priority>.80</priority>
     </url>
     <url>
+        <loc>https://www.gadgetin.in/upcoming-phones/</loc>
+        <lastmod>{{ time_value|date:'Y-m-d' }}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>.80</priority>
+    </url>
+    <url>
         <loc>https://www.gadgetin.in/tablets/</loc>
         <lastmod>{{ time_value|date:'Y-m-d' }}</lastmod>
         <changefreq>daily</changefreq>

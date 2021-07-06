@@ -7,6 +7,7 @@ from articles.models import Articles
 from earwear.models import EarModelName
 from mobiles.models import MobileName
 from sitemapp.models import TimeFields
+from wearable.models import WearModelName
 
 
 def how_article(request):
@@ -25,6 +26,12 @@ def earwear(request):
     earwear_list = EarModelName.objects.filter(Q(ear_availability=True) & Q(ear_status='Available') | Q(ear_status='Upcoming')).order_by("-ear_release_date")
     time_value = TimeFields.objects.all()
     return render(request, "sitemaps/earwear-list.xml", {'earwear_list': earwear_list, 'time_value': time_value }, content_type='application/xml; charset=utf-8')
+
+
+def wearables(request):
+    wearable_list = WearModelName.objects.filter(Q(wear_availability=True) & Q(wear_status='Available') | Q(wear_status='Upcoming')).order_by("-wear_release_date")
+    time_value = TimeFields.objects.all()
+    return render(request, "sitemaps/wearable-list.xml", {'wearable_list': wearable_list, 'time_value': time_value }, content_type='application/xml; charset=utf-8')
 
 
 def mobiles(request):

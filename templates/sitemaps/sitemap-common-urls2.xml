@@ -7,5 +7,11 @@
         <changefreq>daily</changefreq>
         <priority>.80</priority>
     </url>
+    <url>
+        <loc>https://www.gadgetin.in/wearables/</loc>
+        <lastmod>{{ time_value|date:'Y-m-d' }}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>.80</priority>
+    </url>
     
 </urlset>

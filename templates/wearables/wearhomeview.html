@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_tag %}Smart Watches, bands (Smart Wearables) | gadgetin.in{% endblock %}
+{% block meta_des %}Looking for all types of Smart Wearables?? This is the destination for all types of Smart Watches, bands, etc{% endblock %}
+{% block content_css %}{% endblock %}
+{% block content_main %}
+<div class="main-color">
+    <div class="container">
+        <div class="padding-global">
+            <div class="white-color">
+                <h1>List of Smart Wear Products</h1>
+                <div class="row">
+                    {% for wearWearList in wear_wear_list %}
+                    <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-3">
+                        <div class="card row">
+                            <a href="{{ wearWearList.wearBrandName.wear_brand_name_url }}/{{ wearWearList.wear_name_url }}">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <img style="max-height: 200px;" class="img-fluid" src="{{ MEDIA_URL }}{{ wearWearList.wear_picture }}" />
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    {{ wearWearList.wearBrandName.wear_brand_name }}
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    {{ wearWearList.wear_name }}
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                    Rs {{ wearWearList.wear_price }}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            {% if wear_wear_list.has_other_pages %}
+            <ul class="pagination">
+                 {% if wear_wear_list.has_previous %}
+                 <li class="page-item"><a class="page-link" href="?page={{ wear_wear_list.previous_page_number }}">&laquo;</a></li>
+                 {% else %}
+                 <li class="page-item disabled"><a class="page-link"><span>&laquo;</span></a></li>
+                 {% endif %}
+                 {% for i in wear_wear_list.paginator.page_range %}
+                 {% if wear_wear_list.number == i %}
+                 <li class="page-item active"><a class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></a></li>
+                 {% else %}
+                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                 {% endif %}
+                 {% endfor %}
+                 {% if wear_wear_list.has_next %}
+                 <li class="page-item"><a class="page-link" href="?page={{ wear_wear_list.next_page_number }}">&raquo;</a></li>
+                 {% else %}
+                 <li class="page-item disabled"><a class="page-link"><span>&raquo;</span></a></li>
+                 {% endif %}
+            </ul>
+            {% endif %}
+       </div>
+    </div>
+</div>
+{% endblock %}
+{% block content_js %}{% endblock %}

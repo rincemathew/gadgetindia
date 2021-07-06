@@ -9,6 +9,7 @@ urlpatterns = [
     path('sitemap-mobile-list21.xml', views.mobiles),
     path('sitemap-common-urls2.xml', views.common_two),
     path('earwear-list.xml', views.earwear),
+    path('wearable-list.xml', views.wearables),
    ]
 
 

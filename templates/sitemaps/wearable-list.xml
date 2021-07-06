@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% for item in wearable_list %}
+    <url>
+        <loc>https://www.gadgetin.in/wearables/{{ item.wearBrandName.wear_brand_name_url }}/{{ item.wear_name_url }}/</loc>
+        {% for time in time_value %}<lastmod>{{ time.headphone_list_time|date:'Y-m-d' }}</lastmod>{% endfor %}
+    </url>
+    {% endfor %}
+</urlset>

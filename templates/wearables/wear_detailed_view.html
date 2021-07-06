@@ -1,0 +1,470 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_tag %}{% for wearWearList in wear_wear_list %}{{ wearWearList.wearBrandName.wear_brand_name }} {{ wearWearList.wear_name }} Price, Specifications and Features in India | gadgetin.in{% endfor %}{% endblock %}
+{% block meta_des %}{% for wearWearList in wear_wear_list %}Get full details of {{ wearWearList.wearBrandName.wear_brand_name }} {{ wearWearList.wear_name }} Wearable. Check out full specifications, Price, Features, Related articles, other Smart Watches, bands and many more...{% endfor %}{% endblock %}
+{% block content_css %}<link rel="stylesheet" href="{% static 'css/mobiledetails.css' %}">{% endblock %}
+{% block content_main %}
+<div class="main-color">
+    <div class="container">
+        <div class="row">
+            {% for wearWearList in wear_wear_list %}
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                <div class="padding-global">
+                    <div class="white-color">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-6 row d-flex justify-content-center">
+                                <a tabindex="0" class="popover-dismiss" role="button" data-toggle="popover"
+                                    data-trigger="focus" title="Image Credits"
+                                    data-content="{{ wearWearList.wear_picture_credit }}">
+                                    <img src="{% static 'images/icons/i-information.png' %}" /></a>
+                                <div class="content d-flex" id="content-new">
+                                    <div class="leftButton align-self-center d-none d-sm-block">
+                                        <a href="#" id="left-button-scroll-wear"><img
+                                                src="{% static 'images/icons/arrow-left.svg' %}" /></a>
+                                    </div>
+                                    <div class="content-inside align-self-center" id="content-inside-scroll-wear">
+                                        {% for wearPics in wearWearList.wear_Image.all %}
+                                        <div class="row padding-for-scroll">
+                                            <div class="col-12 d-flex justify-content-center align-self-center">
+                                                <div>
+                                                    <img style="max-height: 300px;"
+                                                        src="{{ MEDIA_URL }}{{ wearPics.wear_image }}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="rightButton align-self-center d-none d-sm-block">
+                                        <a href="#" id="right-button-scroll-wear"><img
+                                                src="{% static 'images/icons/arrow-right.svg' %}" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-6 align-self-center">
+                                <h1>{{ wearWearList.wearBrandName.wear_brand_name }}</h1>
+                                <h2>{{ wearWearList.wear_name }}</h2>
+                                {% if wearWearList.wear_price != null %}
+                                <h3>Rs.{{ wearWearList.wear_price }}</h3>
+                                {% endif %}
+                                <p>Wear Type: {{ wearWearList.wear_type }}</p>
+                                {% if earWearList.wear_release_date != null %}
+                                <p>Release Date: {{ wearWearList.wear_release_date }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="padding-global">
+                    <div class="white-color">
+                        <h5>{{ wearWearList.wearBrandName.wear_brand_name }} {{ wearWearList.wear_name }} Specifications</h5>
+                        <hr>
+                        <table class="table table-striped">
+                            <tbody>
+                              <tr>
+                                <th scope="row">Brand Name</th>
+                                <td>{{ wearWearList.wearBrandName.wear_brand_name }}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Model Name</th>
+                                <td>{{ wearWearList.wear_name }}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Price</th>
+                                {% if wearWearList.wear_price == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_price }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Release Date</th>
+                                {% if wearWearList.wear_release_date == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_release_date }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Status</th>
+                                {% if wearWearList.wear_status == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_status }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Wearable Type</th>
+                                {% if wearWearList.wear_type == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_type }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Ideal For</th>
+                                {% if wearWearList.ideal_for == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.ideal_for }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Touch Screen</th>
+                                {% if wearWearList.wear_touch == True %}
+                                <td>Yes</td>
+                                {% else %}
+                                <td>No</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">OS</th>
+                                {% if wearWearList.wear_os == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_os }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Compatible Devices</th>
+                                {% if wearWearList.wear_compatible_device == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_compatible_device }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Material</th>
+                                {% if wearWearList.wear_material == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_material }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Main Functions</th>
+                                {% if wearWearList.wear_functions == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_functions }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Sensors</th>
+                                {% if wearWearList.wear_sensors == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_sensors }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Battery</th>
+                                {% if wearWearList.wear_battery == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_battery }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Battery Features</th>
+                                {% if wearWearList.wear_battery_feature == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_battery_feature }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Display Size</th>
+                                {% if wearWearList.wearDisplay.wear_size == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wearDisplay.wear_size }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Display Type</th>
+                                {% if wearWearList.wearDisplay.wear_type == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wearDisplay.wear_type }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Display Resolutions</th>
+                                {% if wearWearList.wearDisplay.wear_resolutions == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wearDisplay.wear_resolutions }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">display Features</th>
+                                {% if wearWearList.wearDisplay.wear_display_features == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wearDisplay.wear_display_features }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Dimensions</th>
+                                {% if wearWearList.wearDimensions.wear_dimensions == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wearDimensions.wear_dimensions }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Weight</th>
+                                {% if wearWearList.wearDimensions.wear_weight == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wearDimensions.wear_weight }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Call Function</th>
+                                {% if wearWearList.wearConnectivity.wear_callfunction == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wearConnectivity.wear_callfunction }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Bluetooth</th>
+                                {% if wearWearList.wearConnectivity.wear_bluetooth == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wearConnectivity.wear_bluetooth }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Wi-Fi</th>
+                                {% if wearWearList.wearConnectivity.wear_wifi == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wearConnectivity.wear_wifi }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">GPS</th>
+                                {% if wearWearList.wearConnectivity.wear_GPS == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wearConnectivity.wear_GPS }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Other Connection Features</th>
+                                {% if wearWearList.wearConnectivity.other_con_features == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wearConnectivity.other_con_features }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Water Resistance</th>
+                                {% if wearWearList.wear_water_resistant == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_water_resistant }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Colors</th>
+                                {% if wearWearList.wear_colors == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_colors }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Other Features</th>
+                                {% if wearWearList.wear_other_features == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.wear_other_features }}</td>
+                                {% endif %}
+                              </tr>
+                              <tr>
+                                <th scope="row">Inside Package</th>
+                                {% if wearWearList.inside_package == null %}
+                                <td></td>
+                                {% else %}
+                                <td>{{ wearWearList.inside_package }}</td>
+                                {% endif %}
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+                <div class="padding-global">
+                    <div class="white-color">      
+                        {% if wearWearList.wear_price_variant.wear_flipkart != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/flipkart.png' %}" alt="flipkart">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                   Rs.{{wearWearList.wear_price_variant.wear_flipkart}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{wearWearList.wear_price_variant.wear_flipkart_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if wearWearList.wear_price_variant.wear_amazon != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/amazon.png' %}" alt="amazon">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{wearWearList.wear_price_variant.wear_amazon}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{wearWearList.wear_price_variant.wear_amazon_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if wearWearList.wear_price_variant.wear_tata_cliq != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/tatacliq.png' %}" alt="TATA Cliq">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{wearWearList.wear_price_variant.wear_tata_cliq}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{wearWearList.wear_price_variant.wear_tata_cliq_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if wearWearList.wear_price_variant.wear_reliance_digital != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/reliancedigital.png' %}" alt="Reliance Digital">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{wearWearList.wear_price_variant.wear_reliance_digital}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{wearWearList.wear_price_variant.wear_reliance_digital_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if wearWearList.wear_price_variant.wear_mi_store != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/mi.png' %}" alt="mi store">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{wearWearList.wear_price_variant.wear_mi_store}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{wearWearList.wear_price_variant.wear_mi_store_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if wearWearList.wear_price_variant.wear_samsung != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/samsungbuy.png' %}" alt="samsung">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{wearWearList.wear_price_variant.wear_samsung}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{wearWearList.wear_price_variant.wear_samsung_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if wearWearList.wear_price_variant.wear_vivo != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/vivostore.png' %}" alt="Vivo">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{wearWearList.wear_price_variant.wear_vivo}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{wearWearList.wear_price_variant.wear_vivo_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if wearWearList.wear_price_variant.wear_realme != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/realmestore.png' %}" alt="realme">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{wearWearList.wear_price_variant.wear_realme}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{wearWearList.wear_price_variant.wear_realme_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if wearWearList.wear_price_variant.wear_oppo != null %}
+                            <div class="row paddingon-top">
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <img class="img-fluid" src="{% static 'images/image/oppostore.png' %}" alt="oppo">
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    Rs.{{wearWearList.wear_price_variant.wear_oppo}}
+                                </div>
+                                <div class="col-4 align-self-center d-flex justify-content-center">
+                                    <a href="{{wearWearList.wear_price_variant.wear_oppo_URL}}" target="_blank"><button type="button" class="btn btn-primary">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}                 
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="padding-global">
+                    <div class="white-color">
+                        <h5>Other Wearable Devices</h5>
+                        <hr>  
+                        <div class="row">
+                            {% for optionRandom in option_random %}
+                                <div style="margin-bottom: 10px;" class="col-4">
+                                    <a href="/wearables/{{optionRandom.wearBrandName.wear_brand_name_url}}/{{optionRandom.wear_name_url}}"><img class="img-fluid" src="{{ MEDIA_URL }}{{ optionRandom.wear_picture }}" /></a>
+                                </div>
+                                <div class="col-8">
+                                    <a href="/wearables/{{optionRandom.wearBrandName.wear_brand_name_url}}/{{optionRandom.wear_name_url}}">{{ optionRandom.wearBrandName.wear_brand_name }} {{ optionRandom.wear_name }}</a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                {% for wearWearList in wear_wear_list %}
+                {% if wearWearList.articles_set.all %}
+                <div class="padding-global">
+                    <div class="white-color">
+                        <h4>Related Articles</h4>
+                        <hr>  
+                        <div class="row">
+                            {% for articlemany in wearWearList.articles_set.all %}
+                            <div style="margin: 0px;" class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 card row">
+                                <a href="/articles/{{articlemany.article_name_url}}">
+                                    <div class="col-12">
+                                        <img class="img-fluid" src="{{ MEDIA_URL }}{{ articlemany.article_thumbnail }}" />
+                                    </div>
+                                    <div class="col-12">
+                                        {{ articlemany.article_name }}
+                                    </div>
+                                </a>
+                            </div>   
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content_js %}<script src="{% static 'js/earwear-detailsjs.js'%}"></script>{% endblock %}
