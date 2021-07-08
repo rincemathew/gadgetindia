@@ -10,12 +10,111 @@
     <link rel="canonical" href="{% block content_amp %} {% endblock %}">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+    <style amp-custom>
+      a{
+        text-decoration: none;
+      }
+      .sidebar>li {
+        list-style: none;
+        margin-bottom: 10px;
+      }
+    
+      .sidebar a {
+        text-decoration: none;
+        color: black;
+      }
+      .sidebarone {
+        font-size: large;
+      }
+      .padding-global{
+        padding: 9px 9px 9px 9px;
+      }
+      .white-color{
+        background-color: white;
+        padding: 5px 5px 5px 5px;
+      }
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 5px;
+        margin:10px;
+        padding: 5px;
+        text-align: center;
+      }
+      .scroll {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+        /* scroll hide in mozilla and edge */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
   </head>
 <body>
-    <div style="padding-left: 12px;">
-        
+  <amp-analytics type="gtag" data-credentials="include">
+    <script type="application/json">
+  {
+    "vars" : {
+      "gtag_id": "G-PCVBWGD0WM",
+      "config" : {
+        "G-PCVBWGD0WM": { "groups": "default" }
+      }
+    }
+  }
+  </script>
+  </amp-analytics>
+  <header style="height: 50px; position: fixed; z-index: 999; top: 0; width: 100%; display: flex; align-items: center; background-color: #0a223d;" class="headerbar">
+    <div style="padding-left: 10px; font-size: xx-large; color: #fff;" role="button" on="tap:sidebar1.toggle" tabindex="0" class="hamburger">☰</div>
+    <div class="site-name"><a href="/">
+      <amp-img style="margin-top: 8px;" class="home-button" src="https://storage.googleapis.com/gadget_india_bucket/images/image/logowhite.png" width="200" height="30"></amp-img>
+    </a></div>
+  </header>
+  <amp-sidebar id="sidebar1" layout="nodisplay" side="left">
+    <div style="font-size: 1.5em;padding-left: 5px;" role="button" aria-label="close sidebar" on="tap:sidebar1.toggle" tabindex="0" class="close-sidebar">✕</div>
+    <ul style="padding: 20px;margin: 0;" class="sidebar sidebarone">
+      <li><a href="/">Home</a></li>
+      <li><a href="/smartphones/">Mobiles</a></li>
+      <li><a href="/tablets/">Tablets</a></li>
+      <li><a href="/articles/">Reviews & News</a></li>
+      <li><a href="/compare-phone/">Compare Phones</a></li>
+      <li><a href="/earwear/">Ear Wear</a></li>
+      <li><a href="/wearables/">Wearable</a></li>
+    </ul>
+    <div style="padding: 20px;">
+      <a href="https://www.instagram.com/gadgetin.in/" target="_blank"><amp-img height="30" width="30" layout="responsive" style="max-width: 30px;" src="https://storage.googleapis.com/gadget_india_bucket/images/icons/instagram.png" alt="gadgetin.in"></amp-img></a>
+      <a href="https://www.facebook.com/gadget.india.in" target="_blank"><amp-img height="30" width="30" layout="responsive" style="max-width: 30px;" src="https://storage.googleapis.com/gadget_india_bucket/images/icons/facebook.png" alt="gadgetin.in"></amp-img></a>
+      <a href="https://www.youtube.com/channel/UC6StBxxD9JrUZ7QKAq66KQQ" target="_blank"><amp-img height="30" width="30" layout="responsive" style="max-width: 30px;" src="https://storage.googleapis.com/gadget_india_bucket/images/icons/youtube.png" alt="gadgetin.in"></amp-img></a>
     </div>
-    {% block content_main %}{% endblock %}
-    <div></div>
+    <ul style="padding: 20px;margin: 0;" class="sidebar">
+      <li class="name-color"><a href="/aboutus">About Us</a></li>
+      <li><a href="/contactus">Contact Us</a></li>
+      <li><a href="/sitemap">Sitemap</a></li>
+      <li><a href="/privacypolicy">Privacy Policy</a></li>
+      <li><a href="/termsandconditions">Terms & Conditions</a></li>
+    </ul>
+  </amp-sidebar>
+  <div style="background-color: #F5FAFE;">
+    <div style="margin-top: 50px;">
+      {% block content_main %}{% endblock %}
+    </div>
+  </div>
+    <div style="background-color: #0a223d;">
+      <div style="padding: 20px; text-align: center;">
+        <span style="font-size: 16px;color: aliceblue;">TOP MOBILES</span><br>
+        <a href="/oneplus/nord-ce-5g/" style="color: #F5FAFE; padding-right: 10px;padding: 5px;">OnePlus Nord CE 5G</a>
+        <a href="/vivo/y73/" style="color: #F5FAFE;padding-left: 10px;padding: 5px;">Vivo Y73</a><br>
+        <a href="/iqoo/z3-5g/" style="color: #F5FAFE;padding-right: 10px;padding: 5px;">IQOO Z3 5G</a>
+        <a href="/poco/m3-pro-5g/" style="color: #F5FAFE;padding-left: 10px;padding: 5px;">POCO M3 Pro 5G</a><br>
+        <a href="/realme/x7-max-5g/" style="color: #F5FAFE;padding: 5px;">Realme X7 Max 5G</a><br>
+    </div>
+    </div>
+    <div style="text-align: center;background-color: #eaeaea;">
+      © 2021 gadgetin.in All Rights Reserved.
+    </div>
 </body>
 </html>

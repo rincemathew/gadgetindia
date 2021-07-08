@@ -2,6 +2,10 @@
 {% block title_tag %}{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_name }} | gadgetin.in{% endfor %}{% endblock %}
 {% block meta_des %}{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_description }}{% endfor %}{% endblock %}
 {% block content_css %}<link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
 <meta property="og:url" content="https://www.gadgetin.in/articles/{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_name_url }}{% endfor %}/"/>
     <meta property="og:type" content="article" />
     <meta property="og:title" content="{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_name }}{% endfor %}"/>  
@@ -13,12 +17,122 @@
 <span itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject">
 <link itemprop="url" href="https://storage.googleapis.com/gadget_india_bucket/{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_thumbnail }}{% endfor %}">
 </span>
-<div>
+<div class="padding-global">
+<div class="white-color">
   {% for dynamicArticles in dynamic_articles %}
-  <h1 id="hello">{{ dynamicArticles.article_name }}</h1>
+  <h1 style="font-family: 'Yanone Kaffeesatz', sans-serif;" id="hello">{{ dynamicArticles.article_name }}</h1>
   <amp-img src="{{ MEDIA_URL }}{{ dynamicArticles.article_thumbnail }}" width="600" height="325" layout="responsive">
   </amp-img>
-  <div>{{ dynamicArticles.content | safe }}</div>
+  <div style="font-family: 'Merriweather', serif;">{{ dynamicArticles.content | safe }}</div>
   {% endfor %}
 </div>
+</div>
+
+  <div class="padding-global">
+    <div class="white-color">
+      <h4>Latest News</h4>
+      <hr>
+      {% for relatedArticles in related_articles %}
+      <div class="card">
+      <a href="/articles/{{relatedArticles.article_name_url}}/amp">
+        <amp-img width="600" height="325" layout="responsive" src="{{ MEDIA_URL }}{{ relatedArticles.article_thumbnail }}"
+          alt="article image"></amp-img>
+        <p style="font-weight: bold;">{{ relatedArticles.article_name }}</p>
+      </a>
+    </div>
+      {% endfor %}
+    </div>
+  </div>
+
+{% for earWearList in dynamic_articles %}
+{% if earWearList.which_earbud.all %}
+<div class="padding-global">
+  <div class="white-color">
+    <h4>Related Earwears</h4>
+    <hr>
+    <div class="scroll">
+      {% for earWear in earWearList.which_earbud.all %}
+      <div class="card">
+        <a href="/earwear/{{earWear.earBrandName.ear_brand_name_url}}/{{earWear.ear_name_url}}">
+          <div>
+            <amp-img width="128" height="109" style="max-width: 128;" src="{{ MEDIA_URL }}{{ earWear.ear_picture }}" layout="responsive"/></amp-img>
+          </div>
+          <div>
+            {{ earWear.earBrandName.ear_brand_name }} {{ earWear.ear_name }}
+          </div>
+          <div>
+            Rs. {{ earWear.ear_price }}
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+
+{% for mobileList in dynamic_articles %}
+{% if mobileList.which_mobile.all %}
+<div class="padding-global">
+  <div class="white-color">
+    <h4>Related Mobiles</h4>
+    <hr>
+    <div class="scroll">
+      {% for mobilemany in mobileList.which_mobile.all %}
+      <div class="card">
+        <a
+          href="/{{mobilemany.mobileNames.brandName.brand_name_url}}/{{mobilemany.mobileNames.mobile_name_url}}/?{{mobilemany.mobile_variants_url}}">
+          <div style="text-align: -webkit-center;">
+            <amp-img style="max-width: 117px;" width="117" height="250" layout="responsive" src="{{ MEDIA_URL }}{{ mobilemany.mobileNames.mobile_image }}" ></amp-img>
+          </div>
+          <div>
+            {{ mobilemany.mobileNames.brandName.brand_name }}
+          </div>
+          <div>
+            {{ mobilemany.mobileNames.mobile_name }}
+          </div>
+          <div>
+            Rs. {{ mobilemany.mobileGeneral.price}}
+          </div>
+          <div>
+            {{ mobilemany.mobile_variants }}
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+
+{% for wearableList in dynamic_articles %}
+{% if wearableList.which_wearable.all %}
+<div class="padding-global">
+  <div class="white-color">
+    <h4>Related Wearable Devices</h4>
+    <hr>
+    <div class="scroll">
+      {% for wearablemany in wearableList.which_wearable.all %}
+      <div class="card">
+        <a href="/wearables/{{wearablemany.wearBrandName.wear_brand_name_url}}/{{wearablemany.wear_name_url}}">
+          <div>
+            <amp-img layout="responsive" style="max-height: 100;" width="90" height="100" src="{{ MEDIA_URL }}{{ wearablemany.wear_picture }}" ></amp-img>
+          </div>
+          <div>
+            {{ wearablemany.wearBrandName.wear_brand_name }} {{ wearablemany.wear_name }}
+          </div>
+          <div>
+            Rs. {{ wearablemany.wear_price }}
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+
 {% endblock %}
