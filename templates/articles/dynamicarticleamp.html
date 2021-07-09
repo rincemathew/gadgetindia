@@ -135,4 +135,51 @@
 {% endif %}
 {% endfor %}
 
+<div class="padding-global">
+  <div class="white-color">
+      <h4>Other Products</h4>
+      <hr>
+      <div class="scroll">
+        {% for reaMobiles in rea_mobiles %}
+        <a href="/{{reaMobiles.brandName.brand_name_url}}/{{reaMobiles.mobile_name_url}}">
+        <div class="card">
+          <table style="color: black;">
+            <tr>
+              <td style="text-align: -webkit-center;"><amp-img width="117" height="250" src="{{ MEDIA_URL }}{{ reaMobiles.mobile_image }}" ></amp-img></td>
+            </tr>
+            <tr>
+              <td>{{ reaMobiles.brandName.brand_name }}</td>
+            </tr>
+            <tr>
+              <td>{{ reaMobiles.mobile_name }}</td>
+            </tr>
+            <tr>
+              <td>Rs. {{ reaMobiles.mobile_Variant.all.0.mobileGeneral.price }}</td>
+            </tr>
+            <tr>
+              <td>{{ reaMobiles.mobile_Variant.all.0.mobilePerformance.ram }} GB RAM</td>
+            </tr>
+            <tr>
+              <td>{{ reaMobiles.mobile_Variant.all.0.mobileStorage.device_storage }} GB Storage</td>
+            </tr>
+            <tr>
+              <td>{{ reaMobiles.mobile_Variant.all.0.mobilePerformance.processor }}</td>
+            </tr>
+            <tr>
+              <td>{{ reaMobiles.mobile_Variant.all.0.mobileCamera.primary_camera_str }}</td>
+            </tr>
+            <tr>
+              <td>{{ reaMobiles.mobile_Variant.all.0.mobileCamera.secondary_camera_str }}</td>
+            </tr>
+            <tr>
+              <td>{{ reaMobiles.mobile_Variant.all.0.mobileBattery.battery_capacity }} mAh Battery</td>
+            </tr>
+          </table>
+        </div>
+      </a>
+        {% endfor %}
+      </div>
+  </div>
+</div>
+
 {% endblock %}

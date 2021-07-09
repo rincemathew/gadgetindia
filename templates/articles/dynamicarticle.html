@@ -62,8 +62,8 @@
                             {% for earWear in earWearList.which_earbud.all %}
                             <div style="margin: 0px;" class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-3 card row">
                                 <a href="/earwear/{{earWear.earBrandName.ear_brand_name_url}}/{{earWear.ear_name_url}}">
-                                    <div>
-                                        <img class="img-fluid" src="{{ MEDIA_URL }}{{ earWear.ear_picture }}" />
+                                    <div class="d-flex justify-content-center">
+                                        <img style="max-height: 168px;" class="img-fluid" src="{{ MEDIA_URL }}{{ earWear.ear_picture }}" />
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         {{ earWear.earBrandName.ear_brand_name }} {{ earWear.ear_name }}
@@ -126,8 +126,8 @@
                             {% for wearablemany in wearableList.which_wearable.all %}
                             <div style="margin: 0px;" class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-3 card row">
                                 <a href="/wearables/{{wearablemany.wearBrandName.wear_brand_name_url}}/{{wearablemany.wear_name_url}}">
-                                    <div>
-                                        <img style="max-height: 200;" class="img-fluid" src="{{ MEDIA_URL }}{{ wearablemany.wear_picture }}" />
+                                    <div class="d-flex justify-content-center">
+                                        <img style="max-height: 150px;" class="img-fluid" src="{{ MEDIA_URL }}{{ wearablemany.wear_picture }}" />
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         {{ wearablemany.wearBrandName.wear_brand_name }} {{ wearablemany.wear_name }}
@@ -153,8 +153,8 @@
                       <tr>
                         <th scope="col"></th>
                         {% for reaMobiles in rea_mobiles %}
-                            <td><img style="max-height: 250px; min-height: 190px; min-width: 85px;" class="img-fluid"
-                                src="{{ MEDIA_URL }}{{ reaMobiles.mobile_image }}" alt="mobile-Image" /></td>
+                            <td><a href="/{{reaMobiles.brandName.brand_name_url}}/{{reaMobiles.mobile_name_url}}"><div><img style="max-height: 250px; min-height: 190px; min-width: 85px;" class="img-fluid"
+                                src="{{ MEDIA_URL }}{{ reaMobiles.mobile_image }}" alt="mobile-Image" /></div></a></td>
                             {% endfor %}
                       </tr>
                     </thead>
@@ -162,13 +162,13 @@
                         <tr>
                             <th scope="row">Brand<br>Name</th>
                             {% for reaMobiles in rea_mobiles %}
-                            <td>{{ reaMobiles.brandName.brand_name }}</td>
+                            <td><a href="/{{reaMobiles.brandName.brand_name_url}}"><div>{{ reaMobiles.brandName.brand_name }}</div></a></td>
                             {% endfor %}
                         </tr>
                         <tr>
                             <th scope="row">Model<br>Name</th>
                             {% for reaMobiles in rea_mobiles %}
-                            <td>{{ reaMobiles.mobile_name }}</td>
+                            <td><a href="/{{reaMobiles.brandName.brand_name_url}}/{{reaMobiles.mobile_name_url}}"><div>{{ reaMobiles.mobile_name }}</div></a></td>
                             {% endfor %}
                         </tr>
                         <tr>

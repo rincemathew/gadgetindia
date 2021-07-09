@@ -50,7 +50,12 @@ def dynamic_article_amp(request, articlename):
     dynamic_articles = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic') & Q(article_name_url=articlename))
     related_articles_view = Articles.objects.filter(Q(released_or_not=True) & Q(type='dynamic') & ~Q(article_name_url=articlename)).order_by("-release_date", "-release_time")[:10]
     related_articles = random.sample(list(related_articles_view), 3)
-    return render(request, "articles/dynamicarticleamp.html", {'dynamic_articles': dynamic_articles, 'related_articles':related_articles })
+    rea_mobiles_list = MobileName.objects.filter(
+        Q(mobile_Variant__mobileGeneral__status='Available') & Q(mobile_Variant__mobileGeneral__is_available=True) & Q(
+            phone_type='SMARTPHONE')).annotate(latest=Max('mobile_Variant__mobileGeneral__release_date')).order_by(
+        "-latest")[:20]
+    rea_mobiles = random.sample(list(rea_mobiles_list), 5)
+    return render(request, "articles/dynamicarticleamp.html", {'dynamic_articles': dynamic_articles, 'related_articles':related_articles, 'rea_mobiles':rea_mobiles, })
 
 
 def dynamic_article(request, articlename):
