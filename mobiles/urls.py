@@ -12,6 +12,7 @@ urlpatterns = [
     path('mobile/', views.MobileDetailedResultsView.as_view()),  #rest api
     path('compare-phone/', viewsnormal.compare_view),
     path('<slug:brand_url>/<slug:mobile_url>/', viewsnormal.mobiles_details),
+    path('<slug:brand_url>/<slug:mobile_url>/amp', viewsnormal.mobiles_details_amp),
     # re_path(r'^(?P<brand_url>[\w-]+)/(?P<mobile_url>[\w-]+)/$', viewsnormal.mobiles_details),
     path('<slug:listmobile>/', viewsnormal.mobiles_list),
 ]

@@ -49,6 +49,20 @@ def mobiles_details(request, brand_url, mobile_url):
         return render(request, "404.html", )
 
 
+def mobiles_details_amp(request, brand_url, mobile_url):
+    variant = request.GET.get('variant', '')
+    mobile_details = MobileVariant.objects.filter(Q(mobileNames__brandName__brand_name_url=brand_url) & Q(mobileNames__mobile_name_url=mobile_url))
+    rea_mobiles_list = MobileName.objects.filter(
+        Q(mobile_Variant__mobileGeneral__status='Available') & Q(mobile_Variant__mobileGeneral__is_available=True) & Q(
+            phone_type='SMARTPHONE')).annotate(latest=Max('mobile_Variant__mobileGeneral__release_date')).order_by(
+        "-latest")[:20]
+    rea_mobiles = random.sample(list(rea_mobiles_list), 5)
+    if mobile_details:
+        return render(request, "mobiledetailsamp.html", {'mobile_details': mobile_details, 'variant': variant, 'rea_mobiles':rea_mobiles})
+    else:
+        return render(request, "404.html", )
+
+
 def mobiles_list(request, listmobile):
     static_a = ["aboutus", "contactus", "sitemap", "privacypolicy", "termsandconditions"]
     other_urls = ["latest-phones", "budget-phones", "smartphones", "tablets", "upcoming-phones"]
