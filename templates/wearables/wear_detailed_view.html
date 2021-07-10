@@ -2,7 +2,14 @@
 {% load static %}
 {% block title_tag %}{% for wearWearList in wear_wear_list %}{{ wearWearList.wearBrandName.wear_brand_name }} {{ wearWearList.wear_name }} Price, Specifications and Features in India | gadgetin.in{% endfor %}{% endblock %}
 {% block meta_des %}{% for wearWearList in wear_wear_list %}Get full details of {{ wearWearList.wearBrandName.wear_brand_name }} {{ wearWearList.wear_name }} Wearable. Check out full specifications, Price, Features, Related articles, other Smart Watches, bands and many more...{% endfor %}{% endblock %}
-{% block content_css %}<link rel="stylesheet" href="{% static 'css/mobiledetails.css' %}">{% endblock %}
+{% block content_css %}<link rel="stylesheet" href="{% static 'css/mobiledetails.css' %}">
+<meta property="og:url" content="https://www.gadgetin.in/wearables/{% for wearWearList in wear_wear_list %}{{ wearWearList.wearBrandName.wear_brand_name_url }}/{{ wearWearList.wear_name_url }}/{% endfor %}"/>
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="{% for wearWearList in wear_wear_list %}{{ wearWearList.wearBrandName.wear_brand_name }} {{ wearWearList.wear_name }} Price, Specifications and Features in India | gadgetin.in{% endfor %}"/>  
+<meta property="og:description" content="{% for wearWearList in wear_wear_list %}Get full details of {{ wearWearList.wearBrandName.wear_brand_name }} {{ wearWearList.wear_name }} Wearable. Check out full specifications, Price, Features, Related articles, other Smart Watches, bands and many more...{% endfor %}"/>
+<meta property="og:image" itemprop="image" content="https://storage.googleapis.com/gadget_india_bucket/{% for wearWearList in wear_wear_list %}{{ wearWearList.wear_picture }}{% endfor %}">{% endblock %}
+{% block content_amp %}https://www.gadgetin.in/wearables/{% for wearWearList in wear_wear_list %}{{ wearWearList.wearBrandName.wear_brand_name_url }}/{{ wearWearList.wear_name_url }}/amp/{% endfor %}{% endblock %}
+
 {% block content_main %}
 <div class="main-color">
     <div class="container">

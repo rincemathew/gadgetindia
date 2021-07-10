@@ -8,6 +8,6 @@ urlpatterns = [
     path('feedrss/', views.feed_rss),
     path('', views.article_home_view),
     path('<slug:articlename>/', views.dynamic_article),
-    path('<slug:articlename>/amp', views.dynamic_article_amp),
+    path('<slug:articlename>/amp/', views.dynamic_article_amp),
 ]
 
