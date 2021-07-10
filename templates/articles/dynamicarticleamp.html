@@ -53,7 +53,7 @@
     <div class="scroll">
       {% for earWear in earWearList.which_earbud.all %}
       <div class="card">
-        <a href="/earwear/{{earWear.earBrandName.ear_brand_name_url}}/{{earWear.ear_name_url}}">
+        <a href="/earwear/{{earWear.earBrandName.ear_brand_name_url}}/{{earWear.ear_name_url}}/amp">
           <div>
             <amp-img width="128" height="109" style="max-width: 128;" src="{{ MEDIA_URL }}{{ earWear.ear_picture }}" layout="responsive"/></amp-img>
           </div>
@@ -82,7 +82,7 @@
       {% for mobilemany in mobileList.which_mobile.all %}
       <div class="card">
         <a
-          href="/{{mobilemany.mobileNames.brandName.brand_name_url}}/{{mobilemany.mobileNames.mobile_name_url}}/?{{mobilemany.mobile_variants_url}}">
+          href="/{{mobilemany.mobileNames.brandName.brand_name_url}}/{{mobilemany.mobileNames.mobile_name_url}}/amp?{{mobilemany.mobile_variants_url}}">
           <div style="text-align: -webkit-center;">
             <amp-img style="max-width: 117px;" width="117" height="250" layout="responsive" src="{{ MEDIA_URL }}{{ mobilemany.mobileNames.mobile_image }}" ></amp-img>
           </div>
@@ -116,7 +116,7 @@
     <div class="scroll">
       {% for wearablemany in wearableList.which_wearable.all %}
       <div class="card">
-        <a href="/wearables/{{wearablemany.wearBrandName.wear_brand_name_url}}/{{wearablemany.wear_name_url}}">
+        <a href="/wearables/{{wearablemany.wearBrandName.wear_brand_name_url}}/{{wearablemany.wear_name_url}}/amp">
           <div>
             <amp-img layout="responsive" style="max-height: 100;" width="90" height="100" src="{{ MEDIA_URL }}{{ wearablemany.wear_picture }}" ></amp-img>
           </div>
@@ -141,7 +141,7 @@
       <hr>
       <div class="scroll">
         {% for reaMobiles in rea_mobiles %}
-        <a href="/{{reaMobiles.brandName.brand_name_url}}/{{reaMobiles.mobile_name_url}}">
+        <a href="/{{reaMobiles.brandName.brand_name_url}}/{{reaMobiles.mobile_name_url}}/amp">
         <div class="card">
           <table style="color: black;">
             <tr>

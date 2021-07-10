@@ -1,1 +1,737 @@
-<h1>mobiles</h1>
+{% extends "baseamp.html" %}
+{% load static %}
+{% load simpletag %}
+{% block title_tag %}{% if variant == "" %}{% update_variable mobile_details.0.mobile_variants_url as variant %}{% endif %}{% for mobileDetails in mobile_details %}{% if mobileDetails.mobile_variants_url == variant %}{{mobileDetails.mobileNames.brandName.brand_name}} {{mobileDetails.mobileNames.mobile_name}} Price, Specifications and Features in India | gadgetin.in{% endif %}{% endfor %}{% endblock %}
+{% block meta_des %}{% if variant == "" %}{% update_variable mobile_details.0.mobile_variants_url as variant %}{% endif %}{% for mobileDetails in mobile_details %}{% if mobileDetails.mobile_variants_url == variant %}Get full details of {{mobileDetails.mobileNames.brandName.brand_name}} {{mobileDetails.mobileNames.mobile_name}}. Check out full specifications, features, price, news, reviews and compare with other phones | gadgetin.in{% endif %}{% endfor %}{% endblock %}
+{% block content_css %}<meta property="og:url" content="https://www.gadgetin.in/{% if variant == '' %}{% update_variable mobile_details.0.mobile_variants_url as variant %}{% endif %}{% for mobileDetails in mobile_details %}{% if mobileDetails.mobile_variants_url == variant %}{{mobileDetails.mobileNames.brandName.brand_name_url}}/{{mobileDetails.mobileNames.mobile_name_url}}{% endif %}{% endfor %}/amp">
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="{% if variant == '' %}{% update_variable mobile_details.0.mobile_variants_url as variant %}{% endif %}{% for mobileDetails in mobile_details %}{% if mobileDetails.mobile_variants_url == variant %}{{mobileDetails.mobileNames.brandName.brand_name}} {{mobileDetails.mobileNames.mobile_name}} Price, Specifications and Features in India | gadgetin.in{% endif %}{% endfor %}"/>  
+<meta property="og:description" content="{% if variant == '' %}{% update_variable mobile_details.0.mobile_variants_url as variant %}{% endif %}{% for mobileDetails in mobile_details %}{% if mobileDetails.mobile_variants_url == variant %}Get full details of {{mobileDetails.mobileNames.brandName.brand_name}} {{mobileDetails.mobileNames.mobile_name}}. Check out full specifications, features, price, news, reviews and compare with other phones | gadgetin.in{% endif %}{% endfor %}"/>
+<meta property="og:image" itemprop="image" content="https://storage.googleapis.com/gadget_india_bucket/{% if variant == '' %}{% update_variable mobile_details.0.mobile_variants_url as variant %}{% endif %}{% for mobileDetails in mobile_details %}{% if mobileDetails.mobile_variants_url == variant %}{{mobileDetails.mobileNames.mobile_image}}{% endif %}{% endfor %}">{% endblock %}
+
+{% block content_amp %}https://www.gadgetin.in/{% if variant == "" %}{% update_variable mobile_details.0.mobile_variants_url as variant %}{% endif %}{% for mobileDetails in mobile_details %}{% if mobileDetails.mobile_variants_url == variant %}{{mobileDetails.mobileNames.brandName.brand_name_url}}/{{mobileDetails.mobileNames.mobile_name_url}}{% endif %}{% endfor %}/{% endblock %}
+{% block content_main %}
+{% if variant == "" %}
+{% update_variable mobile_details.0.mobile_variants_url as variant %}
+{% endif %}
+{% for mobileDetails in mobile_details %}
+{% if mobileDetails.mobile_variants_url == variant %}
+
+<div class="padding-global">
+    <div class="white-color">
+        <div style="overflow: hidden;">
+            <div style="float: left;">
+                <h1>{{mobileDetails.mobileNames.brandName.brand_name}} {{mobileDetails.mobileNames.mobile_name}}</h1>
+            </div>
+            <div style="float: right;">
+                {% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}
+                <h1>{{ mobileDetails.mobileGeneral.price |add:"-1000" }} - {{ mobileDetails.mobileGeneral.price|add:"1000" }}*</h1>
+                {% else %}
+                <h1>{{ mobileDetails.mobileGeneral.price }}</h1>
+                {% endif %}
+            </div>
+        </div>
+        <hr>
+        <div class="scroll">
+            {% for mobilePics in mobileDetails.variant_Image.all %}
+            <div class="card">
+                <amp-img style="min-width: 117px; max-height: 250px;" width="117" height="250" layout="intrinsic" src="{{ MEDIA_URL }}{{ mobilePics.variant_image }}"></amp-img>
+            </div>
+            {% endfor %}
+        </div>
+                <div style="padding-top: 20px; text-align: center;">
+                    <select on="change:AMP.navigateTo(url=event.value)">
+                        {% for mobileVariantSelect in mobile_details %}
+                        {% if mobileVariantSelect.mobile_variants_url == variant %}
+                        <option selected>{{ mobileVariantSelect.mobile_variants }}</option>
+                        {% else %}
+                        <option value="?variant={{ mobileVariantSelect.mobile_variants_url }}">{{ mobileVariantSelect.mobile_variants }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div style="padding-top: 20px;">
+                    <div style="overflow: hidden;">
+                        <div style="float: left;">
+                                <h6>Ram</h6>
+                                <p>{{mobileDetails.mobilePerformance.ram}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
+                                <h6>Processor</h6>
+                                <p>{{mobileDetails.mobilePerformance.processor_company}} {{mobileDetails.mobilePerformance.processor}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
+                                <h6>Front Camera</h6>
+                                <p>{{mobileDetails.mobileCamera.primary_camera}} MP{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
+                                <h6>OS</h6>
+                                <p>{{mobileDetails.mobileGeneral.os}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
+                        </div>
+                    <div style="float: right;">
+                                <h6>Storage</h6>
+                                <p>{{mobileDetails.mobileStorage.device_storage}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
+                                <h6>Battery</h6>
+                                <p>{{mobileDetails.mobileBattery.battery_capacity}} mAh{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
+                                <h6>Rear Camera</h6>
+                                <p>{{mobileDetails.mobileCamera.secondary_camera}} MP{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
+                                <h6>Resolution</h6>
+                                <p>{{mobileDetails.mobileDisplay.resolution}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</p>
+                            </div>
+                        </div>
+                    </div>     
+    </div>
+</div>
+
+<div class="padding-global">
+    <div class="white-color">
+        <h2>{{mobileDetails.mobileNames.brandName.brand_name}} {{mobileDetails.mobileNames.mobile_name}} Full
+            Specifications</h2>
+        <table style="table-layout: fixed;width: 100%;" class="table">
+            <tbody>
+                <tr>
+                    <th rowspan="7">
+                        <h5>Key Specs</h5>
+                    </th>
+                    <td><strong>RAM</strong></td>
+                    <td>{{mobileDetails.mobilePerformance.ram}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Memory</strong></td>
+                    <td>{{mobileDetails.mobileStorage.device_storage}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Processor</strong></td>
+                    <td>{{mobileDetails.mobilePerformance.processor_company}}
+                        {{mobileDetails.mobilePerformance.processor}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Selfie Camera</strong></td>
+                    <td>{{mobileDetails.mobileCamera.primary_camera}} MP{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Rear Camera</strong></td>
+                    <td>{{mobileDetails.mobileCamera.secondary_camera}} MP{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Battery</strong></td>
+                    <td>{{mobileDetails.mobileBattery.battery_capacity}} mAh{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Display Size</strong></td>
+                    <td>{{mobileDetails.mobileDisplay.screen_size}} inch{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #fff;" rowspan="14">
+                        <h5>General</h5>
+                    </th>
+                    <td><strong>Brand</strong></td>
+                    <td>{{mobileDetails.mobileNames.brandName.brand_name}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Model</strong></td>
+                    <td>{{mobileDetails.mobileNames.mobile_name}}</td>
+                </tr>
+                <tr>
+                    <td><strong>OS</strong></td>
+                    <td>{{mobileDetails.mobileGeneral.os}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>OS Version</strong></td>
+                    <td>{{mobileDetails.mobileGeneral.os_version}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>UI Version</strong></td>
+                    <td>{{mobileDetails.mobileGeneral.UI_version}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Release Date</strong></td>
+                    {% if mobileDetails.mobileGeneral.status == 'Rumored' %}
+                    <td>within 6 months</td>
+                    {% else %}
+                    <td>{{mobileDetails.mobileGeneral.release_date}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' %}-Announced{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>Avilability</strong></td>
+                    <td>{{mobileDetails.mobileGeneral.status}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Slots</strong></td>
+                    <td>{{mobileDetails.mobileGeneral.slots}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Weight</strong></td>
+                    <td>{{mobileDetails.mobileGeneral.weight}} g{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Colors</strong></td>
+                    <td>{% for mobileColor in mobileDetails.variant_Color.all %}
+                        {{mobileColor.mobile_color}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %},
+                        {% endfor %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Dimensions</strong></td>
+                    <td>{{mobileDetails.mobileGeneral.dimensions}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Networks</strong></td>
+                    <td>
+                        <table style="table-layout: fixed;width: 100%;" class="table">
+                            <tbody>
+                                <tr>
+                                    <th>5G:</th>
+                                    {% if mobileDetails.mobileConnectivity.mobile_connectivity_details.all.0.five_g == True %}
+                                    <td>Yes</td>
+                                    {% else %}
+                                    <td>No</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th>4G:</th>
+                                    {% if mobileDetails.mobileConnectivity.mobile_connectivity_details.all.0.four_g == True %}
+                                    <td>Yes</td>
+                                    {% else %}
+                                    <td>No</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th>3G:</th>
+                                    {% if mobileDetails.mobileConnectivity.mobile_connectivity_details.all.0.three_g == True %}
+                                    <td>Yes</td>
+                                    {% else %}
+                                    <td>No</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th>2G:</th>
+                                    {% if mobileDetails.mobileConnectivity.mobile_connectivity_details.all.0.two_g == True %}
+                                    <td>Yes</td>
+                                    {% else %}
+                                    <td>No</td>
+                                    {% endif %}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Fingerprint Sensor</strong></td>
+                    {% if mobileDetails.mobileSensor.fingerprint_sensor == True %}
+                    <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% else %}
+                    <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>Fast Charger</strong></td>
+                    {% if mobileDetails.mobileBattery.fast_charger == True %}
+                    <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% else %}
+                    <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th style="background-color: #fff;" rowspan="4">
+                        <h5>Performance</h5>
+                    </th>
+                    <td><strong>RAM</strong></td>
+                    <td>{{mobileDetails.mobilePerformance.ram}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Processor</strong></td>
+                    <td>{{mobileDetails.mobilePerformance.processor}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Processor Build</strong></td>
+                    <td>{{mobileDetails.mobilePerformance.processor_company}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Clock Speed</strong></td>
+                    {% if mobileDetails.mobilePerformance.clock_speed == null %}
+                    <td></td>
+                    {% else %}
+                    <td>{{mobileDetails.mobilePerformance.clock_speed}} Hz{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th style="background-color: #fff;" rowspan="6">
+                        <h5>Storage</h5>
+                    </th>
+                    <td><strong>Device Storage</strong></td>
+                    <td>{{mobileDetails.mobileStorage.device_storage}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Expandable Memory</strong></td>
+                    {% if mobileDetails.mobileStorage.expandable_memory == True %}
+                    <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% else %}
+                    <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>Expandable Memory Capacity</strong></td>
+                    {% if mobileDetails.mobileStorage.expandable_memory == True %}
+                    <td>{{mobileDetails.mobileStorage.expandable_memory_capacity}} GB{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% else %}
+                    <td>Not Available{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>OTG Support</strong></td>
+                    {% if mobileDetails.mobileStorage.OTG_support == True %}
+                    <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% else %}
+                    <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>Sim Slot Type</strong></td>
+                    <td>{{mobileDetails.mobileStorage.sim_slot_type}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Slots</strong></td>
+                    <td>{{mobileDetails.mobileGeneral.slots}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <th style="background-color: #fff;" rowspan="4">
+                        <h5>Camera</h5>
+                    </th>
+                    <td><strong>Primary Camera</strong></td>
+                    <td>{{mobileDetails.mobileCamera.primary_camera_str}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Primary Cam Features</strong></td>
+                    {% if mobileDetails.mobileCamera.primary_camera_features == null %}
+                    <td></td>
+                    {% else %}
+                    <td>{{mobileDetails.mobileCamera.primary_camera_features}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>Secondary Camera</strong></td>
+                    <td>{{mobileDetails.mobileCamera.secondary_camera_str}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Secondary Cam Features</strong></td>
+                    {% if mobileDetails.mobileCamera.secondary_camera_features == null %}
+                    <td></td>
+                    {% else %}
+                    <td>{{mobileDetails.mobileCamera.secondary_camera_features}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th style="background-color: #fff;" rowspan="5">
+                        <h5>Battery</h5>
+                    </th>
+                    <td><strong>Capacity</strong></td>
+                    <td>{{mobileDetails.mobileBattery.battery_capacity}} mAh{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Type</strong></td>
+                    <td>{{mobileDetails.mobileBattery.battery_type}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Fast Charger</strong></td>
+                    {% if mobileDetails.mobileBattery.fast_charge == True %}
+                    <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% else %}
+                    <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>Charger Type</strong></td>
+                    <td>{{mobileDetails.mobileBattery.fast_charging}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Replaceable</strong></td>
+                    {% if mobileDetails.mobileBattery.replaceable == True %}
+                    <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% else %}
+                    <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th rowspan="6">
+                        <h5>Display</h5>
+                    </th>
+                    <td><strong>Screen Size</strong></td>
+                    <td>{{mobileDetails.mobileDisplay.screen_size}} inch{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Resolution</strong></td>
+                    <td>{{mobileDetails.mobileDisplay.resolution}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Resolution Type</strong></td>
+                    {% if mobileDetails.mobileDisplay.resolution_types == null %}
+                    <td></td>
+                    {% else %}
+                    <td>{{mobileDetails.mobileDisplay.resolution_type}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>Display Type</strong></td>
+                    <td>{{mobileDetails.mobileDisplay.display_type}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>GPU</strong></td>
+                    <td>{{mobileDetails.mobileDisplay.GPU}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Other Features</strong></td>
+                    <td>{{mobileDetails.mobileDisplay.display_features}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <th rowspan="7">
+                        <h5>Connectivity</h5>
+                    </th>
+                    <td><strong>USB Type C</strong></td>
+                    {% if mobileDetails.mobileConnectivity.USB_type_c == True %}
+                    <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% else %}
+                    <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>GPS</strong></td>
+                    {% if mobileDetails.mobileConnectivity.GPS == True %}
+                    <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% else %}
+                    <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>SAR Value</strong></td>
+                    {% if mobileDetails.mobileConnectivity.SAR_value == null %}
+                    <td></td>
+                    {% else %}
+                    <td>{{mobileDetails.mobileConnectivity.SAR_value}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>Audio Jack</strong></td>
+                    {% if mobileDetails.mobileConnectivity.audio_jack == null %}
+                    <td></td>
+                    {% else %}
+                    <td>{{mobileDetails.mobileConnectivity.audio_jack}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>Bluetooth</strong></td>
+                    <td>{{mobileDetails.mobileConnectivity.bluetooth}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Wi-Fi</strong></td>
+                    <td>{{mobileDetails.mobileConnectivity.wi_fi}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>SIM</strong></td>
+                    <td>{% for mobileConnect in mobileDetails.mobileConnectivity.mobile_connectivity_details.all %}
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th colspan="2">{{mobileConnect.sim_name}}</th>
+                                </tr>
+                                <tr>
+                                    <th>Slot Type:</th>
+                                    <td>{{mobileConnect.sim_type}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Slot Type:</th>
+                                    {% if mobileConnect.hybrid_slot == True %}
+                                    <td>Hybrid Slot</td>
+                                    {% else %}
+                                    <td>Normal Slot</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th>5G:</th>
+                                    {% if mobileConnect.five_g == True %}
+                                    <td>Yes</td>
+                                    {% else %}
+                                    <td>No</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th>VoLTE:</th>
+                                    {% if mobileConnect.VoLTE == True %}
+                                    <td>Yes</td>
+                                    {% else %}
+                                    <td>No</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th>4G:</th>
+                                    {% if mobileConnect.four_g == True %}
+                                    <td>Yes</td>
+                                    {% else %}
+                                    <td>No</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th>3G:</th>
+                                    {% if mobileConnect.three_g == True %}
+                                    <td>Yes</td>
+                                    {% else %}
+                                    <td>No</td>
+                                    {% endif %}
+                                </tr>
+                                <tr>
+                                    <th>2G:</th>
+                                    {% if mobileConnect.two_g == True %}
+                                    <td>Yes</td>
+                                    {% else %}
+                                    <td>No</td>
+                                    {% endif %}
+                                </tr>
+                            </tbody>
+                        </table>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <th style="background-color: #fff;" rowspan="3">
+                        <h5>Sensor</h5>
+                    </th>
+                    <td><strong>Fingerprint Sensor</strong></td>
+                    {% if mobileDetails.mobileSensor.fingerprint_sensor == True %}
+                    <td>Yes{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% else %}
+                    <td>No{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>Fingerprint Position</strong></td>
+                    <td>{{mobileDetails.mobileSensor.fingerprint_position}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <td><strong>Other Sensors</strong></td>
+                    <td>{{mobileDetails.mobileSensor.other_sensor}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                </tr>
+                <tr>
+                    <th rowspan="2">
+                        <h5>Other Features</h5>
+                    </th>
+                    <td><strong>Other Features</strong></td>
+                    {% if mobileDetails.otherFeature.other_Feature == null %}
+                    <td></td>
+                    {% else %}
+                    <td>{{mobileDetails.otherFeature.other_Feature}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td><strong>In the Box</strong></td>
+                    {% if mobileDetails.otherFeature.in_the_box == null %}
+                    <td></td>
+                    {% else %}
+                    <td>{{mobileDetails.otherFeature.in_the_box}}{% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}*{% endif %}</td>
+                    {% endif %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% if mobileDetails.mobileGeneral.status == 'Upcoming' or mobileDetails.mobileGeneral.status == 'Rumored' %}* Phone is not yet released these are the expected values, it may change....{% endif %}
+</div>
+
+{% if mobileDetails.mobileGeneral.status == 'Available' %}
+        <div class="padding-global">
+            <div class="white-color">
+                    <div>
+                        {% for mobileColor in mobileDetails.variant_Color.all %}
+                        {% if mobileColor.mobile_color == mobileDetails.variant_Color.all.0.mobile_color %}
+                            {% if mobileColor.price_variant.flipkart != null %}
+                            <div style="display: flex; align-items: center;">
+                                <div style="float: left; width: 33.33%;">
+                                    <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/flipkart.png" alt="flipkart" ></amp-img>
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    {{mobileColor.price_variant.flipkart}}
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    <a href="{{mobileColor.price_variant.flipkart_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if mobileColor.price_variant.amazon != null %}
+                            <div style="display: flex; align-items: center;">
+                                <div style="float: left; width: 33.33%;">
+                                    <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/amazon.png" alt="amazon"></amp-img>
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    {{mobileColor.price_variant.amazon}}
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    <a href="{{mobileColor.price_variant.amazon_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if mobileColor.price_variant.tata_cliq != null %}
+                            <div style="display: flex; align-items: center;">
+                                <div style="float: left; width: 33.33%;">
+                                    <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/tatacliq.png" alt="TATA Cliq" ></amp-img>
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    {{mobileColor.price_variant.tata_cliq}}
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    <a href="{{mobileColor.price_variant.tata_cliq_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if mobileColor.price_variant.reliance_digital != null %}
+                            <div style="display: flex; align-items: center;">
+                                <div style="float: left; width: 33.33%;">
+                                    <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/reliancedigital.png" alt="Reliance Digital"></amp-img>
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    {{mobileColor.price_variant.reliance_digital}}
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    <a href="{{mobileColor.price_variant.reliance_digital_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if mobileColor.price_variant.mi_store != null %}
+                            <div style="display: flex; align-items: center;">
+                                <div style="float: left; width: 33.33%;">
+                                    <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/mi.png" alt="mi store"></amp-img>
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    {{mobileColor.price_variant.mi_store}}
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    <a href="{{mobileColor.price_variant.mi_store_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if mobileColor.price_variant.samsung != null %}
+                            <div style="display: flex; align-items: center;">
+                                <div style="float: left; width: 33.33%;">
+                                    <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/samsungbuy.png" alt="samsung"></amp-img>
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    {{mobileColor.price_variant.samsung}}
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    <a href="{{mobileColor.price_variant.samsung_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if mobileColor.price_variant.vivo != null %}
+                            <div style="display: flex; align-items: center;">
+                                <div style="float: left; width: 33.33%;">
+                                    <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/vivostore.png" alt="Vivo"></amp-img>
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    {{mobileColor.price_variant.vivo}}
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    <a href="{{mobileColor.price_variant.vivo_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if mobileColor.price_variant.realme != null %}
+                            <div style="display: flex; align-items: center;">
+                                <div style="float: left; width: 33.33%;">
+                                    <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/realmestore.png" alt="realme"></amp-img>
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    {{mobileColor.price_variant.realme}}
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    <a href="{{mobileColor.price_variant.realme_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% if mobileColor.price_variant.oppo != null %}
+                            <div style="display: flex; align-items: center;">
+                                <div style="float: left; width: 33.33%;">
+                                    <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/oppostore.png" alt="oppo"></amp-img>
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    {{mobileColor.price_variant.oppo}}
+                                </div>
+                                <div style="float: left; width: 33.33%;text-align: center;">
+                                    <a href="{{mobileColor.price_variant.oppo_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                                </div> 
+                            </div>
+                            {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% for mobileDetails in mobile_details %}
+        {% if mobileDetails.mobile_variants_url == variant %}
+        {% if mobileDetails.articles_set.all %}
+        <div class="padding-global">
+            <div class="white-color">
+                <h4>Related Articles</h4>
+                <hr>  
+                    {% for articlemany in mobileDetails.articles_set.all %}
+                    <div class="card">
+                        <a href="/articles/{{articlemany.article_name_url}}/amp">
+                            <div>
+                                <amp-img width="600" height="325" layout="responsive" src="{{ MEDIA_URL }}{{ articlemany.article_thumbnail }}" alt="article image"></amp-img>
+                            </div>
+                            <div style="font-weight: bold;">
+                                {{ articlemany.article_name }}
+                            </div>
+                        </a>
+                    </div>     
+                    {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+
+        <div class="padding-global">
+            <div class="white-color">
+                <h4>Other Products</h4>
+                <hr>
+                <div class="scroll">
+                  {% for reaMobiles in rea_mobiles %}
+                  <a href="/{{reaMobiles.brandName.brand_name_url}}/{{reaMobiles.mobile_name_url}}/amp">
+                  <div class="card">
+                    <table style="color: black;">
+                      <tr>
+                        <td style="text-align: -webkit-center;"><amp-img width="117" height="250" src="{{ MEDIA_URL }}{{ reaMobiles.mobile_image }}" ></amp-img></td>
+                      </tr>
+                      <tr>
+                        <td>{{ reaMobiles.brandName.brand_name }}</td>
+                      </tr>
+                      <tr>
+                        <td>{{ reaMobiles.mobile_name }}</td>
+                      </tr>
+                      <tr>
+                        <td>Rs. {{ reaMobiles.mobile_Variant.all.0.mobileGeneral.price }}</td>
+                      </tr>
+                      <tr>
+                        <td>{{ reaMobiles.mobile_Variant.all.0.mobilePerformance.ram }} GB RAM</td>
+                      </tr>
+                      <tr>
+                        <td>{{ reaMobiles.mobile_Variant.all.0.mobileStorage.device_storage }} GB Storage</td>
+                      </tr>
+                      <tr>
+                        <td>{{ reaMobiles.mobile_Variant.all.0.mobilePerformance.processor }}</td>
+                      </tr>
+                      <tr>
+                        <td>{{ reaMobiles.mobile_Variant.all.0.mobileCamera.primary_camera_str }}</td>
+                      </tr>
+                      <tr>
+                        <td>{{ reaMobiles.mobile_Variant.all.0.mobileCamera.secondary_camera_str }}</td>
+                      </tr>
+                      <tr>
+                        <td>{{ reaMobiles.mobile_Variant.all.0.mobileBattery.battery_capacity }} mAh Battery</td>
+                      </tr>
+                    </table>
+                  </div>
+                </a>
+                  {% endfor %}
+                </div>
+            </div>
+          </div>
+
+{% endif %}
+{% endfor %}
+
+{% endblock %}
