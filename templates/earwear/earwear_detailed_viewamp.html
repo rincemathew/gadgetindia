@@ -1,1 +1,265 @@
-<h1>earwear</h1>
+{% extends "baseamp.html" %}
+{% load static %}
+{% block title_tag %}{% for earWearList in ear_wear_list %}{{ earWearList.earBrandName.ear_brand_name }} {{ earWearList.ear_name }} Price, Specifications and Features in India | gadgetin.in{% endfor %}{% endblock %}
+{% block meta_des %}{% for earWearList in ear_wear_list %}Get full details of {{ earWearList.earBrandName.ear_brand_name }} {{ earWearList.ear_name }} earwear. Check out full specifications, Related articles, other earwars and many more...{% endfor %}{% endblock %}
+{% block content_css %}<meta property="og:url" content="https://www.gadgetin.in/earwear/{% for earWearList in ear_wear_list %}{{ earWearList.earBrandName.ear_brand_name }}/{{ earWearList.ear_name }}{% endfor %}/amp/"/>
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="{% for earWearList in ear_wear_list %}{{ earWearList.earBrandName.ear_brand_name }} {{ earWearList.ear_name }} Price, Specifications and Features in India | gadgetin.in{% endfor %}"/>  
+<meta property="og:description" content="{% for earWearList in ear_wear_list %}Get full details of {{ earWearList.earBrandName.ear_brand_name }} {{ earWearList.ear_name }} earwear. Check out full specifications, Related articles, other earwars and many more...{% endfor %}"/>
+<meta property="og:image" itemprop="image" content="https://storage.googleapis.com/gadget_india_bucket/{% for earWearList in ear_wear_list %}{{ earWearList.ear_picture }}{% endfor %}">{% endblock %}
+{% block content_amp %}https://www.gadgetin.in/earwear/{% for earWearList in ear_wear_list %}{{ earWearList.earBrandName.ear_brand_name }}/{{ earWearList.ear_name }}/{% endfor %}{% endblock %}
+{% block content_main %}
+{% for earWearList in ear_wear_list %}
+
+<div class="padding-global">
+    <div class="white-color">
+        <div>
+                    <div class="scroll">
+                        {% for earPics in earWearList.ear_Image.all %}
+                        <div class="card">
+                                    <amp-img style="min-width: 200px; max-height: 300px;" width="250" height="300" layout="intrinsic" src="{{ MEDIA_URL }}{{ earPics.ear_image }}"></amp-img>
+                        </div>
+                        {% endfor %}
+            </div>
+            <div>
+                <h1>{{ earWearList.earBrandName.ear_brand_name }}</h1>
+                <h2>{{ earWearList.ear_name }}</h2>
+                {% if earWearList.ear_price != null %}
+                <h3>Rs.{{ earWearList.ear_price }}</h3>
+                {% endif %}
+                <p>Ear Type: {{ earWearList.ear_type }}</p>
+                {% if earWearList.ear_release_date != null %}
+                <p>Release Date: {{ earWearList.ear_release_date }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="padding-global">
+    <div class="white-color">
+        <h5>{{ earWearList.earBrandName.ear_brand_name }} {{ earWearList.ear_name }} Specifications</h5>
+        <hr>
+        <table style="table-layout: fixed;width: 100%;" class="table">
+            <tbody>
+              <tr>
+                <th scope="row">Mic Availability</th>
+                {% if earWearList.ear_mic == True %}
+                <td>Yes</td>
+                {% else %}
+                <td>No</td>
+                {% endif %}
+              </tr>
+              <tr>
+                <th scope="row">Features</th>
+                <td>{{ earWearList.ear_mic_features }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Battery</th>
+                {% if earWearList.ear_battery == null %}
+                <td></td>
+                {% else %}
+                <td>{{ earWearList.ear_battery }} mAh</td>
+                {% endif %}
+              </tr>
+              <tr>
+                <th scope="row">Battery Features</th>
+                <td>{{ earWearList.ear_battery_feature }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Connectivity</th>
+                <td>{{ earWearList.ear_battery_connectivity }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Waterproof Technology</th>
+                <td>{{ earWearList.ear_waterproof }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Colors</th>
+                <td>{{ earWearList.ear_colors }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Other Features</th>
+                <td>{{ earWearList.ear_other_features }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Inside Package</th>
+                <td>{{ earWearList.inside_package }}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+<div class="padding-global">
+    <div class="white-color">
+            <div>
+                    {% if earWearList.ear_price_variant.ear_flipkart != null %}
+                    <div style="display: flex; align-items: center;">
+                        <div style="float: left; width: 33.33%;">
+                            <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/flipkart.png" alt="flipkart" ></amp-img>
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            {{earWearList.ear_price_variant.ear_flipkart}}
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            <a href="{{earWearList.ear_price_variant.ear_flipkart_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                        </div> 
+                    </div>
+                    {% endif %}
+                    {% if earWearList.ear_price_variant.ear_amazon != null %}
+                    <div style="display: flex; align-items: center;">
+                        <div style="float: left; width: 33.33%;">
+                            <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/amazon.png" alt="amazon"></amp-img>
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            {{earWearList.ear_price_variant.ear_amazon}}
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            <a href="{{earWearList.ear_price_variant.ear_amazon_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                        </div> 
+                    </div>
+                    {% endif %}
+                    {% if earWearList.ear_price_variant.ear_tata_cliq != null %}
+                    <div style="display: flex; align-items: center;">
+                        <div style="float: left; width: 33.33%;">
+                            <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/tatacliq.png" alt="TATA Cliq" ></amp-img>
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            {{earWearList.ear_price_variant.ear_tata_cliq}}
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            <a href="{{earWearList.ear_price_variant.ear_tata_cliq_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                        </div> 
+                    </div>
+                    {% endif %}
+                    {% if earWearList.ear_price_variant.ear_reliance_digital != null %}
+                    <div style="display: flex; align-items: center;">
+                        <div style="float: left; width: 33.33%;">
+                            <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/reliancedigital.png" alt="Reliance Digital"></amp-img>
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            {{earWearList.ear_price_variant.ear_reliance_digital}}
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            <a href="{{earWearList.ear_price_variant.ear_reliance_digital_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                        </div> 
+                    </div>
+                    {% endif %}
+                    {% if earWearList.ear_price_variant.ear_mi_store != null %}
+                    <div style="display: flex; align-items: center;">
+                        <div style="float: left; width: 33.33%;">
+                            <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/mi.png" alt="mi store"></amp-img>
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            {{earWearList.ear_price_variant.ear_mi_store}}
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            <a href="{{earWearList.ear_price_variant.ear_mi_store_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                        </div> 
+                    </div>
+                    {% endif %}
+                    {% if earWearList.ear_price_variant.ear_samsung != null %}
+                    <div style="display: flex; align-items: center;">
+                        <div style="float: left; width: 33.33%;">
+                            <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/samsungbuy.png" alt="samsung"></amp-img>
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            {{earWearList.ear_price_variant.ear_samsung}}
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            <a href="{{earWearList.ear_price_variant.ear_samsung_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                        </div> 
+                    </div>
+                    {% endif %}
+                    {% if earWearList.ear_price_variant.ear_vivo != null %}
+                    <div style="display: flex; align-items: center;">
+                        <div style="float: left; width: 33.33%;">
+                            <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/vivostore.png" alt="Vivo"></amp-img>
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            {{earWearList.ear_price_variant.ear_vivo}}
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            <a href="{{earWearList.ear_price_variant.ear_vivo_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                        </div> 
+                    </div>
+                    {% endif %}
+                    {% if earWearList.ear_price_variant.ear_realme != null %}
+                    <div style="display: flex; align-items: center;">
+                        <div style="float: left; width: 33.33%;">
+                            <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/realmestore.png" alt="realme"></amp-img>
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            {{earWearList.ear_price_variant.ear_realme}}
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            <a href="{{earWearList.ear_price_variant.ear_realme_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                        </div> 
+                    </div>
+                    {% endif %}
+                    {% if earWearList.ear_price_variant.ear_oppo != null %}
+                    <div style="display: flex; align-items: center;">
+                        <div style="float: left; width: 33.33%;">
+                            <amp-img layout="responsive" width="200" height="100" src="https://storage.googleapis.com/gadget_india_bucket/images/image/oppostore.png" alt="oppo"></amp-img>
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            {{earWearList.ear_price_variant.ear_oppo}}
+                        </div>
+                        <div style="float: left; width: 33.33%;text-align: center;">
+                            <a href="{{earWearList.ear_price_variant.ear_oppo_URL}}" target="_blank"><button style="border-radius: 4px;background-color: #e78629;border: none;padding: 10px;margin: 10px;">Check Out</button></a>
+                        </div> 
+                    </div>
+                    {% endif %}
+            </div>
+    </div>
+</div>
+
+<div class="padding-global">
+    <div class="white-color">
+        <h5>Other Ear Wears</h5>
+        <hr>  
+        <div class="scroll">
+            {% for optionRandom in option_random %}
+            <div class="card">
+                <div>
+                    <a href="/earwear/{{optionRandom.earBrandName.ear_brand_name_url}}/{{optionRandom.ear_name_url}}/amp"><amp-img style="min-width: 85px; max-height: 150px;" width="85" height="136" layout="intrinsic" src="{{ MEDIA_URL }}{{ optionRandom.ear_picture }}"></amp-img></a>
+                </div>
+                <div>
+                    <a href="/earwear/{{optionRandom.earBrandName.ear_brand_name_url}}/{{optionRandom.ear_name_url}}/amp">{{ optionRandom.earBrandName.ear_brand_name }} {{ optionRandom.ear_name }}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+</div>
+</div>
+
+<div>
+    {% for earWearList in ear_wear_list %}
+    {% if earWearList.articles_set.all %}
+    <div class="padding-global">
+        <div class="white-color">
+            <h4>Related Articles</h4>
+            <hr>  
+            <div>
+                {% for articlemany in earWearList.articles_set.all %}
+                <div class="card">
+                    <a href="/articles/{{articlemany.article_name_url}}/amp">
+                        <div>
+                            <amp-img width="600" height="325" layout="responsive" src="{{ MEDIA_URL }}{{ articlemany.article_thumbnail }}" alt="article image"></amp-img>
+                        </div>
+                        <div style="font-weight: bold;">
+                            {{ articlemany.article_name }}
+                        </div>
+                    </a>
+                </div>   
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endfor %}
+{% endblock %}

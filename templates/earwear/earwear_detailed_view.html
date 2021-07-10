@@ -2,7 +2,14 @@
 {% load static %}
 {% block title_tag %}{% for earWearList in ear_wear_list %}{{ earWearList.earBrandName.ear_brand_name }} {{ earWearList.ear_name }} Price, Specifications and Features in India | gadgetin.in{% endfor %}{% endblock %}
 {% block meta_des %}{% for earWearList in ear_wear_list %}Get full details of {{ earWearList.earBrandName.ear_brand_name }} {{ earWearList.ear_name }} earwear. Check out full specifications, Related articles, other earwars and many more...{% endfor %}{% endblock %}
-{% block content_css %}<link rel="stylesheet" href="{% static 'css/mobiledetails.css' %}">{% endblock %}
+{% block content_css %}<link rel="stylesheet" href="{% static 'css/mobiledetails.css' %}">
+<meta property="og:url" content="https://www.gadgetin.in/earwear/{% for earWearList in ear_wear_list %}{{ earWearList.earBrandName.ear_brand_name }}/{{ earWearList.ear_name }}{% endfor %}/"/>
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="{% for earWearList in ear_wear_list %}{{ earWearList.earBrandName.ear_brand_name }} {{ earWearList.ear_name }} Price, Specifications and Features in India | gadgetin.in{% endfor %}"/>  
+<meta property="og:description" content="{% for earWearList in ear_wear_list %}Get full details of {{ earWearList.earBrandName.ear_brand_name }} {{ earWearList.ear_name }} earwear. Check out full specifications, Related articles, other earwars and many more...{% endfor %}"/>
+<meta property="og:image" itemprop="image" content="https://storage.googleapis.com/gadget_india_bucket/{% for earWearList in ear_wear_list %}{{ earWearList.ear_picture }}{% endfor %}">{% endblock %}
+{% block content_amp %}https://www.gadgetin.in/earwear/{% for earWearList in ear_wear_list %}{{ earWearList.earBrandName.ear_brand_name }}/{{ earWearList.ear_name }}/amp/{% endfor %}{% endblock %}
+
 {% block content_main %}
 <div class="main-color">
     <div class="container">
