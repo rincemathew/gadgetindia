@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{% static 'css/global.css' %}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     {% block content_css %} {% endblock %}
-    <link rel="amphtml" href="{% block content_amp %} {% endblock %}">
+    {% block content_amp %} {% endblock %}
 
 </head>
 

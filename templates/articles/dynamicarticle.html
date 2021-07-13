@@ -8,7 +8,7 @@
     <meta property="og:title" content="{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_name }}{% endfor %}"/>  
     <meta property="og:description" content="{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_description }}{% endfor %}"/>
     <meta property="og:image" itemprop="image" content="https://storage.googleapis.com/gadget_india_bucket/{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_thumbnail }}/{% endfor %}">{% endblock %}
-{% block content_amp %}https://www.gadgetin.in/articles/{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_name_url }}{% endfor %}/amp/{% endblock %}
+{% block content_amp %}<link rel="amphtml" href="https://www.gadgetin.in/articles/{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_name_url }}{% endfor %}/amp/">{% endblock %}
 {% block content_main %}
 <link itemprop="thumbnailUrl" href="https://storage.googleapis.com/gadget_india_bucket/{% for dynamicArticles in dynamic_articles %}{{ dynamicArticles.article_thumbnail }}{% endfor %}">
 <span itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject">
